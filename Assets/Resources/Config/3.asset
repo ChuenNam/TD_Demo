@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f321281bce3e40ec9ae7e6b3a113e352, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  objectName: 1*3
+  prefab: {fileID: 7909673322821287024, guid: a84aac2316cc7094799d39bdee8266e8, type: 3}
+  occupiedCells:
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  pivotOffset: {x: 0, y: 0}
+  canRotate: 1
+  canMirror: 0
+  rotationSnap: 90
+  description: "1X3\u7684\u7269\u4EF6"
