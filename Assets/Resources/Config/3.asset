@@ -16,9 +16,9 @@ MonoBehaviour:
   prefab: {fileID: 7909673322821287024, guid: a84aac2316cc7094799d39bdee8266e8, type: 3}
   description: "1X3\u7684\u7269\u4EF6"
   occupiedCells:
-  - {x: -1, y: 0}
   - {x: 0, y: 0}
   - {x: 1, y: 0}
+  - {x: -1, y: 0}
   pivotOffset: {x: 0, y: 0}
   canRotate: 1
   rotationSnap: 90

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_BuildPreviewUltraSimple
+  m_Name: Allow_Preview
   m_Shader: {fileID: 4800000, guid: a2c8e0c093543064b9cf6015c61cae10, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

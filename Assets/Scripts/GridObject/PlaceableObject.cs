@@ -5,15 +5,16 @@ public class PlaceableObject : MonoBehaviour
 {
     public string objectID;
     public GridManager gridManager;
+    public BuildMode buildMode;
     
-    private bool isSelected = false;
     private Material originalMaterial;
     private Material highlightMaterial;
     
-    public void Initialize(string id, GridManager manager)
+    public void Initialize(string id, GridManager manager, BuildMode mode)
     {
         objectID = id;
         gridManager = manager;
+        buildMode = mode;
         
         // 保存原始材质
         Renderer renderer = GetComponent<Renderer>();
@@ -34,10 +35,7 @@ public class PlaceableObject : MonoBehaviour
         if (gridManager.isPlacing)
             return;
         
-        if (!isSelected)
-        {
-            ApplyHighlight(true);
-        }
+        ApplyHighlight(true);
     }
     
     void OnMouseExit()
@@ -45,10 +43,7 @@ public class PlaceableObject : MonoBehaviour
         if (gridManager.isPlacing)
             return;
         
-        if (!isSelected)
-        {
-            ApplyHighlight(false);
-        }
+        ApplyHighlight(false);
     }
     
     void OnMouseDown()
@@ -58,18 +53,12 @@ public class PlaceableObject : MonoBehaviour
         
         gridManager.SelectObject(objectID);
     }
-
-    void OnMouseUp()
-    {
-        if (gridManager.isPlacing)
-            return;
-        
-        gridManager.DeleteSelectedObject();
-    }
     
     void OnMouseDrag()
     {
         if (gridManager.isPlacing)
+            return;
+        if (!buildMode.IsBuildMode || !buildMode.moveMode)
             return;
         
         // 实现拖拽移动
@@ -80,7 +69,8 @@ public class PlaceableObject : MonoBehaviour
         {
             Vector2Int gridPos = gridManager.WorldToGridPosition(hit.point);
             gridManager.MoveObject(objectID, gridPos);
-            gridManager.RotateObject(objectID);
+            /*if (Input.GetKeyDown(KeyCode.R))
+                gridManager.RotateObject(objectID);*/
         }
     }
     

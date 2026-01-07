@@ -23,9 +23,12 @@ public enum GridCellState
 [System.Serializable]
 public class GridObjectData
 {
+    public string name;                         // 名称
+    public string description;                  // 描述
     public string objectID;                    // 物体唯一标识
     public GameObject prefab;                  // 预制体
     public Vector2Int gridPosition;           // 左下角网格坐标
+    public Vector2 pivotPosition;               // 枢轴坐标
     public ObjectOrientation orientation;      // 朝向
     public List<Vector2Int> occupiedCells;    // 占用的网格位置（相对坐标）
     public GameObject instance;               // 场景中的实例
@@ -83,5 +86,15 @@ public class GridObjectData
         }
         
         return new BoundsInt(minX, minY, 0, maxX - minX + 1, maxY - minY + 1, 1);
+    }
+
+    public void ShowDataUI(ObjectInfoPanel panel)
+    {
+        panel.ShowPanel();
+        panel.WriteInfo(this);
+    }
+    public void CloseDataUI(ObjectInfoPanel panel)
+    {
+        panel.ClosePanel();
     }
 }

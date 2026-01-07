@@ -18,14 +18,14 @@ MonoBehaviour:
   occupiedCells:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  - {x: -1, y: -1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
   - {x: -1, y: 0}
-  - {x: 2, y: -1}
+  - {x: -1, y: 1}
   - {x: 2, y: 0}
-  pivotOffset: {x: 0, y: 0}
+  - {x: 2, y: 1}
+  pivotOffset: {x: 0.5, y: 0.5}
   canRotate: 1
   rotationSnap: 90
   editorColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.8}
-  pivotColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.8}
+  pivotColor: {r: 1, g: 0, b: 0, a: 0.49019608}

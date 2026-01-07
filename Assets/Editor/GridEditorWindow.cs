@@ -522,33 +522,31 @@ public class GridObjectEditorWindow : EditorWindow
     {
         // 获取绘制区域
         Rect gridRect = GUILayoutUtility.GetRect(0, 0, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
-        
+    
         // 处理网格事件
         HandleGridEvents(gridRect);
-        
+    
         // 绘制背景
         EditorGUI.DrawRect(gridRect, new Color(0.15f, 0.15f, 0.15f));
-        
+    
         // 计算网格参数
         Vector2 gridCenter = gridRect.center;
-        float halfWidth = gridDisplaySize.x * gridZoom * 0.5f;
-        float halfHeight = gridDisplaySize.y * gridZoom * 0.5f;
-        
+    
         // 绘制网格线
         DrawGridLines(gridRect, gridCenter);
-        
-        // 绘制坐标轴
-        DrawGridAxes(gridRect, gridCenter);
-        
+    
+        // 绘制原点标记
+        DrawOrigin(gridRect, gridCenter);
+    
         // 绘制占用的单元格
         DrawOccupiedCells(gridRect, gridCenter);
-        
+    
         // 绘制枢轴点
         DrawPivotPoint(gridRect, gridCenter);
-        
+    
         // 绘制拖拽预览
         DrawDragPreview(gridRect, gridCenter);
-        
+    
         // 绘制网格坐标
         if (showGridCoordinates)
         {
@@ -866,11 +864,17 @@ public class GridObjectEditorWindow : EditorWindow
     {
         Handles.BeginGUI();
         Handles.color = new Color(0.3f, 0.3f, 0.3f, 0.5f);
-        
-        // 垂直线
-        for (int x = -gridDisplaySize.x / 2; x <= gridDisplaySize.x / 2; x++)
+    
+        // 计算网格范围（以格子中心为基准）
+        int halfGridX = gridDisplaySize.x / 2;
+        int halfGridY = gridDisplaySize.y / 2;
+    
+        // 垂直线 - 绘制在格子边界上
+        for (int x = -halfGridX; x <= halfGridX; x++)
         {
-            float lineX = gridCenter.x + x * gridZoom + gridScrollPosition.x;
+            // 网格线在格子边界，所以从 -0.5 开始
+            float lineX = gridCenter.x + (x - 0.5f) * gridZoom + gridScrollPosition.x;
+        
             if (lineX >= gridRect.x && lineX <= gridRect.x + gridRect.width)
             {
                 Handles.DrawLine(
@@ -879,11 +883,13 @@ public class GridObjectEditorWindow : EditorWindow
                 );
             }
         }
-        
-        // 水平线
-        for (int y = -gridDisplaySize.y / 2; y <= gridDisplaySize.y / 2; y++)
+    
+        // 水平线 - 绘制在格子边界上
+        for (int y = -halfGridY; y <= halfGridY; y++)
         {
-            float lineY = gridCenter.y + y * gridZoom + gridScrollPosition.y;
+            // 网格线在格子边界，所以从 -0.5 开始
+            float lineY = gridCenter.y + (y - 0.5f) * gridZoom + gridScrollPosition.y;
+        
             if (lineY >= gridRect.y && lineY <= gridRect.y + gridRect.height)
             {
                 Handles.DrawLine(
@@ -892,7 +898,7 @@ public class GridObjectEditorWindow : EditorWindow
                 );
             }
         }
-        
+    
         Handles.EndGUI();
     }
     
@@ -923,63 +929,66 @@ public class GridObjectEditorWindow : EditorWindow
     private void DrawOccupiedCells(Rect gridRect, Vector2 gridCenter)
     {
         if (currentConfig == null || currentConfig.occupiedCells.Count == 0) return;
-        
-        // 确保我们使用的是Repaint事件
-        if (Event.current.type != EventType.Repaint) return;
-        
+    
         Handles.BeginGUI();
-        
+    
         // 为每个单元格创建颜色纹理
-        Texture2D cellTex = MakeTex(1, 1, currentConfig.editorColor);
-        
+        Texture2D cellTex = MakeTex(2, 2, currentConfig.editorColor);
+    
         foreach (var cell in currentConfig.occupiedCells)
         {
+            // 现在格子中心在整数坐标上，所以直接使用
             Vector2 cellCenter = gridCenter + gridScrollPosition + 
-                new Vector2(cell.x * gridZoom, cell.y * gridZoom);
-            
+                                 new Vector2(cell.x * gridZoom, cell.y * gridZoom);
+        
             Rect cellRect = new Rect(
-                cellCenter.x - gridZoom * 0.45f,
-                cellCenter.y - gridZoom * 0.45f,
-                gridZoom * 0.9f,
-                gridZoom * 0.9f
+                cellCenter.x - gridZoom * 0.5f,  // 从中心向两边扩展
+                cellCenter.y - gridZoom * 0.5f,
+                gridZoom,
+                gridZoom
             );
-            
+        
             // 只在可见区域绘制
             if (gridRect.Overlaps(cellRect))
             {
-                // 方法1：使用GUI.DrawTexture（更可靠）
                 GUI.DrawTexture(cellRect, cellTex);
-                
-                /*Texture2D tex = MakeTex(2, 2, currentConfig.editorColor);
-                cellStyle.normal.background = tex;
-                GUI.Box(cellRect, "", cellStyle);*/
+            
+                // 绘制单元格边框
+                Handles.color = new Color(0.1f, 0.1f, 0.1f, 0.5f);
+                Handles.DrawSolidRectangleWithOutline(cellRect, 
+                    Color.clear, 
+                    new Color(0.1f, 0.1f, 0.1f, 0.5f));
             }
         }
-        
+    
         Handles.EndGUI();
     }
     
     private void DrawPivotPoint(Rect gridRect, Vector2 gridCenter)
     {
         if (currentConfig == null) return;
-        
+    
         Handles.BeginGUI();
-        
+    
         Vector2 pivotCenter = gridCenter + gridScrollPosition + 
-            new Vector2(currentConfig.pivotOffset.x * gridZoom, 
-                       currentConfig.pivotOffset.y * gridZoom);
-        
+                              new Vector2(currentConfig.pivotOffset.x * gridZoom, 
+                                  currentConfig.pivotOffset.y * gridZoom);
+    
         Rect pivotRect = new Rect(
-            pivotCenter.x - gridZoom * 0.4f,
-            pivotCenter.y - gridZoom * 0.4f,
-            gridZoom * 0.8f,
-            gridZoom * 0.8f
+            pivotCenter.x - gridZoom * 0.5f,
+            pivotCenter.y - gridZoom * 0.5f,
+            gridZoom,
+            gridZoom
         );
-        
+    
         if (gridRect.Overlaps(pivotRect))
         {
+            // 绘制枢轴点所在的格子
+            Texture2D pivotTex = MakeTex(2, 2, currentConfig.pivotColor);
+            GUI.DrawTexture(pivotRect, pivotTex);
+        
             // 绘制十字线
-            Handles.color = currentConfig.pivotColor;
+            Handles.color = Color.white;
             Handles.DrawLine(
                 new Vector3(pivotCenter.x - gridZoom * 0.3f, pivotCenter.y),
                 new Vector3(pivotCenter.x + gridZoom * 0.3f, pivotCenter.y)
@@ -988,11 +997,22 @@ public class GridObjectEditorWindow : EditorWindow
                 new Vector3(pivotCenter.x, pivotCenter.y - gridZoom * 0.3f),
                 new Vector3(pivotCenter.x, pivotCenter.y + gridZoom * 0.3f)
             );
-            
+        
             // 绘制圆圈
             Handles.DrawWireArc(pivotCenter, Vector3.forward, Vector3.up, 360, gridZoom * 0.2f);
-        }
         
+            // 绘制"P"标记
+            GUIStyle pivotLabelStyle = new GUIStyle(GUI.skin.label)
+            {
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = Mathf.RoundToInt(gridZoom * 0.4f),
+                fontStyle = FontStyle.Bold,
+                normal = { textColor = Color.white }
+            };
+        
+            GUI.Label(pivotRect, "P", pivotLabelStyle);
+        }
+    
         Handles.EndGUI();
     }
     
@@ -1027,40 +1047,82 @@ public class GridObjectEditorWindow : EditorWindow
     private void DrawGridCoordinates(Rect gridRect, Vector2 gridCenter)
     {
         Handles.BeginGUI();
-        
+    
         GUIStyle coordStyle = new GUIStyle(GUI.skin.label)
         {
             fontSize = 9,
             normal = { textColor = Color.gray },
             alignment = TextAnchor.MiddleCenter
         };
-        
-        // 只在网格线附近显示坐标
+    
+        // 在格子中心显示坐标
         for (int x = -gridDisplaySize.x / 2; x <= gridDisplaySize.x / 2; x++)
         {
             for (int y = -gridDisplaySize.y / 2; y <= gridDisplaySize.y / 2; y++)
             {
-                // 只在交叉点显示
-                if (x % 5 == 0 && y % 5 == 0)
+                // 只在特定的格子显示坐标（避免过于密集）
+                if (Mathf.Abs(x) % 2 == 0 && Mathf.Abs(y) % 2 == 0)
                 {
                     Vector2 point = gridCenter + gridScrollPosition + 
-                        new Vector2(x * gridZoom, y * gridZoom);
-                    
+                                    new Vector2(x * gridZoom, y * gridZoom);
+                
                     if (gridRect.Contains(point))
                     {
                         Rect labelRect = new Rect(
-                            point.x - 20,
+                            point.x - 25,
                             point.y - 10,
-                            40,
+                            50,
                             20
                         );
-                        
+                    
                         GUI.Label(labelRect, $"({x},{y})", coordStyle);
                     }
                 }
             }
         }
-        
+    
+        Handles.EndGUI();
+    }
+    
+    private void DrawOrigin(Rect gridRect, Vector2 gridCenter)
+    {
+        Handles.BeginGUI();
+    
+        Vector2 origin = gridCenter + gridScrollPosition;
+    
+        // 绘制原点标记
+        Handles.color = Color.yellow;
+        Handles.DrawWireArc(origin, Vector3.forward, Vector3.up, 360, 3);
+    
+        // 绘制坐标轴
+        float axisLength = 20f;
+    
+        // X轴
+        Handles.color = Color.red;
+        Handles.DrawLine(origin, new Vector3(origin.x + axisLength, origin.y));
+        Handles.DrawLine(new Vector3(origin.x + axisLength - 5, origin.y - 3), 
+            new Vector3(origin.x + axisLength, origin.y));
+        Handles.DrawLine(new Vector3(origin.x + axisLength - 5, origin.y + 3), 
+            new Vector3(origin.x + axisLength, origin.y));
+    
+        // Y轴
+        Handles.color = Color.green;
+        Handles.DrawLine(origin, new Vector3(origin.x, origin.y + axisLength));
+        Handles.DrawLine(new Vector3(origin.x - 3, origin.y + axisLength - 5), 
+            new Vector3(origin.x, origin.y + axisLength));
+        Handles.DrawLine(new Vector3(origin.x + 3, origin.y + axisLength - 5), 
+            new Vector3(origin.x, origin.y + axisLength));
+    
+        // 原点标签
+        GUIStyle originStyle = new GUIStyle(GUI.skin.label)
+        {
+            fontSize = 10,
+            normal = { textColor = Color.yellow },
+            fontStyle = FontStyle.Bold
+        };
+    
+        GUI.Label(new Rect(origin.x + 5, origin.y - 15, 40, 20), "原点", originStyle);
+    
         Handles.EndGUI();
     }
     
@@ -1071,35 +1133,49 @@ public class GridObjectEditorWindow : EditorWindow
             normal = { background = MakeTex(2, 2, new Color(0, 0, 0, 0.7f)) },
             padding = new RectOffset(5, 5, 2, 2)
         };
-        
-        Rect infoRect = new Rect(mousePos.x + 15, mousePos.y + 15, 100, 40);
-        
+    
+        Rect infoRect = new Rect(mousePos.x + 15, mousePos.y + 15, 120, 50);
+    
         GUI.Box(infoRect, "", style);
-        
+    
         GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
         {
             fontSize = 10,
             normal = { textColor = Color.white }
         };
-        
-        GUI.Label(new Rect(infoRect.x + 5, infoRect.y + 5, 90, 15), 
-                 $"坐标: ({gridPos.x}, {gridPos.y})", labelStyle);
-        
+    
+        // 显示格子坐标
+        GUI.Label(new Rect(infoRect.x + 5, infoRect.y + 5, 110, 15), 
+            $"格子: ({gridPos.x}, {gridPos.y})", labelStyle);
+    
         if (currentConfig != null)
         {
             bool isOccupied = currentConfig.ContainsCell(gridPos);
-            GUI.Label(new Rect(infoRect.x + 5, infoRect.y + 20, 90, 15), 
-                     $"状态: {(isOccupied ? "占用" : "空闲")}", labelStyle);
+            GUI.Label(new Rect(infoRect.x + 5, infoRect.y + 20, 110, 15), 
+                $"状态: {(isOccupied ? "占用" : "空闲")}", labelStyle);
+        
+            // 显示世界坐标（如果需要）
+            Vector2 worldPos = new Vector2(
+                gridPos.x * (gridManagerRef?.cellSize ?? 1f),
+                gridPos.y * (gridManagerRef?.cellSize ?? 1f)
+            );
+            GUI.Label(new Rect(infoRect.x + 5, infoRect.y + 35, 110, 15), 
+                $"世界: ({worldPos.x:F1}, {worldPos.y:F1})", labelStyle);
         }
     }
     
     private Vector2Int GetGridPosition(Vector2 mousePos, Rect gridRect)
     {
+        // 计算相对于网格中心的坐标
         Vector2 relativePos = mousePos - gridRect.center - gridScrollPosition;
+    
+        // 将鼠标坐标转换为网格坐标
+        // 现在网格中心在格子中心，所以我们需要调整计算方法
         Vector2 gridPos = relativePos / gridZoom;
-        
+    
         if (snapToGrid)
         {
+            // 使用四舍五入获取最近的格子
             return new Vector2Int(
                 Mathf.RoundToInt(gridPos.x),
                 Mathf.RoundToInt(gridPos.y)
@@ -1107,6 +1183,7 @@ public class GridObjectEditorWindow : EditorWindow
         }
         else
         {
+            // 使用向下取整
             return new Vector2Int(
                 Mathf.FloorToInt(gridPos.x),
                 Mathf.FloorToInt(gridPos.y)

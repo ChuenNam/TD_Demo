@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GridManager : MonoBehaviour
     // 网格数据
     private GridCell[,] gridCells;
     private Dictionary<string, GridObjectData> placedObjects = new();
+    
+    [Header("建造设置")]
+    public BuildMode buildMode;
     
     [Header("物体设置")]
     public List<GridObjectConfig> availableObjects = new();
@@ -29,10 +33,12 @@ public class GridManager : MonoBehaviour
     public bool isPlacing = false;
     
     private Camera mainCamera;
+    private UIManager ui;
     
     void Start()
     {
         mainCamera  = Camera.main;
+        ui = UIManager.instance;
         InitializeGrid();
     }
     
@@ -58,12 +64,13 @@ public class GridManager : MonoBehaviour
             }
         }
         
-        // 快捷键：删除物体
+        /*// 快捷键：删除物体
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             RemoveObject(currentObject.objectID);
             DeleteSelectedObject();
-        }
+        }*/
+        
     }
 
     void InitializeGrid()
@@ -133,6 +140,19 @@ public class GridManager : MonoBehaviour
             previewInstance.transform.position = worldPos + pivotOffset;
             previewInstance.transform.rotation = Quaternion.Euler(0, (int)currentObject.orientation, 0);
             
+            // 修正位置表现
+            var piv = currentObject.pivotPosition;
+            var times = (int)currentObject.orientation / 90;
+            var offset = Vector2.zero;
+            
+            var a = new Vector2(piv.x + piv.y,piv.x - piv.y);
+            for (int i = 0; i < times; i++)
+            {
+                a = new Vector2(a.y, -a.x);
+                offset += a;
+            }
+            previewInstance.transform.position += new Vector3(offset.x, 0, offset.y);
+            
             // 检查放置是否有效
             bool canPlace = CanPlaceObject(currentObject);
             
@@ -164,16 +184,28 @@ public class GridManager : MonoBehaviour
         objInstance.transform.rotation = Quaternion.Euler(0, (int)currentObject.orientation, 0);
         objInstance.name = $"{selectedObjectConfig.objectName}_{currentObject.objectID}";
         
+        // 修正位置表现
+        var piv = currentObject.pivotPosition;
+        var times = (int)currentObject.orientation / 90;
+        var offset = Vector2.zero;
+            
+        var a = new Vector2(piv.x + piv.y,piv.x - piv.y);
+        for (int i = 0; i < times; i++)
+        {
+            a = new Vector2(a.y, -a.x);
+            offset += a;
+        }
+        objInstance.transform.position += new Vector3(offset.x, 0, offset.y);
+        
         // 设置物体脚本（如果需要）
         PlaceableObject placeable = objInstance.AddComponent<PlaceableObject>();
-        placeable.Initialize(currentObject.objectID, this);
+        placeable.Initialize(currentObject.objectID, this, buildMode);
         
         // 更新物体数据
         currentObject.instance = objInstance;
         
         // 标记占用的网格
         List<Vector2Int> occupied = currentObject.GetOccupiedCells();
-        int i=0;
         foreach (Vector2Int cell in occupied)
         {
             if (IsInGrid(cell))
@@ -215,7 +247,7 @@ public class GridManager : MonoBehaviour
         int currentAngle = (int)currentObject.orientation;
         currentAngle = (currentAngle + 90) % 360;
         currentObject.orientation = (ObjectOrientation)currentAngle;
-
+        
         // 检查旋转后是否还能放置
         UpdatePreview();
     }
@@ -283,20 +315,29 @@ public class GridManager : MonoBehaviour
     #endregion
     
     #region 物体管理
-    
+    public GridObjectData GetSelectObject() => currentObject;
     // 选择物体
     public void SelectObject(string objectID)
     {
         if (placedObjects.TryGetValue(objectID, out var obj))
         {
-            // 可以在这里添加选择效果
-            currentObject = obj;
+            if (currentObject == null || obj.objectID != currentObject.objectID)
+            {
+                // 可以在这里添加选择效果
+                currentObject = obj;
+                currentObject.ShowDataUI(ui.objectInfoPanel);
+            }
+            else
+            {
+                DeSelectedObject();
+            }
         }
     }
     
-    // 删除选中的物体
-    public void DeleteSelectedObject()
+    // 取消选中
+    public void DeSelectedObject()
     {
+        currentObject.CloseDataUI(ui.objectInfoPanel);
         currentObject = null;
     }
     
@@ -370,7 +411,13 @@ public class GridManager : MonoBehaviour
                 0,
                 GetObjectConfig(objectID)?.pivotOffset.y ?? 0 * cellSize
             );
-            objectData.instance.transform.position = worldPos + pivotOffset;
+            var offset = new Vector2(pivotOffset.x + pivotOffset.y, pivotOffset.x - pivotOffset.y);
+            var times = (int)objectData.orientation / 90;
+            for (int t = 0; t < times; t++)
+            {
+                offset = new Vector2(offset.y, -offset.x);
+            }
+            objectData.instance.transform.position = worldPos + new Vector3(offset.x, 0, offset.y);
         }
         
         // 更新网格占用
@@ -388,8 +435,8 @@ public class GridManager : MonoBehaviour
 
     public void RotateObject(string objectID)
     {
-        if (!placedObjects.TryGetValue(objectID, out var objectData)) return;
-        if (Input.GetKeyDown(KeyCode.R))
+        if (objectID == null) return;
+        if (placedObjects.TryGetValue(objectID, out var objectData))
         {
             // 临时移除原位置的占用标记
             List<Vector2Int> originalCells = objectData.GetOccupiedCells();
@@ -406,11 +453,32 @@ public class GridManager : MonoBehaviour
             currentAngle = (currentAngle + 90) % 360;
             currentObject.orientation = (ObjectOrientation)currentAngle;
             // 更新表现
-            objectData.instance.transform.rotation = Quaternion.Euler(0, (int)placedObjects[objectID].orientation, 0);
+            var objTrans = objectData.instance.transform;
+            objTrans.rotation = Quaternion.Euler(0, (int)placedObjects[objectID].orientation, 0);
+            var piv = objectData.pivotPosition;
+            var offset = new Vector2(piv.x + piv.y, piv.x - piv.y);
+            var times = (int)currentObject.orientation / 90;
+            for (int t = 0; t < times; t++)
+            {
+                offset = new Vector2(offset.y, -offset.x);
+            }
+
+            objTrans.position += new Vector3(offset.x, objTrans.position.y, offset.y);
+
+            // 更新网格占用
+            List<Vector2Int> newCells = objectData.GetOccupiedCells();
+            foreach (Vector2Int cell in newCells)
+            {
+                if (IsInGrid(cell))
+                {
+                    gridCells[cell.x, cell.y].SetOccupied(objectData.instance);
+                }
+            }
         }
+
     }
     
-    // 获取物体配置
+    
     GridObjectConfig GetObjectConfig(string objectID)
     {
         if (!placedObjects.ContainsKey(objectID)) return null;

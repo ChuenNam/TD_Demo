@@ -12,8 +12,11 @@ Shader "Custom/Grid"
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue"="Transparent" }
+        // 补充：开启Alpha混合的正确设置
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
+        Cull Off // 可选：关闭背面剔除，双面显示网格
+        Lighting Off // 关闭光照，避免影响透明效果
         
         Pass
         {
@@ -47,10 +50,7 @@ Shader "Custom/Grid"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
-                
-                // 获取世界坐标
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-                
                 return o;
             }
             
@@ -58,29 +58,24 @@ Shader "Custom/Grid"
             {
                 // 计算世界空间中的网格位置
                 float2 gridPos = i.worldPos.xz / _GridSize;
-                
-                // 减去偏移
                 gridPos -= _Offset;
                 
-                // 计算到最近网格线的距离
+                // 计算到最近网格线的距离（生成线条遮罩）
                 float2 grid = frac(gridPos);
-                
-                // 计算线条（使用反距离）
                 float2 l = smoothstep(_LineWidth, 0.0, grid) + 
                             smoothstep(1.0 - _LineWidth, 1.0, grid);
-                
-                // 使用最大函数确保水平和垂直线都可见
                 float lineMask = max(l.x, l.y);
                 
-                // 混合颜色
-                float4 color = lerp(_MainColor, _LineColor, lineMask);
+                // 核心修复：混合颜色时保留线条的原始透明度
+                // 方式：线条颜色 * 线条遮罩 + 背景颜色 * (1 - 线条遮罩)
+                float4 finalColor = _LineColor * lineMask + _MainColor * (1 - lineMask);
                 
-                // 确保背景完全透明
-                color.a = max(color.a, lineMask);
-                
-                return color;
+                // 关键：不再强行覆盖alpha，而是保留混合后的alpha值
+                // 最终alpha = 线条alpha * 线条遮罩 + 背景alpha * (1 - 线条遮罩)
+                return finalColor;
             }
             ENDCG
         }
     }
+    FallBack "Transparent/VertexLit" // 可选：添加回退Shader，提升兼容性
 }
