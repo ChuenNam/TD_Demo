@@ -18,7 +18,6 @@ public class GridObjectConfig : ScriptableObject
     [Header("物体设置")]
     public Vector2 pivotOffset = Vector2.zero; // 物体枢轴偏移（相对于左下角）
     public bool canRotate = true;
-    public int rotationSnap = 90; // 旋转角度间隔
     
     [Header("编辑器显示")]
     public Color editorColor = new Color(0.2f, 0.8f, 0.2f, 0.8f);

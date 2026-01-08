@@ -213,7 +213,7 @@ public class GridObjectEditorWindow : EditorWindow
     
     private void DrawBasicProperties()
     {
-        EditorGUILayout.LabelField("基础属性", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("---基础属性---", EditorStyles.boldLabel);
         
         if (serializedConfig != null)
         {
@@ -229,15 +229,15 @@ public class GridObjectEditorWindow : EditorWindow
     
     private void DrawGridProperties()
     {
-        EditorGUILayout.LabelField("网格属性", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("---网格属性---", EditorStyles.boldLabel);
         
         if (serializedConfig != null)
         {
             serializedConfig.Update();
             
             EditorGUILayout.PropertyField(serializedConfig.FindProperty("pivotOffset"));
+            EditorGUILayout.LabelField("    注意：非原点中心对称形状需将枢轴设为(0.5, 0.5)");
             EditorGUILayout.PropertyField(serializedConfig.FindProperty("canRotate"));
-            EditorGUILayout.PropertyField(serializedConfig.FindProperty("rotationSnap"));
             
             // 编辑器颜色
             EditorGUILayout.PropertyField(serializedConfig.FindProperty("editorColor"), 
@@ -251,7 +251,7 @@ public class GridObjectEditorWindow : EditorWindow
     
     private void DrawEditTools()
     {
-        EditorGUILayout.LabelField("编辑工具", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("---编辑工具---", EditorStyles.boldLabel);
         
         // 编辑模式选择
         EditorGUILayout.BeginHorizontal();
@@ -405,7 +405,7 @@ public class GridObjectEditorWindow : EditorWindow
     
     private void DrawShapeOperations()
     {
-        EditorGUILayout.LabelField("形状操作", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("---形状操作---", EditorStyles.boldLabel);
         
         EditorGUILayout.BeginHorizontal();
         
@@ -468,7 +468,7 @@ public class GridObjectEditorWindow : EditorWindow
     
     private void DrawStatistics()
     {
-        EditorGUILayout.LabelField("统计信息", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("---统计信息---", EditorStyles.boldLabel);
         
         if (currentConfig != null)
         {
@@ -534,6 +534,9 @@ public class GridObjectEditorWindow : EditorWindow
     
         // 绘制网格线
         DrawGridLines(gridRect, gridCenter);
+
+        // 绘制坐标轴
+        DrawGridAxes(gridRect, gridCenter);
     
         // 绘制原点标记
         DrawOrigin(gridRect, gridCenter);
