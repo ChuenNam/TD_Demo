@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 // 网格单元格
 [System.Serializable]
@@ -8,6 +9,8 @@ public class GridCell
     public GridCellState state;
     public GameObject occupyingObject; // 占用该单元格的物体
     public Vector3 worldPosition;      // 世界坐标
+    
+    public List<Buff> buffs;            // 拥有的buff
     
     public GridCell(Vector2Int coords, Vector3 worldPos)
     {

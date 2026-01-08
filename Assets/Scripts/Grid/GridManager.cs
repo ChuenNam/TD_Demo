@@ -13,6 +13,8 @@ public class GridManager : MonoBehaviour
     // 网格数据
     private GridCell[,] gridCells;
     private Dictionary<string, GridObjectData> placedObjects = new();
+    public GridObjectData GetObjectData(string objectID) =>
+        placedObjects.ContainsKey(objectID) ? placedObjects[objectID] : null;
     
     [Header("建造设置")]
     public BuildMode buildMode;
@@ -197,10 +199,6 @@ public class GridManager : MonoBehaviour
         }
         objInstance.transform.position += new Vector3(offset.x, 0, offset.y);
         
-        // 设置物体脚本（如果需要）
-        PlaceableObject placeable = objInstance.AddComponent<PlaceableObject>();
-        placeable.Initialize(currentObject.objectID, this, buildMode);
-        
         // 更新物体数据
         currentObject.instance = objInstance;
         
@@ -217,6 +215,13 @@ public class GridManager : MonoBehaviour
         // 保存物体
         placedObjects.Add(currentObject.objectID, currentObject);
         Debug.Log($"物体放置成功: {selectedObjectConfig.objectName} 在 {currentObject.gridPosition}");
+        
+        // 设置相关脚本
+        PlaceableObject placeable = objInstance.AddComponent<PlaceableObject>();
+        placeable.Initialize(currentObject.objectID, this, buildMode);
+        
+        Building building = objInstance.AddComponent<Building>();
+        building.Initialize(currentObject.objectID, this);
         
         // 清除预览
         CancelPlacement();

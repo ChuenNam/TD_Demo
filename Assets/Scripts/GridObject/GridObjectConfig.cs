@@ -14,10 +14,14 @@ public class GridObjectConfig : ScriptableObject
     
     [Header("网格占用")]
     public List<Vector2Int> occupiedCells = new(); // 相对坐标
+    public List<Vector2Int> buffCells = new();      // buff网格坐标
     
     [Header("物体设置")]
     public Vector2 pivotOffset = Vector2.zero; // 物体枢轴偏移（相对于左下角）
     public bool canRotate = true;
+
+    [Header("蓝图设置")] 
+    public BlueprintConfig blueprintConfig;     // 蓝图
     
     [Header("编辑器显示")]
     public Color editorColor = new Color(0.2f, 0.8f, 0.2f, 0.8f);
@@ -31,20 +35,39 @@ public class GridObjectConfig : ScriptableObject
             occupiedCells.Add(cell);
         }
     }
+    public void AddBuffCell(Vector2Int cell)
+    {
+        if (!buffCells.Contains(cell))
+        {
+            buffCells.Add(cell);
+        }
+    }
     
     public void RemoveCell(Vector2Int cell)
     {
         occupiedCells.Remove(cell);
+    }
+    public void RemoveBuffCell(Vector2Int cell)
+    {
+        buffCells.Remove(cell);
     }
     
     public bool ContainsCell(Vector2Int cell)
     {
         return occupiedCells.Contains(cell);
     }
+    public bool ContainsBuffCell(Vector2Int cell)
+    {
+        return buffCells.Contains(cell);
+    }
     
     public void ClearCells()
     {
         occupiedCells.Clear();
+    }
+    public void ClearBuffCells()
+    {
+        buffCells.Clear();
     }
     
     // 获取边界框
@@ -91,6 +114,7 @@ public class GridObjectConfig : ScriptableObject
             orientation = ObjectOrientation.North,
             occupiedCells = new List<Vector2Int>(occupiedCells),
             canRotate = canRotate,
+            blueprintConfig = blueprintConfig
         };
     }
 }

@@ -33,6 +33,7 @@ public class GridObjectData
     public List<Vector2Int> occupiedCells;    // 占用的网格位置（相对坐标）
     public GameObject instance;               // 场景中的实例
     public bool canRotate = true;             // 是否可以旋转
+    public BlueprintConfig blueprintConfig;     // 拥有的蓝图
     
     // 根据朝向计算实际占用的网格
     public List<Vector2Int> GetOccupiedCells()

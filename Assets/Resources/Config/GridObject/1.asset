@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: 1*1
   prefab: {fileID: 5679417733453938663, guid: cb4735c74addf3a4f85f275266a31c8d, type: 3}
+  description: "1X1\u7684\u7269\u4EF6"
   occupiedCells:
   - {x: 0, y: 0}
+  buffCells: []
   pivotOffset: {x: 0, y: 0}
   canRotate: 1
-  canMirror: 0
-  rotationSnap: 90
-  description: "1X1\u7684\u7269\u4EF6"
+  blueprintConfig: {fileID: 11400000, guid: 91db58d6853895f4abee43e60c23c029, type: 2}
+  editorColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.8}
+  pivotColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.8}
