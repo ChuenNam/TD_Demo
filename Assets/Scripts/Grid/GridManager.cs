@@ -438,8 +438,35 @@ public class GridManager : MonoBehaviour
         if (objectID == null) return;
         if (placedObjects.TryGetValue(objectID, out var objectData))
         {
+            // 检查是否冲突
+            //记录旧数据
+            int oldAngle = (int)currentObject.orientation;
+            List<Vector2Int> originalCells = objectData.GetOccupiedCells();     
+            //记录新数据
+            int newAngle = (oldAngle + 90) % 360;
+            currentObject.orientation = (ObjectOrientation)newAngle;
+            List<Vector2Int> newCells = objectData.GetOccupiedCells();          
+            
+            foreach (Vector2Int cell in newCells)
+            {
+                if (!IsInGrid(cell))
+                {
+                    Debug.Log("超出边界！");
+                    currentObject.orientation = (ObjectOrientation)oldAngle;    //还原
+                    return;
+                }
+
+                var gridCell = gridCells[cell.x, cell.y];
+                if (gridCells[cell.x, cell.y].occupyingObject != objectData.instance && 
+                    gridCell.state is GridCellState.Occupied or GridCellState.Blocked)
+                {
+                    Debug.Log("位置冲突！");
+                    currentObject.orientation = (ObjectOrientation)oldAngle;    //还原
+                    return;
+                }
+            }
+            
             // 临时移除原位置的占用标记
-            List<Vector2Int> originalCells = objectData.GetOccupiedCells();
             foreach (Vector2Int cell in originalCells)
             {
                 if (IsInGrid(cell))
@@ -447,11 +474,7 @@ public class GridManager : MonoBehaviour
                     gridCells[cell.x, cell.y].state = GridCellState.Empty;
                 }
             }
-
-            // 更新数据
-            int currentAngle = (int)currentObject.orientation;
-            currentAngle = (currentAngle + 90) % 360;
-            currentObject.orientation = (ObjectOrientation)currentAngle;
+            
             // 更新表现
             var objTrans = objectData.instance.transform;
             objTrans.rotation = Quaternion.Euler(0, (int)placedObjects[objectID].orientation, 0);
@@ -466,7 +489,6 @@ public class GridManager : MonoBehaviour
             objTrans.position += new Vector3(offset.x, objTrans.position.y, offset.y);
 
             // 更新网格占用
-            List<Vector2Int> newCells = objectData.GetOccupiedCells();
             foreach (Vector2Int cell in newCells)
             {
                 if (IsInGrid(cell))

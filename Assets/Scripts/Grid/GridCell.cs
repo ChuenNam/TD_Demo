@@ -24,6 +24,11 @@ public class GridCell
     
     public void SetOccupied(GameObject obj)
     {
+        if (state == GridCellState.Occupied)
+        {
+            Debug.Log("位置冲突！");
+            return;
+        }
         state = GridCellState.Occupied;
         occupyingObject = obj;
     }
