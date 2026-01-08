@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cabbage
   m_EditorClassIdentifier: 
   itemName: "\u852C\u83DC"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: b217e21534aa5174f9ea425dc850fbd7, type: 3}
   description: 
   price: 0
-  count: 0
+  count: 30

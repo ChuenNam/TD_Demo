@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemName: "\u6728\u6750"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 22744bd57f91ce147940b27e90255acb, type: 3}
   description: 
   price: 0
-  count: 0
+  count: 16
