@@ -157,8 +157,15 @@ public class GridObjectEditorWindow : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
     
+    private Vector2 _scrollPosition;
     private void DrawLeftPanel()
     {
+        // 1. 开始滚动视图，传入滚动位置变量，设置面板宽度
+        _scrollPosition = EditorGUILayout.BeginScrollView(
+            _scrollPosition,    // 滚动位置（必须传引用）
+            GUILayout.Width(320)
+        );
+        
         EditorGUILayout.BeginVertical(GUILayout.Width(300));
         
         EditorGUILayout.Space(5);
@@ -195,6 +202,9 @@ public class GridObjectEditorWindow : EditorWindow
         }
         
         EditorGUILayout.EndVertical();
+        
+        // 3. 结束滚动视图
+        EditorGUILayout.EndScrollView();
     }
     
     private void DrawConfigSelection()
