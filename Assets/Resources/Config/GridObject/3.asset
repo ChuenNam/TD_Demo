@@ -19,8 +19,9 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: -1, y: 0}
+  buffCells: []
   pivotOffset: {x: 0, y: 0}
   canRotate: 1
-  rotationSnap: 90
+  blueprintConfig: {fileID: 0}
   editorColor: {r: 0.12156868, g: 1, b: 0, a: 0.8}
   pivotColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.8}

@@ -8,6 +8,7 @@ public class GridObjectConfig : ScriptableObject
     [Header("基础信息")]
     public string objectName;
     public GameObject prefab;
+    public Sprite icon;
     
     [TextArea]
     public string description;

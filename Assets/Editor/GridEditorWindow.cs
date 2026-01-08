@@ -41,7 +41,7 @@ public class GridObjectEditorWindow : EditorWindow
     private GUIStyle pivotStyle;
     private GUIStyle gridLineStyle;
     
-    [MenuItem("Tools/Grid Object Editor")]
+    [MenuItem("Tools/网格物体编辑器")]
     public static void ShowWindow()
     {
         GetWindow<GridObjectEditorWindow>("网格物体编辑器");
