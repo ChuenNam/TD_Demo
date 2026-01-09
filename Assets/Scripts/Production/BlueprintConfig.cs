@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 [Serializable]
@@ -16,6 +17,32 @@ public class Blueprint
     public float time;
     public List<ItemGroup> useGroup;
     public List<ItemGroup> productGroup;
+
+    public string Info()
+    {
+        //return base.ToString();
+
+        var usetxt = GetItemGroupInfo(useGroup);
+        var useInfo = usetxt == "" ? $"{time}秒" : usetxt;
+        var productInfo = GetItemGroupInfo(productGroup);
+        return  $"{useInfo} → {productInfo}";
+    }
+
+    private string GetItemGroupInfo(List<ItemGroup> itemGroups)
+    {
+        string txt = "";
+        for (var i = 0; i < itemGroups.Count; i++)
+        {
+            var group = itemGroups[i];
+            if (group.item == null)
+                txt += "空";
+            else
+                txt += group.count + group.item.itemName;
+            if (i == itemGroups.Count-1) break;
+            txt += "+";
+        }
+        return txt;
+    }
 }
 
 [CreateAssetMenu(fileName = "New BlueprintConfig", menuName = "Blueprint/New BlueprintConfig")]

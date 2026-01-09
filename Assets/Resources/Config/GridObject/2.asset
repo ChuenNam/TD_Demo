@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: 2*2
   prefab: {fileID: 4687483692652848809, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
+  icon: {fileID: 0}
   description: "2X2\u7684\u7269\u4EF6"
   occupiedCells:
   - {x: 0, y: 0}

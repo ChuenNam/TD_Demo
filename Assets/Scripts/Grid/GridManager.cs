@@ -13,6 +13,8 @@ public class GridManager : MonoBehaviour
     // 网格数据
     private GridCell[,] gridCells;
     private Dictionary<string, GridObjectData> placedObjects = new();
+    
+    public Dictionary<string, GridObjectData> GetPlacedObjects() => placedObjects;
     public GridObjectData GetObjectData(string objectID) =>
         placedObjects.ContainsKey(objectID) ? placedObjects[objectID] : null;
     
@@ -29,7 +31,7 @@ public class GridManager : MonoBehaviour
     public Material previewMaterial;
     
     [Header("当前操作的物体")]
-    [SerializeField]private GridObjectData currentObject;
+    [SerializeField]public GridObjectData currentObject;
     [SerializeField]private GridObjectConfig selectedObjectConfig;
     [SerializeField]private GameObject previewInstance;
     public bool isPlacing = false;

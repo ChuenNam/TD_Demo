@@ -24,6 +24,4 @@ public class ItemManager : MonoBehaviour
     
     public List<BaseItem> possesItem = new();
     
-    
-    
 }

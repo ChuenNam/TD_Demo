@@ -94,6 +94,10 @@ public class GridObjectData
         panel.ShowPanel();
         panel.WriteInfo(this);
     }
+    public void UpdateDataUI(ObjectInfoPanel panel)
+    {
+        panel.WriteInfo(this);
+    }
     public void CloseDataUI(ObjectInfoPanel panel)
     {
         panel.ClosePanel();

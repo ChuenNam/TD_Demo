@@ -9,10 +9,42 @@ public class Building : MonoBehaviour
 
     public int level = 1;
     public List<Blueprint> blueprints;
+    public Blueprint CurrentBlueprint { get; set; }
+    
+    public bool inProduction;
+    public float timeCounter;
 
     public void Initialize(string id, GridManager manager)
     {
         objectData = manager.GetObjectData(id);
         blueprints = objectData.blueprintConfig.blueprints;
+        CurrentBlueprint = blueprints[0];
     }
+    
+    public void Product()
+    {
+        if (timeCounter >= CurrentBlueprint.time)
+        {
+            timeCounter = 0;        // 重置计时器
+            
+            // 更新资源数据
+            foreach (var useItemGroup in CurrentBlueprint.useGroup)
+            {
+                if (useItemGroup.item.count - useItemGroup.count < 0)
+                {
+                    Debug.Log("原料不足");
+                    inProduction  = false;
+                    CurrentBlueprint = null;
+                    return;
+                }
+                useItemGroup.item.count -= useItemGroup.count;
+            }
+            foreach (var productItemGroup in CurrentBlueprint.productGroup)
+            {
+                productItemGroup.item.count += productItemGroup.count;
+            }
+        }
+    }
+    
+    
 }
