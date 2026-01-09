@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeConfig: {fileID: 11400000, guid: 51358545863460d46b37982d88652a43, type: 2}
-  timeSpeed: 2
+  timeSpeed: 1
   globalTime: 0
   dayTime: 0
   day: 0

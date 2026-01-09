@@ -23,6 +23,9 @@ public class DebugController : MonoBehaviour
     public static DebugCommand<int> SET_MONEY;
     public static DebugCommand<int> SET_ALL_ITEM_COUNT;
     public static DebugCommand CLEAR_ALL_ITEM_COUNT;
+    public static DebugCommand<int> SET_TIME_SPEED;
+    public static DebugCommand SET_DAY;
+    public static DebugCommand SET_NIGHT;
 
     // 核心显示相关变量
     private Vector2 displayScrollPos;
@@ -87,6 +90,31 @@ public class DebugController : MonoBehaviour
                 }
                 AddContentToDisplayList("执行结果：所有物品数量已清空");
             });
+            SET_TIME_SPEED = new DebugCommand<int>("SET_TIME_SPEED", "设置时间倍速", "SET_TIME_SPEED <SPEED>", 
+            (x) =>
+            {
+                if (Logic.instance?.timeSpeed == null) return;
+                Logic.instance.timeSpeed = x;
+                AddContentToDisplayList($"执行结果：时间流速已设置为{x}");
+            });
+            SET_DAY = new DebugCommand("SET_DAY", "设置时间为白天", "SET_DAY", 
+            () =>
+            {
+                if (Logic.instance?.timeSpeed == null) return;
+                var ins = Logic.instance;
+                ins.dayTime = 0;
+                ins.globalTime = (ins.day-1) * ins.timeConfig.secondsPerDay;            // 需要同步重置总时间
+                AddContentToDisplayList("执行结果：时间已设置为白天开始");
+            });
+            SET_NIGHT = new DebugCommand("SET_NIGHT", "设置时间为夜晚", "SET_NIGHT", 
+            () =>
+            {
+                if (Logic.instance?.timeSpeed == null) return;
+                var ins = Logic.instance;
+                ins.dayTime = ins.timeConfig.nightChangePoint * ins.timeConfig.secondsPerDay;
+                ins.globalTime = (ins.day-1) * ins.timeConfig.secondsPerDay + ins.dayTime;  // 需要同步重置总时间
+                AddContentToDisplayList("执行结果：时间已设置为夜晚开始");
+            });
             
             commandList = new List<object>()
             {
@@ -96,7 +124,10 @@ public class DebugController : MonoBehaviour
                 SET_ITEM_PRICE,
                 SET_MONEY,
                 CLEAR_ALL_ITEM_COUNT,
-                SET_ALL_ITEM_COUNT
+                SET_ALL_ITEM_COUNT,
+                SET_TIME_SPEED,
+                SET_DAY,
+                SET_NIGHT,
             };
         #endregion
     }

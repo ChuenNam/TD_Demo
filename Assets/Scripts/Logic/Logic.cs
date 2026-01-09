@@ -5,6 +5,23 @@ using UnityEngine;
 
 public class Logic : MonoBehaviour
 {
+    #region 单例 instance
+        public static Logic instance;
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            DontDestroyOnLoad(gameObject);
+        }
+    #endregion 
+    
     [Header("时间数据")] 
     public TimeConfig timeConfig;
     [Range(0,5)]public int timeSpeed = 1;
