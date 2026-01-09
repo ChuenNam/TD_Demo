@@ -12,6 +12,8 @@ public class ObjectInfoPanel : BasePanel
     public Text descriptionText;
     public Text productInfoText;
     public Button productButton;
+    public Button chooseBPButton;
+    public BpListPanel blueprintListPanel;
     
     protected override void Init()
     {
@@ -23,6 +25,19 @@ public class ObjectInfoPanel : BasePanel
             building.inProduction = !building.inProduction;
             WriteInfo(data);
         });
+        chooseBPButton.onClick.AddListener(() =>
+        {
+            if (!blueprintListPanel.isActive)
+            {
+                blueprintListPanel.ShowPanel();
+                blueprintListPanel.InitBpInfo(data,data.instance.GetComponent<Building>());
+            }
+            else
+            {
+                blueprintListPanel.ClosePanel();
+                blueprintListPanel.building = null;
+            }
+        });
     }
 
     public void WriteInfo(GridObjectData objectData)
@@ -32,7 +47,7 @@ public class ObjectInfoPanel : BasePanel
         descriptionText.text = data.description;
         
         var building = data.instance.GetComponent<Building>();
-        productInfoText.text = building.inProduction ? "生产中：" + building.CurrentBlueprint.Info(): "休息中";
+        productInfoText.text = building.inProduction ? "生产中：\n" + building.CurrentBlueprint.Info(): "休息中";
         productButton.GetComponent<Image>().color = building.inProduction ? 
             new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);
         productButton.GetComponentInChildren<Text>().text = building.inProduction ? "停止制造" : "开始制造";

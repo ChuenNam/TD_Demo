@@ -27,6 +27,7 @@ public class Blueprint
         var productInfo = GetItemGroupInfo(productGroup);
         return  $"{useInfo} → {productInfo}";
     }
+    public string ProductInfo() => GetItemGroupInfo(productGroup);
 
     private string GetItemGroupInfo(List<ItemGroup> itemGroups)
     {

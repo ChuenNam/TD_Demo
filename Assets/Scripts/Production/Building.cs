@@ -9,8 +9,14 @@ public class Building : MonoBehaviour
 
     public int level = 1;
     public List<Blueprint> blueprints;
-    public Blueprint CurrentBlueprint { get; set; }
-    
+
+    [SerializeField]private Blueprint _currentBlueprint;
+    public Blueprint CurrentBlueprint
+    {
+        get => _currentBlueprint;
+        set => _currentBlueprint = value;
+    }
+
     public bool inProduction;
     public float timeCounter;
 
@@ -45,6 +51,12 @@ public class Building : MonoBehaviour
             }
         }
     }
-    
-    
+
+    public Blueprint GetBlueprintByProductInfo(string productInfo)
+    {
+        foreach (var bp in blueprints)
+            if (bp.ProductInfo() == productInfo)
+                return bp;
+        return null;
+    }
 }
