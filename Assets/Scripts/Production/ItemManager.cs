@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
@@ -23,5 +24,10 @@ public class ItemManager : MonoBehaviour
     #endregion 
     
     public List<BaseItem> possesItem = new();
+
+    public BaseItem GetItemByName(string itemName)
+    {
+        return possesItem.FirstOrDefault(item => item.itemName == itemName);
+    }
     
 }
