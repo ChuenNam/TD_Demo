@@ -1,8 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
+public interface IDayNightBonus
+{
+    float GetDayBonus();
+    float GetNightBonus();
+}
 
 public class Building : MonoBehaviour
 {
@@ -27,15 +32,23 @@ public class Building : MonoBehaviour
         objectData = manager.GetObjectData(id);
         blueprints = objectData.blueprintConfig.blueprints;
         CurrentBlueprint = blueprints[0];
+        foreach (var bp in blueprints)
+            bp.timeMultiplier = 1;
+        
+        BuffManager.instance.AddBuffToBuilding(this);
+        AddBuff(TimeLogic.instance.isDay
+            ? BuffManager.instance.DayBuff(this)
+            : BuffManager.instance.NightBuff(this));
+        this.objectData.UpdateDataUI();
     }
 
-    public float multiplier = 2;
+    //public float multiplier = 2;
     private void Update()
     {
         // 测试
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            var buff = BuffManager.CreatMultipleProductivityBuff(this, multiplier, 10);
+            var buff = BuffManager.CreatProductivityBuff(this, 2, 10);
             AddBuff(buff);
         }    
     }
@@ -69,10 +82,10 @@ public class Building : MonoBehaviour
     {
         foreach (var buff in buffList.ToList())
         {
-            if (buff.duration == -1)
+            if (Mathf.Approximately(buff.duration, -1))
                 continue;
             
-            buff.remainDuration -= Time.deltaTime;
+            buff.remainDuration -= Time.deltaTime * TimeLogic.instance.timeSpeed;
             if (buff.remainDuration <= 0)
             {
                 DelBuff(buff);
@@ -83,13 +96,37 @@ public class Building : MonoBehaviour
     {
         buffList.Add(buff);
         buff.addBuffAction?.Invoke();
-        Debug.Log($"添加{buff}-时间{buff.duration}");
+        //Debug.Log($"添加{buff}-时间{buff.duration}");
+    }
+    public void AddBuff(List<Buff> buffs)
+    {
+        foreach (var buff in buffs)
+        {
+            buffList.Add(buff);
+            buff.addBuffAction?.Invoke();
+        }
     }
     public void DelBuff(Buff buff)
     {
         buffList.Remove(buff);
         buff.delBuffAction?.Invoke();
-        Debug.Log($"移除{buff}");
+        //Debug.Log($"移除{buff}");
+    }
+    public void DelBuff(List<Buff> buffs)
+    {
+        foreach (var buff in buffs)
+        {
+            buffList.Remove(buff);
+            buff.delBuffAction?.Invoke();
+        }
+    }
+    public void ClearBuff()
+    {
+        foreach (var buff in buffList)
+        {
+            buff.delBuffAction?.Invoke();
+        }
+        buffList.Clear();
     }
 
     public Blueprint GetBlueprintByProductInfo(string productInfo)

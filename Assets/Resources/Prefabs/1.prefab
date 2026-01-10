@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8321244041368430774}
   - component: {fileID: 7488972258447562070}
   - component: {fileID: 1846789995912039021}
+  - component: {fileID: -6239355802317505733}
   m_Layer: 0
   m_Name: 1
   m_TagString: GridObject
@@ -105,3 +106,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6239355802317505733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687483692652848809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a9dae1ff6a44aeaaadcbbada1c13c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectData:
+    name: 
+    description: 
+    objectID: 
+    prefab: {fileID: 0}
+    gridPosition: {x: 0, y: 0}
+    pivotPosition: {x: 0, y: 0}
+    orientation: 0
+    occupiedCells: []
+    instance: {fileID: 0}
+    canRotate: 1
+    blueprintConfig: {fileID: 0}
+  level: 1
+  blueprints: []
+  buffList: []
+  _currentBlueprint:
+    isLocked: 0
+    baseTime: 1
+    timeMultiplier: 1
+    useGroup: []
+    productGroup: []
+  inProduction: 0
+  timeCounter: 0
+  daytimeBonus: 2
+  nighttimeBonus: 1

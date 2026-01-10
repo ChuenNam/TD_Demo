@@ -83,12 +83,22 @@ public class TimeLogic : MonoBehaviour
             dayProgress = 0;
             dayTime = 0;
             isDay = true;
+            foreach (var building in buildings)
+            {
+                building.AddBuff(BuffManager.instance.DayBuff(building));
+                //building.objectData.UpdateDataUI();
+            }
         }
         
-        // 更新昼夜
-        if (dayProgress >= timeConfig.nightChangePoint)
+        // 更新昼夜 - 夜晚开始
+        if (dayProgress >= timeConfig.nightChangePoint && isDay)
         {
             isDay = false;
+            foreach (var building in buildings)
+            {
+                building.AddBuff(BuffManager.instance.NightBuff(building));
+                //building.objectData.UpdateDataUI();
+            }
         }
     }
 
@@ -118,4 +128,8 @@ public class TimeLogic : MonoBehaviour
             building.UpdateBuff();
         }
     }
+
+    public float GetDaySeconds() => timeConfig.secondsPerDay * timeConfig.nightChangePoint - dayProgress * timeConfig.secondsPerDay;
+    public float GetNightSeconds() => timeConfig.secondsPerDay - dayProgress * timeConfig.secondsPerDay;
+
 }

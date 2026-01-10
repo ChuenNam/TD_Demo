@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public ObjectInfoPanel objectInfoPanel;
     public ItemPanel itemPanel;
+    public EventChosePanel eventChosePanel;
 
     private void Awake()
     {

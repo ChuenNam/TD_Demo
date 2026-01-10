@@ -94,9 +94,9 @@ public class GridObjectData
         panel.ShowPanel();
         panel.WriteInfo(this);
     }
-    public void UpdateDataUI(ObjectInfoPanel panel)
+    public void UpdateDataUI()
     {
-        panel.WriteInfo(this);
+        UIManager.instance.objectInfoPanel.WriteInfo(this);
     }
     public void CloseDataUI(ObjectInfoPanel panel)
     {

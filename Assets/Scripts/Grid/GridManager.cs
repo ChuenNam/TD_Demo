@@ -222,7 +222,7 @@ public class GridManager : MonoBehaviour
         PlaceableObject placeable = objInstance.AddComponent<PlaceableObject>();
         placeable.Initialize(currentObject.objectID, this, buildMode);
         
-        Building building = objInstance.AddComponent<Building>();
+        Building building = objInstance.GetComponent<Building>();
         building.Initialize(currentObject.objectID, this);
         
         // 清除预览

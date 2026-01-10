@@ -12,6 +12,8 @@ public class ObjectInfoPanel : BasePanel
     public Text descriptionText;
     public Text productInfoText;
     public Button productButton;
+    public Image productButtonImage;
+    public Text productButtonText;
     public Button chooseBPButton;
     public BpListPanel blueprintListPanel;
     
@@ -48,9 +50,9 @@ public class ObjectInfoPanel : BasePanel
         
         var building = data.instance.GetComponent<Building>();
         productInfoText.text = building.inProduction ? "生产中：\n" + building.CurrentBlueprint.Info(): "休息中";
-        productButton.GetComponent<Image>().color = building.inProduction ? 
+        productButtonImage.color = building.inProduction ? 
             new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);
-        productButton.GetComponentInChildren<Text>().text = building.inProduction ? "停止制造" : "开始制造";
+        productButtonText.text = building.inProduction ? "停止制造" : "开始制造";
     }
     
 }
