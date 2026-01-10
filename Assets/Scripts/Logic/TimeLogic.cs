@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Logic : MonoBehaviour
+public class TimeLogic : MonoBehaviour
 {
     #region 单例 instance
-        public static Logic instance;
+        public static TimeLogic instance;
         private void Awake()
         {
             if (instance == null)

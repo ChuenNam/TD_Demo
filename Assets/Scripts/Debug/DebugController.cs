@@ -93,15 +93,15 @@ public class DebugController : MonoBehaviour
             SET_TIME_SPEED = new DebugCommand<int>("SET_TIME_SPEED", "设置时间倍速", "SET_TIME_SPEED <SPEED>", 
             (x) =>
             {
-                if (Logic.instance?.timeSpeed == null) return;
-                Logic.instance.timeSpeed = x;
+                if (TimeLogic.instance?.timeSpeed == null) return;
+                TimeLogic.instance.timeSpeed = x;
                 AddContentToDisplayList($"执行结果：时间流速已设置为{x}");
             });
             SET_DAY = new DebugCommand("SET_DAY", "设置时间为白天", "SET_DAY", 
             () =>
             {
-                if (Logic.instance?.timeSpeed == null) return;
-                var ins = Logic.instance;
+                if (TimeLogic.instance?.timeSpeed == null) return;
+                var ins = TimeLogic.instance;
                 ins.dayTime = 0;
                 ins.globalTime = (ins.day-1) * ins.timeConfig.secondsPerDay;            // 需要同步重置总时间
                 AddContentToDisplayList("执行结果：时间已设置为白天开始");
@@ -109,8 +109,8 @@ public class DebugController : MonoBehaviour
             SET_NIGHT = new DebugCommand("SET_NIGHT", "设置时间为夜晚", "SET_NIGHT", 
             () =>
             {
-                if (Logic.instance?.timeSpeed == null) return;
-                var ins = Logic.instance;
+                if (TimeLogic.instance?.timeSpeed == null) return;
+                var ins = TimeLogic.instance;
                 ins.dayTime = ins.timeConfig.nightChangePoint * ins.timeConfig.secondsPerDay;
                 ins.globalTime = (ins.day-1) * ins.timeConfig.secondsPerDay + ins.dayTime;  // 需要同步重置总时间
                 AddContentToDisplayList("执行结果：时间已设置为夜晚开始");
