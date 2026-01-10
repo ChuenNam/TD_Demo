@@ -14,16 +14,17 @@ public class ItemGroup
 public class Blueprint
 {
     public bool isLocked;
-    public float time;
+    public float baseTime = 1;
+    public float timeMultiplier = 1;
+    public float Time => baseTime * (1/timeMultiplier);
+    
     public List<ItemGroup> useGroup;
     public List<ItemGroup> productGroup;
 
     public string Info()
     {
-        //return base.ToString();
-
         var usetxt = GetItemGroupInfo(useGroup);
-        var useInfo = usetxt == "" ? $"{time}秒" : usetxt;
+        var useInfo = usetxt == "" ? $"{Time}秒" : usetxt;
         var productInfo = GetItemGroupInfo(productGroup);
         return  $"{useInfo} → {productInfo}";
     }

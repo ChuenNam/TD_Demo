@@ -50,7 +50,7 @@ public class BpListPanel : BasePanel
         building.CurrentBlueprint = building.GetBlueprintByProductInfo(selectedText);
         // 绘制蓝图面板内容
         bpText.text = building.CurrentBlueprint.Info();
-        timeText.text = $"{building.CurrentBlueprint.time}秒";
+        timeText.text = $"{building.CurrentBlueprint.Time}秒";
         // 清除icon
         ClearIcon(useIconRect);
         ClearIcon(productIconRect);

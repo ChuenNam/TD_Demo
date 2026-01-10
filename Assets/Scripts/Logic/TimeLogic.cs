@@ -99,6 +99,7 @@ public class TimeLogic : MonoBehaviour
             return;
         }
 
+        // 生产运行逻辑
         foreach (var building in buildings)
         {
             if (building.CurrentBlueprint == null)
@@ -109,6 +110,12 @@ public class TimeLogic : MonoBehaviour
                 building.timeCounter += Time.deltaTime * timeSpeed;
                 building.Product();
             }
+        }
+        
+        // buff运行逻辑
+        foreach (var building in buildings)
+        {
+            building.UpdateBuff();
         }
     }
 }

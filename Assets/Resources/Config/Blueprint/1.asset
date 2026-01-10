@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprints:
   - isLocked: 0
-    time: 2
+    baseTime: 3
+    timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
       count: 1
     - item: {fileID: 11400000, guid: 03b89bdb2e0ee5e4291fd87d71169136, type: 2}
-      count: 50
+      count: 2
     - item: {fileID: 11400000, guid: 6046491d3de83824b975bfe28b724630, type: 2}
       count: 1
     productGroup:

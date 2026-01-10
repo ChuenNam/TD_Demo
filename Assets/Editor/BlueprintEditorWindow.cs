@@ -329,7 +329,7 @@ public class BlueprintEditorWindow : EditorWindow
             EditorGUI.BeginChangeCheck();
             
             EditorGUIUtility.labelWidth = 60; // 设置合适的宽度
-            blueprint.time = EditorGUILayout.FloatField("生产时间",blueprint.time);
+            blueprint.baseTime = EditorGUILayout.FloatField("生产时间",blueprint.baseTime);
             EditorGUILayout.LabelField("秒", GUILayout.Width(200));
             
             if (EditorGUI.EndChangeCheck())
@@ -481,7 +481,7 @@ public class BlueprintEditorWindow : EditorWindow
         var newBlueprint = new Blueprint
         {
             isLocked = false,
-            time = 5.0f,
+            baseTime = 5.0f,
             useGroup = new List<ItemGroup>(),
             productGroup = new List<ItemGroup>()
         };

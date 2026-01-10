@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprints:
   - isLocked: 0
-    time: 5
+    baseTime: 2
+    timeMultiplier: 1
     useGroup: []
     productGroup:
     - item: {fileID: 11400000, guid: 2ffe9e91313a1db499d549d8db7046ef, type: 2}

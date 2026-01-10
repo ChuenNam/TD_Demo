@@ -1,27 +1,22 @@
 using System;
 using UnityEngine;
 
-public enum EffectType
-{
-    None,
-    Number,
-    Bool
-}
-
-
 [Serializable]
 public class Buff
 {
-    public string name;
-    public string description;
-    
-    public object target;
-    public EffectType effectType;
-    
-    private Buff(object target, EffectType effectType = EffectType.None)
+    public Action addBuffAction;
+    public Action delBuffAction;
+    public object[] parameters;
+    public int duration;
+    public float remainDuration;
+
+    public Buff(int duration, Action onAddBuff, Action onDelBuff, params object[] param)
     {
-        this.target = target;
-        this.effectType = effectType;
+        this.duration = duration;
+        remainDuration = duration;
+        addBuffAction = onAddBuff;
+        delBuffAction = onDelBuff;
+        parameters = param;
     }
     
 }
