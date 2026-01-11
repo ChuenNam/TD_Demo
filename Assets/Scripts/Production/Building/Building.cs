@@ -47,6 +47,12 @@ public class Building : MonoBehaviour
         this.objectData.UpdateDataUI();
     }
 
+    private void OnDisable()
+    {
+        // 结束时清除所有Buff
+        ClearBuff();
+    }
+
     //public float multiplier = 2;
     private void Update()
     {
