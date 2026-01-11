@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f321281bce3e40ec9ae7e6b3a113e352, type: 3}
-  m_Name: 4
+  m_Name: "\u4F10\u6728\u573A"
   m_EditorClassIdentifier: 
-  objectName: 2*4
+  objectName: "\u4F10\u6728\u573A"
   prefab: {fileID: 1013936738230007257, guid: 6197462d8b635d44cbabe4fb79ba47f6, type: 3}
   icon: {fileID: 0}
-  description: "\u4E00\u4E2Ar2*4\u7684\u7269\u4EF6"
+  description: "\u780D\u4F10\u52A0\u5DE5\u539F\u6728\u7684\u5730\u65B9\uFF0C\u82B1\u94B1\u80FD\u96C7\u4F63\u5DE5\u4EBA\u751F\u4EA7\u6728\u6750"
   occupiedCells:
   - {x: 0, y: 0}
   - {x: 1, y: 0}

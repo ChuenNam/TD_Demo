@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Farmland : Building ,IDayNightBonus
+public class AnimalShed : Building ,IDayNightBonus
 {
     [Header("Buff数据")] 
     public float daytimeBonus = 1;

@@ -2889,7 +2889,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6916763, y: -0.00047798918, z: 0.00049545587, w: 0.72220737}
-  m_LocalPosition: {x: 0, y: 18, z: -1}
+  m_LocalPosition: {x: 0, y: 23, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3156,6 +3156,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cdbb52cecfd95b4e8bcbad5c05af224, type: 2}
   - {fileID: 11400000, guid: 31f2ddd7e1897fe4e9d4f8fb1c5a285c, type: 2}
   - {fileID: 11400000, guid: f04fda85e0aff0548aa365eeb0dc8be5, type: 2}
+  - {fileID: 11400000, guid: 17b94f687b23828408746b7d35c87b4a, type: 2}
+  - {fileID: 11400000, guid: 94b8a8f8db6530343ae0e7d0667b717a, type: 2}
   gridLayerMask:
     serializedVersion: 2
     m_Bits: 64

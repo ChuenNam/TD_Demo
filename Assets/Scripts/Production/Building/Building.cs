@@ -9,6 +9,11 @@ public interface IDayNightBonus
     float GetNightBonus();
 }
 
+public interface ITrading
+{
+    
+}
+
 public class Building : MonoBehaviour
 {
     public GridObjectData objectData;

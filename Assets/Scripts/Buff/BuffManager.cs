@@ -42,7 +42,8 @@ public class BuffManager : MonoBehaviour
             for (var i = 0; i < e.productionBuffConfigs.Count; i++)
             {
                 e.Init(building);
-                building.AddBuff(e.buffs[i]);
+                if (i >= 0 && i < e.buffs.Count) 
+                    building.AddBuff(e.buffs[i]);
             }
         }
     }
@@ -112,19 +113,26 @@ public class BuffManager : MonoBehaviour
         return buffs;
     }
 
-    // 生产效率加倍 Buff
+    // 建筑生产效率加倍 Buff
     public static Buff CreatProductivityBuff(Building building, float multiple, float duration)
     {
-        var bp = building.CurrentBlueprint;
+
+        //var bp = building.CurrentBlueprint;
         Action onAddBuff = () =>
         {
-            bp.timeMultiplier *= multiple;
-            building.objectData.UpdateDataUI();
+            foreach (var bp in building.blueprints)
+            {
+                bp.timeMultiplier += multiple-1;
+                building.objectData.UpdateDataUI();
+            }
         };
         Action onDelBuff = () =>
         {
-            bp.timeMultiplier /= multiple;
-            building.objectData.UpdateDataUI();
+            foreach (var bp in building.blueprints)
+            {
+                bp.timeMultiplier -= multiple-1;
+                building.objectData.UpdateDataUI();
+            }
         };
 
         var buff = new Buff(duration, onAddBuff, onDelBuff);
@@ -132,17 +140,22 @@ public class BuffManager : MonoBehaviour
     }
     public static Buff CreatProductivityBuff(Building building, ProductionBuffConfig config)
     {
-        var bp = building.CurrentBlueprint;
+        //var bp = building.CurrentBlueprint;
         Action onAddBuff = () =>
         {
-            Debug.Log(config.buffName);
-            bp.timeMultiplier *= config.multiple;
-            building.objectData.UpdateDataUI();
+            foreach (var bp in building.blueprints)
+            {
+                bp.timeMultiplier += config.multiple-1;
+                building.objectData.UpdateDataUI();
+            }
         };
         Action onDelBuff = () =>
         {
-            bp.timeMultiplier /= config.multiple;
-            building.objectData.UpdateDataUI();
+            foreach (var bp in building.blueprints)
+            {
+                bp.timeMultiplier -= config.multiple-1;
+                building.objectData.UpdateDataUI();
+            }
         };
 
         var buff = new Buff(config.CalculateDuration(), onAddBuff, onDelBuff);

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db38024ace4248ae957d58d424e63b12, type: 3}
-  m_Name: "\u751F\u957F-"
+  m_Name: "\u4F10\u6728\u52A0\u901F+"
   m_EditorClassIdentifier: 
-  buffName: "\u751F\u957F-"
-  buffDescription: "\u519C\u7530\u751F\u4EA7\u6548\u7387\u964D\u4F4E"
-  multiple: 0.8
-  duration: 0
-  building: {fileID: -6239355802317505733, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
+  buffName: "\u4F10\u6728\u52A0\u901F+"
+  buffDescription: "\u4F10\u6728\u573A\u751F\u4EA7\u6548\u7387\u63D0\u9AD8"
+  multiple: 1.2
+  duration: 3
+  building: {fileID: 9008336175766163998, guid: 6197462d8b635d44cbabe4fb79ba47f6, type: 3}

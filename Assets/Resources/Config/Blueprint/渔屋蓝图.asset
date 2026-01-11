@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f62596252d2e46768e3c8cc47bbf2e4c, type: 3}
-  m_Name: 3
+  m_Name: "\u6E14\u5C4B\u84DD\u56FE"
   m_EditorClassIdentifier: 
   blueprints:
   - isLocked: 0
-    baseTime: 2
+    baseTime: 3
     timeMultiplier: 1
     useGroup: []
     productGroup:
-    - item: {fileID: 11400000, guid: 2ffe9e91313a1db499d549d8db7046ef, type: 2}
-      count: 1
+    - item: {fileID: 11400000, guid: 03b89bdb2e0ee5e4291fd87d71169136, type: 2}
+      count: 2

@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f321281bce3e40ec9ae7e6b3a113e352, type: 3}
-  m_Name: 3
+  m_Name: "\u519C\u7530"
   m_EditorClassIdentifier: 
-  objectName: 1*3
-  prefab: {fileID: 7909673322821287024, guid: a84aac2316cc7094799d39bdee8266e8, type: 3}
+  objectName: "\u519C\u7530"
+  prefab: {fileID: 4687483692652848809, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
   icon: {fileID: 0}
-  description: "1X3\u7684\u7269\u4EF6"
+  description: "\u4E00\u5757\u7530\u5730\uFF0C\u53EF\u4EE5\u79CD\u690D\u519C\u4F5C\u7269"
   occupiedCells:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
-  - {x: -1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
   buffCells: []
-  pivotOffset: {x: 0, y: 0}
+  pivotOffset: {x: 0.5, y: 0.5}
   canRotate: 1
-  blueprintConfig: {fileID: 11400000, guid: 0cf57c336a9e95847935776ae81bffeb, type: 2}
-  editorColor: {r: 0.12156868, g: 1, b: 0, a: 0.8}
+  blueprintConfig: {fileID: 11400000, guid: b52687e103e265a43b07d617dcd3dd9f, type: 2}
+  editorColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.8}
   pivotColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.8}

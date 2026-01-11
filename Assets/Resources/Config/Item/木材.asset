@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f071f641f84e4958b69bcca8cc205753, type: 3}
-  m_Name: Rice
+  m_Name: "\u6728\u6750"
   m_EditorClassIdentifier: 
-  itemName: "\u5927\u7C73"
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  itemName: "\u6728\u6750"
+  icon: {fileID: 21300000, guid: 22744bd57f91ce147940b27e90255acb, type: 3}
   description: 
   price: 0
-  count: 49
+  count: 16

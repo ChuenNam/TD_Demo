@@ -17,6 +17,7 @@ public class Blueprint
     public float baseTime = 1;
     public float timeMultiplier = 1;
     public float Time => baseTime/timeMultiplier;
+    //public float Time => baseTime/timeMultiplier;
     
     public List<ItemGroup> useGroup;
     public List<ItemGroup> productGroup;
@@ -24,7 +25,8 @@ public class Blueprint
     public string Info()
     {
         var usetxt = GetItemGroupInfo(useGroup);
-        var useInfo = usetxt == "" ? $"{Time:F}秒" : usetxt;
+        var useInfo = $"{usetxt}({Time:F1}秒)";
+        //var useInfo = usetxt == "" ? $"{Time:F}秒" : usetxt;
         var productInfo = GetItemGroupInfo(productGroup);
         return  $"{useInfo} → {productInfo}";
     }

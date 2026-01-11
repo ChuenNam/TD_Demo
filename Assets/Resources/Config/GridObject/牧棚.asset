@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f321281bce3e40ec9ae7e6b3a113e352, type: 3}
+  m_Name: "\u7267\u68DA"
+  m_EditorClassIdentifier: 
+  objectName: "\u7267\u68DA"
+  prefab: {fileID: 4072386469659265995, guid: 5346367c62ab89e4199f167f8b336536, type: 3}
+  icon: {fileID: 0}
+  description: "\u5708\u517B\u7272\u755C\u7684\u573A\u5730\uFF0C\u4F1A\u4EA7\u51FA\u5708\u517B\u52A8\u7269\u7684\u4EA7\u7269"
+  occupiedCells:
+  - {x: -1, y: -1}
+  - {x: -1, y: 0}
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 0, y: 0}
+  buffCells: []
+  pivotOffset: {x: 0, y: 0}
+  canRotate: 1
+  blueprintConfig: {fileID: 11400000, guid: 0f9fc589c5cc7534c855c04341f777ed, type: 2}
+  editorColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.8}
+  pivotColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.8}
