@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db38024ace4248ae957d58d424e63b12, type: 3}
-  m_Name: "\u6536\u76CA-"
+  m_Name: "\u5377\u5FC3\u83DC\u6536\u83B7-"
   m_EditorClassIdentifier: 
-  buffName: "\u6536\u76CA+"
-  buffDescription: "\u9910\u5385\u8D5A\u53D6\u7684\u6536\u76CA\u51CF\u5C11"
+  buffName: "\u5377\u5FC3\u83DC\u6536\u83B7-"
+  buffDescription: "\u5377\u5FC3\u83DC\u4EA7\u91CF\u51CF\u5C11"
   buffType: 1
-  multiple: -10
+  multiple: -1
   duration: 3
-  building: {fileID: 1012406974826088352, guid: bccdd6b2dcae70f4cb96c19818fc7a2e, type: 3}
-  targetItems: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+  building: {fileID: -6239355802317505733, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
+  targetItems: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}

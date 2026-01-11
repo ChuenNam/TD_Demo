@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f321281bce3e40ec9ae7e6b3a113e352, type: 3}
-  m_Name: 1
+  m_Name: "\u8D38\u6613\u7AD9"
   m_EditorClassIdentifier: 
-  objectName: 1*1
+  objectName: "\u8D38\u6613\u7AD9"
   prefab: {fileID: 5679417733453938663, guid: cb4735c74addf3a4f85f275266a31c8d, type: 3}
   icon: {fileID: 0}
-  description: "1X1\u7684\u7269\u4EF6"
+  description: "\u6D3E\u51FA\u8D38\u6613\u5546\u961F\uFF0C\u5C06\u7269\u54C1\u4EA4\u7ED9\u4ED6\u4EEC\uFF0C\u4E00\u6BB5\u65F6\u95F4\u540E\u4ED6\u4EEC\u4F1A\u5E26\u7740\u5356\u51FA\u7684\u6536\u76CA\u56DE\u6765"
   occupiedCells:
   - {x: 0, y: 0}
   buffCells: []

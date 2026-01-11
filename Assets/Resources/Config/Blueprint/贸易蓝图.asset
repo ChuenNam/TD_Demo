@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62596252d2e46768e3c8cc47bbf2e4c, type: 3}
+  m_Name: "\u8D38\u6613\u84DD\u56FE"
+  m_EditorClassIdentifier: 
+  blueprints:
+  - blueprintName: "\u5377\u5FC3\u83DC"
+    isLocked: 0
+    baseTime: 30
+    timeMultiplier: 1
+    useGroup:
+    - item: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
+      count: 1
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1
+  - blueprintName: "\u5927\u7C73"
+    isLocked: 0
+    baseTime: 30
+    timeMultiplier: 1
+    useGroup:
+    - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
+      count: 1
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1
+  - blueprintName: "\u6728\u6750"
+    isLocked: 0
+    baseTime: 30
+    timeMultiplier: 1
+    useGroup:
+    - item: {fileID: 11400000, guid: 2ffe9e91313a1db499d549d8db7046ef, type: 2}
+      count: 1
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1
+  - blueprintName: "\u725B\u5976"
+    isLocked: 0
+    baseTime: 30
+    timeMultiplier: 1
+    useGroup:
+    - item: {fileID: 11400000, guid: 6046491d3de83824b975bfe28b724630, type: 2}
+      count: 1
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1
+  - blueprintName: "\u9C7C"
+    isLocked: 0
+    baseTime: 30
+    timeMultiplier: 1
+    useGroup:
+    - item: {fileID: 11400000, guid: 03b89bdb2e0ee5e4291fd87d71169136, type: 2}
+      count: 1
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1
+  - blueprintName: "\u9E21\u86CB"
+    isLocked: 0
+    baseTime: 30
+    timeMultiplier: 1
+    useGroup:
+    - item: {fileID: 11400000, guid: e23b41ad945d3d841bd4541a6e1aa329, type: 2}
+      count: 1
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1

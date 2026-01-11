@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: "\u590F\u5929"
   m_EditorClassIdentifier: 
   eventName: "\u590F\u5929"
-  eventDescription: "\u590F\u5929\uFF0C\u708E\u70ED\u7684\u5B63\u8282\n"
+  eventDescription: "\u590F\u5929\uFF0C\u708E\u70ED\u7684\u5B63\u8282\n\u6811\u6728\u8301\u58EE\u751F\u957F\n\u6E38\u9C7C\u6F5C\u85CF\u6DF1\u6D77\n\u8D38\u6613\u76F8\u4E92\u5F80\u6765\n------------------------\n\u4F10\u6728\u573A\u751F\u4EA7\u901F\u7387\u4E0A\u5347\n\u6E14\u5C4B\u751F\u4EA7\u901F\u7387\u4E0B\u964D\n\u8D38\u6613\u6536\u76CA\u589E\u52A0"
   productionBuffConfigs:
-  - {fileID: 11400000, guid: 17ddf3480eaee63459e05d6fa4a15033, type: 2}
+  - {fileID: 11400000, guid: 1d65731c4f137ed4aa49ed5bf7393153, type: 2}
+  - {fileID: 11400000, guid: 8f501fb00d4d21b4c9da69116928dbc1, type: 2}
+  - {fileID: 11400000, guid: ddd84a0ead409884fa51a8724203842b, type: 2}
   buffs: []

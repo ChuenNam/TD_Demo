@@ -4004,7 +4004,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e746624e3e9042419c3a9e767f9e157, type: 2}
   - {fileID: 11400000, guid: 1cdbb52cecfd95b4e8bcbad5c05af224, type: 2}
   - {fileID: 11400000, guid: 31f2ddd7e1897fe4e9d4f8fb1c5a285c, type: 2}
-  - {fileID: 11400000, guid: f04fda85e0aff0548aa365eeb0dc8be5, type: 2}
   - {fileID: 11400000, guid: 17b94f687b23828408746b7d35c87b4a, type: 2}
   - {fileID: 11400000, guid: 94b8a8f8db6530343ae0e7d0667b717a, type: 2}
   gridLayerMask:
@@ -7052,6 +7051,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67512f928204bf64fa32fc4c4d07a049, type: 2}
   - {fileID: 11400000, guid: 5a7fc1a2abe57cb469a002761bb4afee, type: 2}
   - {fileID: 11400000, guid: bcd9c9a6db8030b42a8181200c617f9e, type: 2}
+  - {fileID: 11400000, guid: 9164403728f050e45b244ae030c354f2, type: 2}
   randomEvents:
   - {fileID: 11400000, guid: 67512f928204bf64fa32fc4c4d07a049, type: 2}
   - {fileID: 11400000, guid: 5a7fc1a2abe57cb469a002761bb4afee, type: 2}
@@ -7184,7 +7184,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -500
+  m_Spacing: -50
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
