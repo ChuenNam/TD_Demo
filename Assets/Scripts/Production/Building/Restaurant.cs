@@ -6,7 +6,6 @@ using UnityEngine.Serialization;
 public class Restaurant : Building, ITrading
 {
     [Header("专属信息")]
-    public List<string> menuNames = new();
     public List<Blueprint> todayMenu = new();
     public Queue<Blueprint> todayDishQueue = new();
 
@@ -14,13 +13,6 @@ public class Restaurant : Building, ITrading
     {
         base.Initialize(id, manager);
         UIManager.instance.restaurantPanel.restaurant = this;
-        foreach (var bp in blueprints)
-        {
-            if (bp.blueprintName == "")
-                throw new ArgumentNullException("蓝图名称");
-
-            menuNames.Add(bp.blueprintName);
-        }
 
         // 通过生产完成的回调改变生产目标蓝图
         onComplete += () =>

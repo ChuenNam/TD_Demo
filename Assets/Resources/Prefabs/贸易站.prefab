@@ -142,3 +142,4 @@ MonoBehaviour:
     productGroup: []
   inProduction: 0
   timeCounter: 0
+  tradeList: []
