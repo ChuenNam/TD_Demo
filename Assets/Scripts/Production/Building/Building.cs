@@ -11,7 +11,7 @@ public interface IDayNightBonus
 
 public interface ITrading
 {
-    
+    string RewriteBlueprintText(Blueprint blueprint);
 }
 
 public class Building : MonoBehaviour
@@ -32,7 +32,7 @@ public class Building : MonoBehaviour
     public bool inProduction;
     public float timeCounter;
 
-    public void Initialize(string id, GridManager manager)
+    public virtual void Initialize(string id, GridManager manager)
     {
         objectData = manager.GetObjectData(id);
         blueprints = objectData.blueprintConfig.blueprints;
@@ -58,30 +58,55 @@ public class Building : MonoBehaviour
         }    
     }
 
-    public void Product()
+    #region 生产
+    // 回调事件
+    public Action onStart;
+    public Action onComplete;
+
+    public virtual void ChangeProduction()
     {
-        if (timeCounter >= CurrentBlueprint.Time)
+        // 停止生产 || 未选择配方
+        if (inProduction || CurrentBlueprint == null)
         {
-            timeCounter = 0;        // 重置计时器
-            
-            // 更新资源数据
-            foreach (var useItemGroup in CurrentBlueprint.useGroup)
-            {
-                if (useItemGroup.item.count - useItemGroup.count < 0)
-                {
-                    Debug.Log("原料不足");
-                    inProduction  = false;
-                    CurrentBlueprint = null;
-                    return;
-                }
-                useItemGroup.item.count -= useItemGroup.count;
-            }
-            foreach (var productItemGroup in CurrentBlueprint.productGroup)
-            {
-                productItemGroup.item.count += productItemGroup.count;
-            }
+            inProduction = false;
+            CurrentBlueprint = null;
+            return;
         }
+        // 消耗资源检测
+        foreach (var useItemGroup in CurrentBlueprint.useGroup)
+        {
+            if (useItemGroup.item.count - useItemGroup.count >= 0) 
+                continue;
+            
+            Debug.Log("原料不足，结束生产");
+            inProduction = false;
+            CurrentBlueprint = null;
+            return;
+        }
+        // 检测通过 - 开始生产
+        inProduction = true;
+        foreach (var useItemGroup in CurrentBlueprint.useGroup) 
+            useItemGroup.item.count -= useItemGroup.count;  // 更新资源数据
+        onStart?.Invoke();      //开始生产回调
     }
+    public virtual void Product()
+    {
+        if (!(timeCounter >= CurrentBlueprint.Time)) 
+            return;
+        
+        timeCounter = 0; // 重置计时器
+        // 更新资源数据
+        foreach (var productItemGroup in CurrentBlueprint.productGroup)
+        {
+            productItemGroup.item.count += productItemGroup.count;
+        }
+        onComplete?.Invoke();   // 完成生产回调
+        inProduction = false;
+        ChangeProduction();      // 循环生产
+    }
+    #endregion
+
+    #region Buff处理
 
     public void UpdateBuff()
     {
@@ -134,10 +159,12 @@ public class Building : MonoBehaviour
         buffList.Clear();
     }
 
+    #endregion
+    
     public Blueprint GetBlueprintByProductInfo(string productInfo)
     {
         foreach (var bp in blueprints)
-            if (bp.ProductInfo() == productInfo)
+            if (bp.ProductInfo(this) == productInfo)
                 return bp;
         return null;
     }

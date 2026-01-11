@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-
 public class BuffManager : MonoBehaviour
 {
     #region 单例 instance
@@ -88,7 +87,6 @@ public class BuffManager : MonoBehaviour
         UIManager.instance.eventChosePanel.ShowEventChose(eventsList);
     }
     
-    
 
     public List<Buff> DayBuff(Building building)
     {
@@ -116,8 +114,6 @@ public class BuffManager : MonoBehaviour
     // 建筑生产效率加倍 Buff
     public static Buff CreatProductivityBuff(Building building, float multiple, float duration)
     {
-
-        //var bp = building.CurrentBlueprint;
         Action onAddBuff = () =>
         {
             foreach (var bp in building.blueprints)
@@ -140,7 +136,6 @@ public class BuffManager : MonoBehaviour
     }
     public static Buff CreatProductivityBuff(Building building, ProductionBuffConfig config)
     {
-        //var bp = building.CurrentBlueprint;
         Action onAddBuff = () =>
         {
             foreach (var bp in building.blueprints)
@@ -164,4 +159,55 @@ public class BuffManager : MonoBehaviour
         return buff;
     }
     
+    // 创建产量加倍 Buff
+    public static Buff CreatExtraOutputBuff(Building building, int extra, float duration, BaseItem targetItem = null)
+    {
+        return targetItem is null
+            ? new Buff(
+                duration, 
+                AddOrDelBuff_Count(true, extra, building), 
+                AddOrDelBuff_Count(false, extra, building))
+            : new Buff(
+                duration, 
+                AddOrDelBuff_Count(true, extra, building,targetItem), 
+                AddOrDelBuff_Count(false, extra, building,targetItem));
+    }
+    public static Buff CreatExtraOutputBuff(Building building, ProductionBuffConfig config)
+    {
+        var buff = config.targetItems is null
+            ? new Buff(
+                config.CalculateDuration(),
+                AddOrDelBuff_Count(true, (int)config.multiple, building),
+                AddOrDelBuff_Count(false, (int)config.multiple, building))
+            : new Buff(
+                config.CalculateDuration(),
+                AddOrDelBuff_Count(true, (int)config.multiple, building, config.targetItems),
+                AddOrDelBuff_Count(false, (int)config.multiple, building, config.targetItems));
+        
+        buff.buffName = config.buffName;
+        buff.buffDescription = config.buffDescription;
+        return buff;
+    }
+    
+    
+    private static Action AddOrDelBuff_Count(bool isAdd, int num, Building building, BaseItem targetItems = null)
+    {
+        Action action = () =>
+        {
+            var rstNum = isAdd ? num : -num;
+            foreach (var bp in building.blueprints)
+            {
+                foreach (var product in bp.productGroup)
+                {
+                    if (targetItems != null && targetItems != product.item)
+                        continue;
+                    
+                    product.count += rstNum;
+                    building.objectData.UpdateDataUI();
+                }
+            }
+        };
+        return action;
+    }
+
 }

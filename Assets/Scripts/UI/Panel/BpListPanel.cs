@@ -33,7 +33,8 @@ public class BpListPanel : BasePanel
         bpDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
         productButton.onClick.AddListener(() =>
         {
-            building.inProduction = !building.inProduction;
+            //building.inProduction = !building.inProduction;
+            building.ChangeProduction();
             UIManager.instance.objectInfoPanel.WriteInfo(data); //物件面板的信息
             //蓝图面板按钮切换
             productButton.GetComponent<Image>().color = building.inProduction ? 
@@ -79,7 +80,7 @@ public class BpListPanel : BasePanel
         List<string> optionTexts = new();
         foreach (var bp in blueprintList)
         {
-            optionTexts.Add(bp.ProductInfo());
+            optionTexts.Add(bp.ProductInfo(b));
         }
         var optionList = new List<Dropdown.OptionData>();
         foreach (string text in optionTexts)

@@ -15,7 +15,10 @@ public class ObjectInfoPanel : BasePanel
     public Image productButtonImage;
     public Text productButtonText;
     public Button chooseBPButton;
+    
+    [Header("面板类别")]
     public BpListPanel blueprintListPanel;
+    public RestaurantPanel restaurantPanel;
     
     protected override void Init()
     {
@@ -24,20 +27,42 @@ public class ObjectInfoPanel : BasePanel
         productButton.onClick.AddListener(() =>
         {
             var building = data.instance.GetComponent<Building>();
-            building.inProduction = !building.inProduction;
+            //building.inProduction = !building.inProduction;
+            building.ChangeProduction();
             WriteInfo(data);
         });
         chooseBPButton.onClick.AddListener(() =>
         {
-            if (!blueprintListPanel.isActive)
+            var building = data.instance.GetComponent<Building>();
+            switch (building)
             {
-                blueprintListPanel.ShowPanel();
-                blueprintListPanel.InitBpInfo(data,data.instance.GetComponent<Building>());
-            }
-            else
-            {
-                blueprintListPanel.ClosePanel();
-                blueprintListPanel.building = null;
+                case Restaurant restaurant:
+                {
+                    if (!restaurantPanel.isActive)
+                    {
+                        restaurantPanel.ShowPanel();
+                        restaurantPanel.InitRestaurantPanel();
+                    }
+                    else
+                    {
+                        restaurantPanel.ClosePanel();
+                    }
+                    break;
+                }
+                default:
+                {
+                    if (!blueprintListPanel.isActive)
+                    {
+                        blueprintListPanel.ShowPanel();
+                        blueprintListPanel.InitBpInfo(data,data.instance.GetComponent<Building>());
+                    }
+                    else
+                    {
+                        blueprintListPanel.ClosePanel();
+                        blueprintListPanel.building = null;
+                    }
+                    break;
+                }
             }
         });
     }

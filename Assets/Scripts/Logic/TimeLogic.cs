@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TimeLogic : MonoBehaviour
@@ -112,16 +113,12 @@ public class TimeLogic : MonoBehaviour
         // 生产运行逻辑
         foreach (var building in buildings)
         {
-            if (building.CurrentBlueprint == null)
+            if (building.CurrentBlueprint == null || !building.inProduction)
                 continue;
-            
-            if (building.inProduction)
-            {
-                building.timeCounter += Time.deltaTime * timeSpeed;
-                building.Product();
-            }
+            building.timeCounter += Time.deltaTime * timeSpeed;
+            building.Product();
         }
-        
+
         // buff运行逻辑
         foreach (var building in buildings)
         {

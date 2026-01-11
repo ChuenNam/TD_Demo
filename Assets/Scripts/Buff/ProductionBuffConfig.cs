@@ -9,9 +9,11 @@ public class ProductionBuffConfig : ScriptableObject
     public string buffName;
     [TextArea]public string buffDescription;
     [Header("Buff 数据")]
+    public BuffType  buffType;
     public float multiple = 1;
     public DurationType duration;
     public Building building;
+    public BaseItem targetItems;
 
     public float CalculateDuration()
     {
@@ -29,6 +31,12 @@ public class ProductionBuffConfig : ScriptableObject
                 throw new ArgumentOutOfRangeException();
         }
     }
+}
+
+public enum BuffType
+{
+    Productivity,
+    ExtraOutput,
 }
 
 public enum DurationType

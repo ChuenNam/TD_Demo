@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    public HelpPanel helpPanel;
     public ObjectInfoPanel objectInfoPanel;
     public ItemPanel itemPanel;
     public EventChosePanel eventChosePanel;
+    public RestaurantPanel restaurantPanel;
 
     private void Awake()
     {

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "\u9910\u5385\u84DD\u56FE"
   m_EditorClassIdentifier: 
   blueprints:
-  - isLocked: 0
+  - blueprintName: "\u7C73\u996D"
+    isLocked: 0
     baseTime: 5
     timeMultiplier: 1
     useGroup:
@@ -22,7 +23,8 @@ MonoBehaviour:
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
       count: 5
-  - isLocked: 0
+  - blueprintName: "\u84B8\u9C7C"
+    isLocked: 0
     baseTime: 5
     timeMultiplier: 1
     useGroup:
@@ -32,8 +34,9 @@ MonoBehaviour:
       count: 1
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 15
-  - isLocked: 0
+      count: 5
+  - blueprintName: "\u86CB\u7CD5"
+    isLocked: 0
     baseTime: 5
     timeMultiplier: 1
     useGroup:
@@ -45,4 +48,12 @@ MonoBehaviour:
       count: 3
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 50
+      count: 40
+  - blueprintName: 1s->1g
+    isLocked: 0
+    baseTime: 1
+    timeMultiplier: 1
+    useGroup: []
+    productGroup:
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 1

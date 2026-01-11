@@ -13,6 +13,7 @@ public class ItemGroup
 [Serializable]
 public class Blueprint
 {
+    public string blueprintName;
     public bool isLocked;
     public float baseTime = 1;
     public float timeMultiplier = 1;
@@ -30,9 +31,29 @@ public class Blueprint
         var productInfo = GetItemGroupInfo(productGroup);
         return  $"{useInfo} → {productInfo}";
     }
-    public string ProductInfo() => GetItemGroupInfo(productGroup);
+    public string Info(Building building)      //贸易类建筑:转换蓝图信息 -> 商品信息
+    {
+        if (building is ITrading tradeBuilding)
+        {
+            return tradeBuilding.RewriteBlueprintText(this);
+        }
+        
+        var usetxt = GetItemGroupInfo(useGroup);
+        var useInfo = $"{usetxt}({Time:F1}秒)";
+       
+        var productInfo = GetItemGroupInfo(productGroup);
+        return  $"{useInfo} → {productInfo}";
+    }
+    public string ProductInfo(Building building)
+    {
+        if (building is ITrading tradeBuilding)
+        {
+            return tradeBuilding.RewriteBlueprintText(this);
+        }
+        return GetItemGroupInfo(productGroup);
+    }
 
-    private string GetItemGroupInfo(List<ItemGroup> itemGroups)
+    public string GetItemGroupInfo(List<ItemGroup> itemGroups)
     {
         string txt = "";
         for (var i = 0; i < itemGroups.Count; i++)

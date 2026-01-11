@@ -134,6 +134,7 @@ MonoBehaviour:
   blueprints: []
   buffList: []
   _currentBlueprint:
+    blueprintName: 
     isLocked: 0
     baseTime: 1
     timeMultiplier: 1
@@ -141,3 +142,4 @@ MonoBehaviour:
     productGroup: []
   inProduction: 0
   timeCounter: 0
+  menuNames: []

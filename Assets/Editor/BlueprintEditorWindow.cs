@@ -279,12 +279,13 @@ public class BlueprintEditorWindow : EditorWindow
         // 标题行
         EditorGUILayout.BeginHorizontal(GUI.skin.box);
         
-        string blueprintName = $"蓝图 {index + 1}";
-        if (blueprint.useGroup != null && blueprint.useGroup.Count > 0 && 
-            blueprint.productGroup != null && blueprint.productGroup.Count > 0)
+        var blueprintName = $"蓝图 {index + 1}";
+        if (blueprint.productGroup is { Count: > 0 })
         {
-            string inputName = GetFirstItemName(blueprint.useGroup);
-            string outputName = GetFirstItemName(blueprint.productGroup);
+            var outputName = GetFirstItemName(blueprint.productGroup);
+            var inputName = blueprint.useGroup is { Count: > 0 } ? 
+                GetFirstItemName(blueprint.useGroup) : 
+                $"{blueprint.baseTime}秒";
             blueprintName = $"{inputName} → {outputName}";
         }
         
@@ -330,7 +331,7 @@ public class BlueprintEditorWindow : EditorWindow
             
             EditorGUIUtility.labelWidth = 60; // 设置合适的宽度
             blueprint.baseTime = EditorGUILayout.FloatField("生产时间",blueprint.baseTime);
-            EditorGUILayout.LabelField("秒", GUILayout.Width(200));
+            EditorGUILayout.LabelField("秒", GUILayout.Width(230));
             
             if (EditorGUI.EndChangeCheck())
             {
@@ -338,7 +339,12 @@ public class BlueprintEditorWindow : EditorWindow
             }
             EditorGUILayout.EndHorizontal();
             
-            EditorGUILayout.Space(15);
+            EditorGUILayout.Space(5);
+            
+            EditorGUILayout.LabelField("商品名称(需为商品)");
+            blueprint.blueprintName = EditorGUILayout.TextField(blueprint.blueprintName, GUILayout.Width(120));
+            
+            EditorGUILayout.Space(10);
             
             // 原料组
             EditorGUILayout.LabelField("原料:", EditorStyles.boldLabel);
@@ -551,14 +557,14 @@ public class BlueprintEditorWindow : EditorWindow
     
     private string GetFirstItemName(List<ItemGroup> itemGroups)
     {
-        if (itemGroups == null || itemGroups.Count == 0 || itemGroups[0].item == null)
+        if (itemGroups == null || itemGroups.Count == 0 || itemGroups[0].item is null)
             return "空";
-
+        
         string txt = "";
         for (var i = 0; i < itemGroups.Count; i++)
         {
             var group = itemGroups[i];
-            if (group.item == null)
+            if (group.item is null)
                 txt += "空";
             else
                 txt += group.count + group.item.itemName;

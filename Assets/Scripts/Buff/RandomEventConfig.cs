@@ -19,7 +19,17 @@ public class RandomEvent : ScriptableObject
         {
             if (productionBuffConfig.building.GetType() == building.GetType())
             {
-                buffs.Add(BuffManager.CreatProductivityBuff(building ,productionBuffConfig));
+                switch (productionBuffConfig.buffType)
+                {
+                    case BuffType.Productivity:
+                        buffs.Add(BuffManager.CreatProductivityBuff(building ,productionBuffConfig));
+                        break;
+                    case BuffType.ExtraOutput:
+                        buffs.Add(BuffManager.CreatExtraOutputBuff(building ,productionBuffConfig));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
         return buffs;
