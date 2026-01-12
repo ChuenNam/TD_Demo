@@ -29,5 +29,10 @@ public class ItemManager : MonoBehaviour
     {
         return possesItem.FirstOrDefault(item => item.itemName == itemName);
     }
+
+    public int GetItemCount(BaseItem targetItem)
+    {
+        return possesItem.FirstOrDefault(item => item == targetItem)!.count;
+    }
     
 }

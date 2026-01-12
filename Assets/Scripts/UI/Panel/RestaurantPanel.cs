@@ -32,8 +32,7 @@ public class RestaurantPanel : BasePanel
             // 屋物资检查
             if (!allowProduction)
             {
-                UIManager.instance.helpPanel.ShowPanel();
-                UIManager.instance.helpPanel.Write("缺少食材");
+                UIManager.instance.helpPanel.Show("缺少食材");
                 return;
             }
             // 开始经营

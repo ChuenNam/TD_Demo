@@ -94,6 +94,8 @@ public class BuffManager : MonoBehaviour
         switch (building)
         {
             case IDayNightBonus b:
+                if (Mathf.Approximately(b.GetDayBonus(), 1)) 
+                    break;
                 var buff = CreatProductivityBuff(building, b.GetDayBonus(), timeLogic.GetDaySeconds());
                 var bonus = b.GetDayBonus();
                 buff.buffName = bonus switch
@@ -114,6 +116,8 @@ public class BuffManager : MonoBehaviour
         switch (building)
         {
             case IDayNightBonus b:
+                if (Mathf.Approximately(b.GetNightBonus(), 1)) 
+                    break;
                 var buff = CreatProductivityBuff(building, b.GetNightBonus(), timeLogic.GetNightSeconds());
                 var bonus = b.GetNightBonus();
                 buff.buffName = bonus switch

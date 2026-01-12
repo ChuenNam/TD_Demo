@@ -12,12 +12,19 @@ public class HelpPanel : BasePanel
     [SerializeField]private Text _title;
     [SerializeField]private Text _content;
     
-    public void Write(string newContent) => _content.text = newContent;
-    public void Write(string newTitle,string newContent)
+    public void Show(string newContent)
+    {
+        TimeLogic.instance.timeSpeed = 0;
+        _content.text = newContent;
+        ShowPanel();
+    }
+    public void Show(string newTitle,string newContent)
     {
         _title.text = newTitle;
         _content.text = newContent;
+        ShowPanel();
     }
+
     public void AddCloseAction(Action action) => _tempAction = action;
 
     private void DoActionOnClose()
@@ -33,6 +40,7 @@ public class HelpPanel : BasePanel
         {
             _title.text = "提示";
             _content.text = "";
+            TimeLogic.instance.timeSpeed = 1;
         });
     }
 }

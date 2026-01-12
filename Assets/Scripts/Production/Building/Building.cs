@@ -14,11 +14,18 @@ public interface ITrading
     string RewriteBlueprintText(Blueprint blueprint);
 }
 
+public interface ILevelUp
+{
+    int Level { get; }
+    int MaxLevel { get; set; }
+    void LevelUp();
+    string GetCostInfo();
+}
+
 public class Building : MonoBehaviour
 {
     public GridObjectData objectData;
-
-    public int level = 1;
+    
     public List<Blueprint> blueprints;
     public List<Buff> buffList = new();
 

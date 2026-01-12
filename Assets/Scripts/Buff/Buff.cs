@@ -24,3 +24,10 @@ public class Buff
     }
     
 }
+
+[Serializable]
+public class Level
+{
+    public List<ProductionBuffConfig> buffConfigs = new();
+    public List<ItemGroup> levelUpCost = new();
+}

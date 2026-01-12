@@ -130,11 +130,11 @@ MonoBehaviour:
     instance: {fileID: 0}
     canRotate: 1
     blueprintConfig: {fileID: 0}
-  level: 1
   blueprints: []
   buffList: []
   _currentBlueprint:
     blueprintName: 
+    icon: {fileID: 0}
     isLocked: 0
     baseTime: 1
     timeMultiplier: 1
@@ -142,4 +142,4 @@ MonoBehaviour:
     productGroup: []
   inProduction: 0
   timeCounter: 0
-  menuNames: []
+  todayMenu: []

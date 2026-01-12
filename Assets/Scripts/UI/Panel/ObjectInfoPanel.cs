@@ -12,9 +12,9 @@ public class ObjectInfoPanel : BasePanel
     public Text descriptionText;
     public Text productInfoText;
     public Text buffInfoText;
-    public Button productButton;
-    public Image productButtonImage;
-    public Text productButtonText;
+    public Button lvlUpButton;
+    public Image lvlUpButtonImage;
+    public Text lvlUpButtonText;
     public Button chooseBPButton;
     
     [Header("面板类别")]
@@ -24,12 +24,20 @@ public class ObjectInfoPanel : BasePanel
     {
         base.Init();
         closeButton.onClick.AddListener(()=> gridManager.currentObject = null);
-        productButton.onClick.AddListener(() =>
+        lvlUpButton.onClick.AddListener(() =>
         {
             var building = data.instance.GetComponent<Building>();
-            //building.inProduction = !building.inProduction;
-            building.ChangeProduction();
-            WriteInfo(data);
+            if (building is ILevelUp lb)
+            {
+                lb.LevelUp();
+                lvlUpButtonImage.color = lb.Level == lb.MaxLevel ? Color.gray : Color.green;
+                lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";
+                nameInfo.text = $"{data.name} Lv.{lb.Level}";
+            }
+            else
+            {
+                UIManager.instance.helpPanel.Show("建筑不可升级");
+            }
         });
         chooseBPButton.onClick.AddListener(() =>
         {
@@ -94,9 +102,18 @@ public class ObjectInfoPanel : BasePanel
         
         var building = data.instance.GetComponent<Building>();
         productInfoText.text = building.inProduction ? "进行中：\n" + building.CurrentBlueprint.Info(building): "休息中";
-        productButtonImage.color = building.inProduction ? 
-            new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);
-        productButtonText.text = building.inProduction ? "停止制造" : "开始制造";
+
+        if (building is ILevelUp lb)
+        {
+            lvlUpButtonImage.color = lb.Level == lb.MaxLevel ? Color.gray : Color.green;
+            lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";
+            nameInfo.text += $" Lv.{lb.Level}";
+        }
+        else
+        {
+            lvlUpButtonImage.color = Color.gray;
+            lvlUpButtonText.text = "无法升级";
+        }
     }
 
     public void WriteBuffInfo(Building building)

@@ -75,8 +75,7 @@ public sealed class TradePanel : BasePanel
             // 状态检查
             if (tradingPost.inProduction)
             {
-                UIManager.instance.helpPanel.ShowPanel();
-                UIManager.instance.helpPanel.Write("贸易中");
+                UIManager.instance.helpPanel.Show("贸易中");
                 return;
             }
             // 开始经营
@@ -102,7 +101,7 @@ public sealed class TradePanel : BasePanel
         chosenItem = ItemManager.instance.GetItemByName(selectedText);
         if (tradingPost.SetGetCurrentBpByItem(chosenItem) == null)
         {
-            UIManager.instance.helpPanel.Write("未开放贸易");
+            UIManager.instance.helpPanel.Show("未开放贸易");
             UIManager.instance.helpPanel.AddCloseAction(() =>
             {
                 OnDropdownValueChanged(0);
