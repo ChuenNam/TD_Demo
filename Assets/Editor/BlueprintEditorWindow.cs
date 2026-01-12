@@ -18,7 +18,7 @@ public class BlueprintEditorWindow : EditorWindow
     public static void ShowWindow()
     {
         var window = GetWindow<BlueprintEditorWindow>("蓝图编辑器");
-        window.minSize = new Vector2(680, 600);
+        window.minSize = new Vector2(700, 600);
     }
     
     private void OnGUI()
@@ -263,7 +263,8 @@ public class BlueprintEditorWindow : EditorWindow
         
         EditorGUILayout.EndVertical();
     }
-    
+
+    private SerializedProperty _iconProperty;
     private void DrawBlueprintItem(int index, Blueprint blueprint)
     {
         bool isSelected = (selectedBlueprintIndex == index);
@@ -282,11 +283,17 @@ public class BlueprintEditorWindow : EditorWindow
         var blueprintName = $"蓝图 {index + 1}";
         if (blueprint.productGroup is { Count: > 0 })
         {
+            
             var outputName = GetFirstItemName(blueprint.productGroup);
             var inputName = blueprint.useGroup is { Count: > 0 } ? 
                 GetFirstItemName(blueprint.useGroup) : 
                 $"{blueprint.baseTime}秒";
             blueprintName = $"{inputName} → {outputName}";
+        }
+        var temp = blueprintName;
+        if (blueprint.blueprintName != "")
+        {
+            blueprintName = $"{blueprint.blueprintName} >>{temp}";
         }
         
         // 选择切换
@@ -341,8 +348,15 @@ public class BlueprintEditorWindow : EditorWindow
             
             EditorGUILayout.Space(5);
             
-            EditorGUILayout.LabelField("商品名称(需为商品)");
-            blueprint.blueprintName = EditorGUILayout.TextField(blueprint.blueprintName, GUILayout.Width(120));
+            EditorGUILayout.LabelField("商品名称(需为商品否则置空)");
+            blueprint.blueprintName = EditorGUILayout.TextField(blueprint.blueprintName, GUILayout.Width(150));
+            EditorGUILayout.Space(5);
+            EditorGUILayout.LabelField("商品图标(需为商品否则置空)");
+            blueprint.icon = EditorGUILayout.ObjectField(
+                blueprint.icon,
+                typeof(Sprite),
+                false,
+                GUILayout.Width(150)) as Sprite;
             
             EditorGUILayout.Space(10);
             

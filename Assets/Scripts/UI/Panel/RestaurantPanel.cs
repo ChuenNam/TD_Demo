@@ -69,11 +69,11 @@ public class RestaurantPanel : BasePanel
 
     private void InitMenuDishPanel(GameObject menuDish, Blueprint bp)
     {
-        
         // 填写信息
-        menuDish.transform.GetChild(0).GetComponent<Text>().text = bp.blueprintName;
-        menuDish.transform.GetChild(1).GetComponent<Text>().text = $"食材:{bp.GetItemGroupInfo(bp.useGroup)}";
-        menuDish.transform.GetChild(2).GetComponent<Text>().text = $"售价:${bp.productGroup[0].count}";
+        menuDish.transform.GetChild(0).GetComponent<Image>().sprite = bp.icon;
+        menuDish.transform.GetChild(1).GetComponent<Text>().text = bp.blueprintName;
+        menuDish.transform.GetChild(2).GetComponent<Text>().text = $"食材:{bp.GetItemGroupInfo(bp.useGroup)}";
+        menuDish.transform.GetChild(3).GetComponent<Text>().text = $"售价:${bp.productGroup[0].count}";
         // 绑定选择按钮
         menuDish.GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -91,7 +91,8 @@ public class RestaurantPanel : BasePanel
         var ui = Instantiate(todayDishPrefab, todayMenuRect);
         // 填写信息
         ui.transform.GetChild(0).GetComponent<Text>().text = bp.blueprintName;
-        ui.transform.GetChild(1).GetComponent<Text>().text = $"${bp.productGroup[0].count}";
+        ui.transform.GetChild(1).GetComponent<Image>().sprite = bp.icon;
+        ui.transform.GetChild(2).GetComponent<Text>().text = $"${bp.productGroup[0].count}";
         // 绑定按钮
         ui.GetComponent<Button>().onClick.AddListener(() =>
         {

@@ -22,6 +22,7 @@ public class ItemGroup
 public class Blueprint
 {
     public string blueprintName;
+    public Sprite icon;
     public bool isLocked;
     public float baseTime = 1;
     public float timeMultiplier = 1;

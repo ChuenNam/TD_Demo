@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u91D1\u5E01"
   m_EditorClassIdentifier: 
   itemName: "\u91D1\u5E01"
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  description: 
+  icon: {fileID: 21300000, guid: fba7a96c0e652714eb6fef45d1564673, type: 3}
+  description: "\u91D1\u5149\u95EA\u95EA\uFF01"
   price: 1
-  count: 50
+  count: 999

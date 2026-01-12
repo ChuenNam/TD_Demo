@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u5377\u5FC3\u83DC"
   m_EditorClassIdentifier: 
   itemName: "\u5377\u5FC3\u83DC"
-  icon: {fileID: 21300000, guid: b217e21534aa5174f9ea425dc850fbd7, type: 3}
-  description: 
+  icon: {fileID: 21300000, guid: 3089caa59afebb248b9018ab5361a1e1, type: 3}
+  description: "\u5E38\u7528\u6765\u505A\u6C99\u62C9\u6216\u8005\u51C9\u62CC\u5377\u5FC3\u83DC"
   price: 2
-  count: 55
+  count: 53
