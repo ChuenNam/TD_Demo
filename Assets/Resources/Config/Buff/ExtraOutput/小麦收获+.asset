@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db38024ace4248ae957d58d424e63b12, type: 3}
-  m_Name: "\u5927\u7C73\u6536\u83B7+"
+  m_Name: "\u5C0F\u9EA6\u6536\u83B7+"
   m_EditorClassIdentifier: 
-  buffName: "\u5927\u7C73\u6536\u83B7+"
-  buffDescription: "\u5927\u7C73\u4EA7\u91CF\u589E\u52A0"
+  buffName: "\u5C0F\u9EA6\u6536\u83B7+"
+  buffDescription: "\u5C0F\u9EA6\u4EA7\u91CF\u589E\u52A0"
   buffType: 1
   multiple: 2
   duration: 3

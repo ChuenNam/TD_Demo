@@ -134,48 +134,30 @@ public class BuffManager : MonoBehaviour
     }
 
     // 建筑生产效率加倍 Buff
-    public static Buff CreatProductivityBuff(Building building, float multiple, float duration, string buffName = "")
+    public static Buff CreatProductivityBuff(Building building, float multiple, float duration, string buffName = "", BaseItem targetItems = null)
     {
-        Action onAddBuff = () =>
-        {
-            foreach (var bp in building.blueprints)
-            {
-                bp.timeMultiplier += multiple-1;
-                building.objectData.UpdateDataUI();
-            }
-        };
-        Action onDelBuff = () =>
-        {
-            foreach (var bp in building.blueprints)
-            {
-                bp.timeMultiplier -= multiple-1;
-                building.objectData.UpdateDataUI();
-            }
-        };
-
-        var buff = new Buff(duration, onAddBuff, onDelBuff, buffName);
-        return buff;
+        return targetItems is null
+            ? new Buff(
+                duration,
+                AddOrDelBuff_timeMultiplier(true, multiple-1, building),
+                AddOrDelBuff_timeMultiplier(false, multiple-1, building))
+            : new Buff(
+                duration,
+                AddOrDelBuff_timeMultiplier(true, multiple-1, building, targetItems),
+                AddOrDelBuff_timeMultiplier(false, multiple-1, building, targetItems));
     }
     public static Buff CreatProductivityBuff(Building building, ProductionBuffConfig config)
     {
-        Action onAddBuff = () =>
-        {
-            foreach (var bp in building.blueprints)
-            {
-                bp.timeMultiplier += config.multiple-1;
-                building.objectData.UpdateDataUI();
-            }
-        };
-        Action onDelBuff = () =>
-        {
-            foreach (var bp in building.blueprints)
-            {
-                bp.timeMultiplier -= config.multiple-1;
-                building.objectData.UpdateDataUI();
-            }
-        };
-
-        var buff = new Buff(config.CalculateDuration(), onAddBuff, onDelBuff);
+        var buff = config.targetItems is null
+            ? new Buff(
+                config.CalculateDuration(),
+                AddOrDelBuff_timeMultiplier(true, config.multiple-1, building),
+                AddOrDelBuff_timeMultiplier(false, config.multiple-1, building))
+            : new Buff(
+                config.CalculateDuration(),
+                AddOrDelBuff_timeMultiplier(true, config.multiple-1, building, config.targetItems),
+                AddOrDelBuff_timeMultiplier(false, config.multiple-1, building, config.targetItems));
+        
         buff.buffName = config.buffName;
         buff.buffDescription = config.buffDescription;
         return buff;
@@ -221,10 +203,29 @@ public class BuffManager : MonoBehaviour
             {
                 foreach (var product in bp.productGroup)
                 {
-                    if (targetItems != null && targetItems != product.item)
+                    if (targetItems is not null && targetItems != product.item)
                         continue;
                     
-                    product.count += rstNum;
+                    product.count += rstNum;    // TODO:实现赋值对象传递？
+                    building.objectData.UpdateDataUI();
+                }
+            }
+        };
+        return action;
+    }
+    private static Action AddOrDelBuff_timeMultiplier(bool isAdd, float num, Building building, BaseItem targetItems = null)
+    {
+        Action action = () =>
+        {
+            var rstNum = isAdd ? num : -num;
+            foreach (var bp in building.blueprints)
+            {
+                foreach (var product in bp.productGroup)
+                {
+                    if (targetItems is not null && targetItems != product.item)
+                        continue;
+                    
+                    bp.timeMultiplier += rstNum;    // TODO:实现赋值对象传递？
                     building.objectData.UpdateDataUI();
                 }
             }
