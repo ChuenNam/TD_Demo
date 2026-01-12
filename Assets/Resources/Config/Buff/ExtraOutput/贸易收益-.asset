@@ -17,5 +17,5 @@ MonoBehaviour:
   buffType: 1
   multiple: -5
   duration: 3
-  building: {fileID: 0}
+  building: {fileID: -1169106555560306282, guid: cb4735c74addf3a4f85f275266a31c8d, type: 3}
   targetItems: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}

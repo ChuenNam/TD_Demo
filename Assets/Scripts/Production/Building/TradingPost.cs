@@ -44,7 +44,7 @@ public class TradingPost : Building, ITrading
         
         //设置交易数量和收入
         order.useGroup[0].count = sellCount;
-        order.productGroup[0].count = order.useGroup[0].item.price * sellCount;
+        order.productGroup[0].count += order.useGroup[0].item.price * sellCount;
         
         //返回给生产蓝图
         CurrentBlueprint = order;
@@ -57,7 +57,7 @@ public class TradingPost : Building, ITrading
         (order.useGroup[0].item, order.productGroup[0].item) = (order.productGroup[0].item, order.useGroup[0].item);
         //设置交易数量和支出
         order.useGroup[0].count = order.productGroup[0].item.price * buyCount;
-        order.productGroup[0].count = buyCount;
+        order.productGroup[0].count += buyCount + order.useGroup[0].count;
         //返回给生产蓝图
         CurrentBlueprint = order;
     }
