@@ -11,6 +11,7 @@ public class ObjectInfoPanel : BasePanel
     public Text nameInfo;
     public Text descriptionText;
     public Text productInfoText;
+    public Text buffInfoText;
     public Button productButton;
     public Image productButtonImage;
     public Text productButtonText;
@@ -97,5 +98,19 @@ public class ObjectInfoPanel : BasePanel
             new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);
         productButtonText.text = building.inProduction ? "停止制造" : "开始制造";
     }
-    
+
+    public void WriteBuffInfo(Building building)
+    {
+        if (!isActive) return;
+
+        var info = "";
+        foreach (var buff in building.buffList)
+        {
+            if (buff.buffName == "")
+                continue;
+            var time = Mathf.Approximately(buff.remainDuration, -1) ? "永久" : $"{buff.remainDuration:F1}";
+            info += $"{buff.buffName}:  {time}\n";
+        }
+        buffInfoText.text = info;
+    }
 }

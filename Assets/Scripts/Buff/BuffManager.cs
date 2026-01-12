@@ -94,7 +94,16 @@ public class BuffManager : MonoBehaviour
         switch (building)
         {
             case IDayNightBonus b:
-                buffs.Add(CreatProductivityBuff(building, b.GetDayBonus(), timeLogic.GetDaySeconds()));
+                var buff = CreatProductivityBuff(building, b.GetDayBonus(), timeLogic.GetDaySeconds());
+                var bonus = b.GetDayBonus();
+                buff.buffName = bonus switch
+                {
+                    < 1 and > 0 => $"产速-{(1-bonus)*100}% (昼)",
+                    > 1 => $"产速+{(bonus-1)*100}% (昼)",
+                    <= 0 and >= 0 => "停产 (昼)",
+                    _ => buff.buffName
+                };
+                buffs.Add(buff);
                 break;
         }
         return buffs;
@@ -105,14 +114,23 @@ public class BuffManager : MonoBehaviour
         switch (building)
         {
             case IDayNightBonus b:
-                buffs.Add(CreatProductivityBuff(building, b.GetNightBonus(), timeLogic.GetNightSeconds()));
+                var buff = CreatProductivityBuff(building, b.GetNightBonus(), timeLogic.GetNightSeconds());
+                var bonus = b.GetNightBonus();
+                buff.buffName = bonus switch
+                {
+                    < 1 and > 0 => $"产速-{(1-bonus)*100}% (夜)",
+                    > 1 => $"产速+{(bonus-1)*100}% (夜)",
+                    <= 0 and >= 0 => "停产 (夜)",
+                    _ => ""
+                };
+                buffs.Add(buff);
                 break;
         }
         return buffs;
     }
 
     // 建筑生产效率加倍 Buff
-    public static Buff CreatProductivityBuff(Building building, float multiple, float duration)
+    public static Buff CreatProductivityBuff(Building building, float multiple, float duration, string buffName = "")
     {
         Action onAddBuff = () =>
         {
@@ -131,7 +149,7 @@ public class BuffManager : MonoBehaviour
             }
         };
 
-        var buff = new Buff(duration, onAddBuff, onDelBuff);
+        var buff = new Buff(duration, onAddBuff, onDelBuff, buffName);
         return buff;
     }
     public static Buff CreatProductivityBuff(Building building, ProductionBuffConfig config)

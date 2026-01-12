@@ -96,6 +96,8 @@ public class GridObjectData
     }
     public void UpdateDataUI()
     {
+        if (UIManager.instance.objectInfoPanel.data != this)
+            return;
         UIManager.instance.objectInfoPanel.WriteInfo(this);
     }
     public void CloseDataUI(ObjectInfoPanel panel)

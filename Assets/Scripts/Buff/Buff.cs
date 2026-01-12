@@ -9,17 +9,18 @@ public class Buff
     public string buffDescription;
     public Action addBuffAction;
     public Action delBuffAction;
-    public object[] parameters;
     public float duration;
     public float remainDuration;
 
-    public Buff(float duration, Action onAddBuff, Action onDelBuff, params object[] param)
+    public Buff(float duration, Action onAddBuff, Action onDelBuff, string buffName = "", string buffDescription = "")
     {
+        this.buffName = buffName;
+        this.buffDescription = buffDescription;
+        
         this.duration = duration;
         remainDuration = duration;
         addBuffAction = onAddBuff;
         delBuffAction = onDelBuff;
-        parameters = param;
     }
     
 }

@@ -116,6 +116,7 @@ public class Building : MonoBehaviour
 
     public void UpdateBuff()
     {
+        UIManager.instance.objectInfoPanel.WriteBuffInfo(this);
         foreach (var buff in buffList.ToList())
         {
             if (Mathf.Approximately(buff.duration, -1))
