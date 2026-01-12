@@ -98,7 +98,6 @@ public sealed class TradePanel : BasePanel
     private void OnDropdownValueChanged(int index)
     {
         Debug.Log($"选中项变更，当前索引：{index}");
-        ResetData();
         var selectedText = choseItemDropdown.options[index].text;
         chosenItem = ItemManager.instance.GetItemByName(selectedText);
         if (tradingPost.SetGetCurrentBpByItem(chosenItem) == null)
@@ -110,6 +109,7 @@ public sealed class TradePanel : BasePanel
             });
         }
         // 绘制物品信息
+        ResetData();
         itemInfo.text = ItemDealInfo(chosenItem);
         icon.sprite = chosenItem.icon;
         timeText.text = $"{tradingPost.CurrentBlueprint.baseTime:F1}秒";
@@ -181,6 +181,12 @@ public sealed class TradePanel : BasePanel
         //chosenItem = null;
         dealAmount = 1;
         amountSlider.value = dealAmount;
+
+        if (chosenItem)
+        {
+            amountText.text = $"选择数量:{dealAmount}";
+            finalMoney.text = $"{chosenItem.price * dealAmount}$";
+        }
     }
     
 }
