@@ -18,7 +18,6 @@ public class ObjectInfoPanel : BasePanel
     
     [Header("面板类别")]
     public BpListPanel blueprintListPanel;
-    public RestaurantPanel restaurantPanel;
     
     protected override void Init()
     {
@@ -33,11 +32,13 @@ public class ObjectInfoPanel : BasePanel
         });
         chooseBPButton.onClick.AddListener(() =>
         {
+            TimeLogic.instance.timeSpeed = 0;
             var building = data.instance.GetComponent<Building>();
             switch (building)
             {
-                case Restaurant restaurant:
+                case Restaurant:
                 {
+                    var restaurantPanel = UIManager.instance.restaurantPanel;
                     if (!restaurantPanel.isActive)
                     {
                         restaurantPanel.ShowPanel();
@@ -45,7 +46,23 @@ public class ObjectInfoPanel : BasePanel
                     }
                     else
                     {
+                        TimeLogic.instance.timeSpeed = 1;
                         restaurantPanel.ClosePanel();
+                    }
+                    break;
+                }
+                case TradingPost:
+                {
+                    var tradePanel = UIManager.instance.tradePanel;
+                    if (!tradePanel.isActive)
+                    {
+                        tradePanel.ShowPanel();
+                        tradePanel.InitTradePanel(data.instance.GetComponent<TradingPost>());
+                    }
+                    else
+                    {
+                        TimeLogic.instance.timeSpeed = 1;
+                        tradePanel.ClosePanel();
                     }
                     break;
                 }
@@ -58,6 +75,7 @@ public class ObjectInfoPanel : BasePanel
                     }
                     else
                     {
+                        TimeLogic.instance.timeSpeed = 1;
                         blueprintListPanel.ClosePanel();
                         blueprintListPanel.building = null;
                     }
@@ -74,7 +92,7 @@ public class ObjectInfoPanel : BasePanel
         descriptionText.text = data.description;
         
         var building = data.instance.GetComponent<Building>();
-        productInfoText.text = building.inProduction ? "生产中：\n" + building.CurrentBlueprint.Info(): "休息中";
+        productInfoText.text = building.inProduction ? "进行中：\n" + building.CurrentBlueprint.Info(building): "休息中";
         productButtonImage.color = building.inProduction ? 
             new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);
         productButtonText.text = building.inProduction ? "停止制造" : "开始制造";

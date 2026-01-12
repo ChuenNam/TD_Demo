@@ -25,6 +25,7 @@ public class RestaurantPanel : BasePanel
     protected override void Init()
     {
         base.Init();
+        closeButton.onClick.AddListener(() => TimeLogic.instance.timeSpeed = 1);
         
         businessButton.onClick.AddListener(() =>
         {

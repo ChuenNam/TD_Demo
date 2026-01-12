@@ -22,6 +22,8 @@ public class BpListPanel : BasePanel
     protected override void Init()
     {
         base.Init();
+        closeButton.onClick.AddListener(() => TimeLogic.instance.timeSpeed = 1);
+        
         // 安全校验
         if (bpDropdown == null)
         {
@@ -56,14 +58,14 @@ public class BpListPanel : BasePanel
         ClearIcon(useIconRect);
         ClearIcon(productIconRect);
         // icon绘制
-        CreatIcons(building.CurrentBlueprint.productGroup, productIconRect);
+        CreateIcons(building.CurrentBlueprint.productGroup, productIconRect);
         if (building.CurrentBlueprint.useGroup.Count == 0)
         {
             var icon = Instantiate(iconPrefab, useIconRect);
             icon.GetComponent<Image>().sprite = noneSprite;
         }
         else
-            CreatIcons(building.CurrentBlueprint.useGroup, useIconRect);
+            CreateIcons(building.CurrentBlueprint.useGroup, useIconRect);
         
         // 绘制物体面板内容
         UIManager.instance.objectInfoPanel.WriteInfo(data);
@@ -95,7 +97,7 @@ public class BpListPanel : BasePanel
         OnDropdownValueChanged(bpDropdown.value);   // 再次调用
     }
 
-    public void CreatIcons(List<ItemGroup> itemGroups, RectTransform rect)
+    public void CreateIcons(List<ItemGroup> itemGroups, RectTransform rect)
     {
         foreach (var group in itemGroups)
         {

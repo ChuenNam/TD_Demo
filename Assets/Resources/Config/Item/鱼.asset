@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: "\u9C7C"
   icon: {fileID: 21300000, guid: 53b37a66ce5339549ae707b0930b1b5e, type: 3}
   description: 
-  price: 0
-  count: 22
+  price: 8
+  count: 15
