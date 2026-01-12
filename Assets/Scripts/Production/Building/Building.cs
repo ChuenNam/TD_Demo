@@ -16,10 +16,88 @@ public interface ITrading
 
 public interface ILevelUp
 {
-    int Level { get; }
+    public int Level { get; set; }
     int MaxLevel { get; set; }
-    void LevelUp();
-    string GetCostInfo();
+    List<Level> GetEachLevelBuff();
+    SetLevelBuffMode GetLevelBuffMode();
+
+    string GetCostInfo()
+    {
+        var cost = "";
+        for (var i = 0; i < GetEachLevelBuff()[Level].levelUpCost.Count; i++)
+        {
+            var group = GetEachLevelBuff()[Level].levelUpCost[i];
+            cost += $"{group.count}{group.item.itemName}";
+            if (i == GetEachLevelBuff()[Level].levelUpCost.Count - 1) 
+                return cost;
+            cost += "+";
+        }
+        return cost;
+    }
+
+    void LevelUp(Building building)
+    {
+        if (Level >= MaxLevel)
+        {
+            Level = MaxLevel;
+            UIManager.instance.helpPanel.Show("已经到达等级上限");
+            return;
+        }
+        // 检查材料
+        var cost = GetEachLevelBuff()[Level].levelUpCost;
+        if (cost.Any(group => group.count > ItemManager.instance.GetItemCount(group.item)))
+        {
+            UIManager.instance.helpPanel.Show("材料不足");
+            return;
+        }
+        
+        // 扣除材料
+        foreach (var group in cost) 
+            group.item.count -= group.count;
+        
+        // 添加buff
+        var levelUpBuff = GetEachLevelBuff()[Level];
+        var buffsToAdd = new List<Buff>();
+        foreach (var config in levelUpBuff.buffConfigs)
+        {
+            switch (config.buffType)
+            {
+                case BuffType.Productivity:
+                    var buff = BuffManager.CreatProductivityBuff(building, config);
+                    buff.buffName += 'L';
+                    buffsToAdd.Add(buff);
+                    break;
+                case BuffType.ExtraOutput:
+                    buff = BuffManager.CreatExtraOutputBuff(building, config);
+                    buff.buffName += 'L';
+                    buffsToAdd.Add(buff);
+                    break;
+            }
+        }
+        // 根据添加方式添加
+        if (Level == 0)
+            building.AddBuff(buffsToAdd);
+        else
+        {
+            switch (GetLevelBuffMode())
+            {
+                case SetLevelBuffMode.Add:
+                    building.AddBuff(buffsToAdd);
+                    break;
+                case SetLevelBuffMode.Replace:
+                    foreach (var buff in building.buffList.ToList())
+                    {
+                        if (buff.buffName[^1] == 'L')
+                        {
+                            building.DelBuff(buff);
+                        }
+                    }
+                    building.AddBuff(buffsToAdd);
+                    break;
+            }
+        }
+        Level++;        // 升级
+    }
 }
 
 public class Building : MonoBehaviour

@@ -29,7 +29,7 @@ public class ObjectInfoPanel : BasePanel
             var building = data.instance.GetComponent<Building>();
             if (building is ILevelUp lb)
             {
-                lb.LevelUp();
+                lb.LevelUp(building);
                 lvlUpButtonImage.color = lb.Level == lb.MaxLevel ? Color.gray : Color.green;
                 lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";
                 nameInfo.text = $"{data.name} Lv.{lb.Level}";

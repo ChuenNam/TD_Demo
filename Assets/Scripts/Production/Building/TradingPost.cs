@@ -2,15 +2,34 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TradingPost : Building, ITrading
+public class TradingPost : Building, ITrading, ILevelUp
 {
     [Header("专属信息")] 
     [SerializeField]private bool isSell = true;
     public Blueprint order = new();
+    
+    [Header("等级数据")] 
+    public int level;
+    public int maxLevel = 2;
+    public SetLevelBuffMode setLevelBuffMode;
+    public List<Level> eachLevelBuff = new(); 
+    public int Level
+    {
+        get => level;
+        set => level = value;
+    }
+    public int MaxLevel
+    {
+        get => maxLevel;
+        set => maxLevel = value;
+    }
+    public List<Level> GetEachLevelBuff() => eachLevelBuff;
+    public SetLevelBuffMode GetLevelBuffMode() => setLevelBuffMode;
 
     public override void Initialize(string id, GridManager manager)
     {
         base.Initialize(id, manager);
+        ((ILevelUp)this).LevelUp(this);
 
         onComplete += () =>
         {

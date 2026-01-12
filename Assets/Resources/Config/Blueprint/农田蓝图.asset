@@ -13,17 +13,21 @@ MonoBehaviour:
   m_Name: "\u519C\u7530\u84DD\u56FE"
   m_EditorClassIdentifier: 
   blueprints:
-  - isLocked: 0
+  - blueprintName: 
+    icon: {fileID: 0}
+    isLocked: 0
     baseTime: 2
-    timeMultiplier: 1.2
+    timeMultiplier: 1
     useGroup: []
     productGroup:
     - item: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
       count: 1
-  - isLocked: 0
+  - blueprintName: 
+    icon: {fileID: 0}
+    isLocked: 0
     baseTime: 3
     timeMultiplier: 1
     useGroup: []
     productGroup:
     - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
-      count: 1
+      count: 2

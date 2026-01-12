@@ -31,3 +31,9 @@ public class Level
     public List<ProductionBuffConfig> buffConfigs = new();
     public List<ItemGroup> levelUpCost = new();
 }
+
+public enum SetLevelBuffMode
+{
+    Add,
+    Replace,
+}

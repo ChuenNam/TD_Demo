@@ -130,10 +130,11 @@ MonoBehaviour:
     instance: {fileID: 0}
     canRotate: 1
     blueprintConfig: {fileID: 0}
-  level: 1
   blueprints: []
   buffList: []
   _currentBlueprint:
+    blueprintName: 
+    icon: {fileID: 0}
     isLocked: 0
     baseTime: 1
     timeMultiplier: 1
@@ -141,3 +142,18 @@ MonoBehaviour:
     productGroup: []
   inProduction: 0
   timeCounter: 0
+  level: 0
+  maxLevel: 2
+  setLevelBuffMode: 0
+  eachLevelBuff:
+  - buffConfigs: []
+    levelUpCost: []
+  - buffConfigs:
+    - {fileID: 11400000, guid: 1d65731c4f137ed4aa49ed5bf7393153, type: 2}
+    levelUpCost:
+    - item: {fileID: 11400000, guid: 2ffe9e91313a1db499d549d8db7046ef, type: 2}
+      count: 20
+    - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+      count: 10
+  daytimeBonus: 1
+  nighttimeBonus: 0
