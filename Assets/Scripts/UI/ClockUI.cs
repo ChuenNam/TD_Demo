@@ -20,8 +20,10 @@ public class ClockUI : MonoBehaviour
     void Start()
     {
         _timeLogic = TimeLogic.instance;
+        var gridManager = _timeLogic.gridManager;
         stopButton.onClick.AddListener(() =>
         {
+            if (gridManager.isPlacing)  return;
             _timeLogic.timeSpeed = 0;
             stopButton.image.color = selectedColor;
             startButton.image.color = unselectedColor;
@@ -29,6 +31,7 @@ public class ClockUI : MonoBehaviour
         });
         startButton.onClick.AddListener(() =>
         {
+            if (gridManager.isPlacing)  return;
             _timeLogic.timeSpeed = 1;
             startButton.image.color = selectedColor;
             stopButton.image.color = unselectedColor;
@@ -36,6 +39,7 @@ public class ClockUI : MonoBehaviour
         });
         fastButton.onClick.AddListener(() =>
         {
+            if (gridManager.isPlacing)  return;
             _timeLogic.timeSpeed = 2;
             fastButton.image.color = selectedColor;
             stopButton.image.color = unselectedColor;

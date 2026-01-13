@@ -19,11 +19,10 @@ public class ObjectSelectionUI : MonoBehaviour
         if (gridManager != null)
         {
             string hint = "操作提示:\n";
-            hint += "左键 - 放置物体\n";
+            hint += "左键 - 放置建筑\n";
             hint += "右键 - 取消放置\n";
             hint += "R - 旋转物体\n";
-            hint += "Delete - 删除物体\n";
-            hint += "\n从左侧选择物体开始放置";
+            hint += "\n从左侧选择建筑开始放置";
             
             // 更新UI提示
             actionInfoText.text = hint;
@@ -37,7 +36,7 @@ public class ObjectSelectionUI : MonoBehaviour
         for (var i = 0; i < gridManager.availableObjects.Count; i++)
         {
             var config = gridManager.availableObjects[i];
-            var pos = buttonContainer.position + Vector3.down * i * 30;
+            var pos = buttonContainer.position + Vector3.down * i * 100;
             GameObject buttonObj = Instantiate(buttonPrefab, pos, Quaternion.identity, buttonContainer);
             Button button = buttonObj.GetComponent<Button>();
 
@@ -65,15 +64,18 @@ public class ObjectSelectionUI : MonoBehaviour
         if (objectInfoText != null)
         {
             string info = $"{config.objectName}\n";
+            info += $"{config.description}\n" + "\n";
             info += $"占用单元格: {config.occupiedCells.Count}\n";
-            info += $"可旋转: {config.canRotate}\n";
-            info += $"{config.description}";
+            info += $"可旋转: {config.canRotate}";
             objectInfoText.text = info;
         }
     }
     
     void Update()
     {
-        
+        if (!gridManager.isPlacing)
+        {
+            objectInfoText.text = "";
+        }
     }
 }

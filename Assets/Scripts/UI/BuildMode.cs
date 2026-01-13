@@ -38,9 +38,12 @@ public class BuildMode : MonoBehaviour
     {
         gridMaterial = gridManager.GetComponent<MeshRenderer>().material;
         
-        buildButton.onClick.AddListener(() => OpenChildPanel(childPanel));
         buildButton.onClick.AddListener(() =>
         {
+            if(gridManager.isPlacing)   
+                return;
+            
+            OpenChildPanel(childPanel);
             IsBuildMode = !IsBuildMode;
             TimeLogic.instance.timeSpeed = IsBuildMode ? 0 : 1;
             
@@ -49,10 +52,22 @@ public class BuildMode : MonoBehaviour
             moveBtn.gameObject.SetActive(IsBuildMode);
         });
         
-        rotateBtn.onClick.AddListener(DoRotate);
-        removeBtn.onClick.AddListener(DoRemove);
+        rotateBtn.onClick.AddListener(()=>
+        {
+            if(gridManager.isPlacing)
+                return;
+            DoRotate();
+        });
+        removeBtn.onClick.AddListener(()=>
+        {
+            if(gridManager.isPlacing)
+                return;
+            DoRemove();
+        });
         moveBtn.onClick.AddListener(() =>
         {
+            if (gridManager.isPlacing)  
+                return;
             moveMode = !moveMode;
             moveBtn.image.color = moveMode ? Color.yellow : Color.black;
         });
