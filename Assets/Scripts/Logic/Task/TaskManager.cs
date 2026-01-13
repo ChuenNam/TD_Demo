@@ -64,6 +64,7 @@ public class TaskManager : MonoBehaviour
         {
             taskData.isDone = false;
         }
+        finalTask.taskDataList[0].isDone = false;
     }
 }
 
