@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public EventChosePanel eventChosePanel;
     public RestaurantPanel restaurantPanel;
     public TradePanel tradePanel;
+    public TaskPanel taskPanel;
 
     private void Awake()
     {
