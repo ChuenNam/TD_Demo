@@ -30,9 +30,22 @@ public class ObjectInfoPanel : BasePanel
             if (building is ILevelUp lb)
             {
                 lb.LevelUp(building);
-                lvlUpButtonImage.color = lb.Level == lb.MaxLevel ? Color.gray : Color.green;
-                lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";
+                lvlUpButtonImage.color = lb.Level == lb.LimitLevel ? Color.gray : Color.green;
                 nameInfo.text = $"{data.name} Lv.{lb.Level}";
+
+                // 根据等级状况显示信息
+                if (lb.Level == lb.LimitLevel)
+                {
+                    /*lvlUpButtonText.text = "升级餐厅提升等级上限";
+                    if (lb.Level == lb.MaxLevel)
+                        lvlUpButtonText.text = "已满级";*/
+                    lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : "升级餐厅提升等级上限";
+                    return;
+                }
+                lvlUpButtonText.text = $"升级:{lb.GetCostInfo()}";
+                
+                /*lvlUpButtonText.text = lb.Level == lb.LimitLevel ? "升级餐厅提升等级上限" : $"升级:{lb.GetCostInfo()}";
+                lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";*/
             }
             else
             {
@@ -105,9 +118,21 @@ public class ObjectInfoPanel : BasePanel
 
         if (building is ILevelUp lb)
         {
-            lvlUpButtonImage.color = lb.Level == lb.MaxLevel ? Color.gray : Color.green;
-            lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";
+            lvlUpButtonImage.color = lb.Level == lb.LimitLevel ? Color.gray : Color.green;
             nameInfo.text += $" Lv.{lb.Level}";
+
+            // 根据等级状况显示信息
+            if (lb.Level == lb.LimitLevel)
+            {
+                /*lvlUpButtonText.text = "升级餐厅提升等级上限";
+                if (lb.Level == lb.MaxLevel)
+                    lvlUpButtonText.text = "已满级";*/
+                lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : "升级餐厅提升等级上限";
+                return;
+            }
+            lvlUpButtonText.text = $"升级:{lb.GetCostInfo()}";
+            /*lvlUpButtonText.text = lb.Level == lb.LimitLevel ? "升级餐厅提升等级上限" : $"升级:{lb.GetCostInfo()}";
+            lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";*/
         }
         else
         {

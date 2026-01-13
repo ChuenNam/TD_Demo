@@ -17,6 +17,7 @@ public interface ITrading
 public interface ILevelUp
 {
     public int Level { get; set; }
+    public int LimitLevel { get; set; }
     int MaxLevel { get; set; }
     List<Level> GetEachLevelBuff();
     SetLevelBuffMode GetLevelBuffMode();
@@ -35,11 +36,25 @@ public interface ILevelUp
         return cost;
     }
 
+    void OnLevelUpCompleted(){}
     void LevelUp(Building building)
     {
-        if (Level >= MaxLevel)
+        // 非餐厅建筑
+        if (building is not Restaurant)
         {
-            Level = MaxLevel;
+            if (LimitLevel != MaxLevel)     // 未达到最高等级
+            {
+                if (TimeLogic.instance.buildings.FirstOrDefault(r => r.GetType() == typeof(Restaurant)) 
+                    is Restaurant restaurant)           // 若有场上餐厅
+                    LimitLevel = restaurant.Level;      // 升级时将等级上限设为餐厅等级
+                else
+                    LimitLevel = 1;     // 场上没餐厅则保持等级上限为 1 (放置建筑时默认调用 触发)
+            }
+        }
+        
+        if (Level >= LimitLevel)
+        {
+            Level = LimitLevel;
             UIManager.instance.helpPanel.Show("已经到达等级上限");
             return;
         }
@@ -97,6 +112,7 @@ public interface ILevelUp
             }
         }
         Level++;        // 升级
+        OnLevelUpCompleted();
     }
 }
 

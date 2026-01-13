@@ -7,6 +7,7 @@ public class Farmland : Building, IDayNightBonus, ILevelUp
 {
     [Header("等级数据")] 
     public int level;
+    public int limitLevel = 1;
     public int maxLevel = 2;
     public SetLevelBuffMode setLevelBuffMode;
     public List<Level> eachLevelBuff = new(); 
@@ -14,6 +15,11 @@ public class Farmland : Building, IDayNightBonus, ILevelUp
     {
         get => level;
         set => level = value;
+    }
+    public int LimitLevel
+    {
+        get => limitLevel;
+        set => limitLevel = value;
     }
     public int MaxLevel
     {

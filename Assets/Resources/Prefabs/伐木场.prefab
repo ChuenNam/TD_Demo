@@ -143,6 +143,7 @@ MonoBehaviour:
   inProduction: 0
   timeCounter: 0
   level: 0
+  limitLevel: 1
   maxLevel: 2
   setLevelBuffMode: 0
   eachLevelBuff:
