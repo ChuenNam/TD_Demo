@@ -17,7 +17,7 @@ MonoBehaviour:
     isDone: 0
     targetItem: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
     itemCount: 500
-    targetBuilding: {fileID: 0}
-    buildingCount: 0
+    targetBuilding: {fileID: 1012406974826088352, guid: bccdd6b2dcae70f4cb96c19818fc7a2e, type: 3}
+    buildingCount: 1
     levelBuilding: {fileID: 1012406974826088352, guid: bccdd6b2dcae70f4cb96c19818fc7a2e, type: 3}
     targetLevel: 3

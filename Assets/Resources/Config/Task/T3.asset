@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: T3
   m_EditorClassIdentifier: 
   taskDataList:
-  - taskInfo: ">> \u62E5\u6709100\u91D1\u5E01"
+  - taskInfo: ">> \u62E5\u670930\u91D1\u5E01"
     isDone: 0
     targetItem: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-    itemCount: 100
+    itemCount: 30
     targetBuilding: {fileID: 0}
     buildingCount: 0
     levelBuilding: {fileID: 0}

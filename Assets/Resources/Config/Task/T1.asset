@@ -29,11 +29,3 @@ MonoBehaviour:
     buildingCount: 1
     levelBuilding: {fileID: 0}
     targetLevel: 0
-  - taskInfo: ">> \u5EFA\u8BBELv.3\u9910\u5385\u5E76\u62E5\u67091000\u91D1\u5E01"
-    isDone: 0
-    targetItem: {fileID: 0}
-    itemCount: 0
-    targetBuilding: {fileID: -6239355802317505733, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
-    buildingCount: 1
-    levelBuilding: {fileID: 0}
-    targetLevel: 0

@@ -23,7 +23,7 @@ MonoBehaviour:
       count: 3
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 10
+      count: 15
   - blueprintName: "\u592A\u9633\u86CB"
     icon: {fileID: 21300000, guid: ea66a41208671344c99b33e26013cd8f, type: 3}
     isLocked: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
       count: 1
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 10
+      count: 20
   - blueprintName: "\u9762\u5305"
     icon: {fileID: 21300000, guid: ebaaa723145f26d41a9bfd34a83f3cfc, type: 3}
     isLocked: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
       count: 1
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 15
+      count: 25
   - blueprintName: "\u751F\u9C7C\u7247"
     icon: {fileID: 21300000, guid: 3374b0a9be897d049ab78674e672bd23, type: 3}
     isLocked: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
       count: 1
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 20
+      count: 30
   - blueprintName: "\u677E\u997C"
     icon: {fileID: 21300000, guid: c77e1823d104e3c4b91deb31b1f631a8, type: 3}
     isLocked: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
       count: 2
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 30
+      count: 40
   - blueprintName: "\u70E4\u9C7C"
     icon: {fileID: 21300000, guid: 9d2a83d9770cbe44aade5174dde0f742, type: 3}
     isLocked: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
       count: 2
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 50
+      count: 60
   - blueprintName: "\u86CB\u7CD5"
     icon: {fileID: 21300000, guid: 9412f676ddeafac4288597d10bf0a4d4, type: 3}
     isLocked: 0
@@ -97,4 +97,4 @@ MonoBehaviour:
       count: 2
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 100
+      count: 110
