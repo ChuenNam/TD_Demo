@@ -1547,7 +1547,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &183961953
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AAA
+  m_Text: 
 --- !u!222 &224438242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5202,7 +5202,7 @@ MonoBehaviour:
   useIconRect: {fileID: 1848521044}
   productIconRect: {fileID: 792158496}
   iconPrefab: {fileID: 2730027855589079187, guid: b4c1423369b482b458c897a958aea835, type: 3}
-  noneSprite: {fileID: 21300000, guid: 0ad2a992485185b4d916bb49bc93972c, type: 3}
+  noneSprite: {fileID: 21300000, guid: 23b10ebc747194443a73336512678674, type: 3}
 --- !u!1 &792158495
 GameObject:
   m_ObjectHideFlags: 0
@@ -7491,7 +7491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Text
+  m_Text: 
 --- !u!222 &1183164365
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7660,7 +7660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1297433857
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7849,6 +7849,13 @@ MonoBehaviour:
   day: 0
   isDay: 0
   dayProgress: 0
+  randomEventDatestDates:
+  - date: 1
+    nightTrigger: 1
+    isPositive: 1
+  - date: 2
+    nightTrigger: 0
+    isPositive: 0
   buildings: []
   gridManager: {fileID: 1046890002}
 --- !u!4 &1336971084
@@ -11567,11 +11574,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a7fc1a2abe57cb469a002761bb4afee, type: 2}
   - {fileID: 11400000, guid: bcd9c9a6db8030b42a8181200c617f9e, type: 2}
   - {fileID: 11400000, guid: 9164403728f050e45b244ae030c354f2, type: 2}
-  randomEvents:
-  - {fileID: 11400000, guid: 67512f928204bf64fa32fc4c4d07a049, type: 2}
-  - {fileID: 11400000, guid: 5a7fc1a2abe57cb469a002761bb4afee, type: 2}
-  - {fileID: 11400000, guid: bcd9c9a6db8030b42a8181200c617f9e, type: 2}
   allEventBuffs: []
+  positiveRandomEvents:
+  - {fileID: 11400000, guid: b71c31d7b23f26c42b3fe641d285dcb6, type: 2}
+  - {fileID: 11400000, guid: b71c31d7b23f26c42b3fe641d285dcb6, type: 2}
+  - {fileID: 11400000, guid: afdde5c99ebff10479a067562ca1b542, type: 2}
+  negativeRandomEvents:
+  - {fileID: 11400000, guid: a4d1781828990ba438a311e0a7f1deda, type: 2}
+  - {fileID: 11400000, guid: 62e63eea57bc9c34aafe91aa7f88f635, type: 2}
+  - {fileID: 11400000, guid: 62e63eea57bc9c34aafe91aa7f88f635, type: 2}
 --- !u!4 &2052008223
 Transform:
   m_ObjectHideFlags: 0

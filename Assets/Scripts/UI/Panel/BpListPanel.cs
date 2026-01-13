@@ -22,20 +22,14 @@ public class BpListPanel : BasePanel
     protected override void Init()
     {
         base.Init();
-        closeButton.onClick.AddListener(() => TimeLogic.instance.timeSpeed = 1);
         
-        // 安全校验
         if (bpDropdown == null)
-        {
-            Debug.LogError("Dropdown组件未找到或未赋值！");
             return;
-        }
         // 绑定选择变更事件（先移除原有监听，避免重复绑定）
         bpDropdown.onValueChanged.RemoveAllListeners();
         bpDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
         productButton.onClick.AddListener(() =>
         {
-            //building.inProduction = !building.inProduction;
             building.ChangeProduction();
             UIManager.instance.objectInfoPanel.WriteInfo(data); //物件面板的信息
             //蓝图面板按钮切换
@@ -48,7 +42,6 @@ public class BpListPanel : BasePanel
     // Dropdown选择变更回调方法（参数为当前选中的索引）
     private void OnDropdownValueChanged(int index)
     {
-        Debug.Log($"选中项变更，当前索引：{index}");
         string selectedText = bpDropdown.options[index].text;
         building.CurrentBlueprint = building.GetBlueprintByProductInfo(selectedText);
         // 绘制蓝图面板内容
@@ -63,6 +56,7 @@ public class BpListPanel : BasePanel
         {
             var icon = Instantiate(iconPrefab, useIconRect);
             icon.GetComponent<Image>().sprite = noneSprite;
+            icon.GetComponentInChildren<Text>().text = "";
         }
         else
             CreateIcons(building.CurrentBlueprint.useGroup, useIconRect);

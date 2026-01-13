@@ -32,6 +32,9 @@ public class TimeLogic : MonoBehaviour
     public bool isDay;
     [Range(0,1)]public float dayProgress;
     
+    [Header("随机事件触发日期")]
+    public List<RandomEventDate> randomEventDatestDates;
+    
     [Header("建筑信息")]
     public List<Building> buildings;
     
@@ -88,8 +91,9 @@ public class TimeLogic : MonoBehaviour
             foreach (var building in buildings)
             {
                 building.AddBuff(BuffManager.instance.DayBuff(building));
-                //building.objectData.UpdateDataUI();
             }
+            // 调用白天随机事件
+            RandomEventDate.ShowTodayRandomEvent(day, false, randomEventDatestDates);
         }
         
         // 更新昼夜 - 夜晚开始
@@ -99,8 +103,9 @@ public class TimeLogic : MonoBehaviour
             foreach (var building in buildings)
             {
                 building.AddBuff(BuffManager.instance.NightBuff(building));
-                //building.objectData.UpdateDataUI();
             }
+            // 调用夜晚随机事件
+            RandomEventDate.ShowTodayRandomEvent(day, true, randomEventDatestDates);
         }
     }
 

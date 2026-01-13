@@ -26,7 +26,6 @@ public class BasePanel : MonoBehaviour
         {
             isActive = false;
             gameObject.SetActive(false);
-            Debug.Log($"ClosePanel:{gameObject.name}");
         }
     }
     public void ShowPanel()
@@ -35,7 +34,6 @@ public class BasePanel : MonoBehaviour
         {
             isActive = true;
             gameObject.SetActive(true);
-            Debug.Log($"ShowPanel{gameObject.name}");
         }
     }
     public void ClosePanel(BasePanel panel)

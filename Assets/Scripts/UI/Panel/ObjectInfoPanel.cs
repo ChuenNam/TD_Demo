@@ -36,16 +36,10 @@ public class ObjectInfoPanel : BasePanel
                 // 根据等级状况显示信息
                 if (lb.Level == lb.LimitLevel)
                 {
-                    /*lvlUpButtonText.text = "升级餐厅提升等级上限";
-                    if (lb.Level == lb.MaxLevel)
-                        lvlUpButtonText.text = "已满级";*/
                     lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : "升级餐厅提升等级上限";
                     return;
                 }
                 lvlUpButtonText.text = $"升级:{lb.GetCostInfo()}";
-                
-                /*lvlUpButtonText.text = lb.Level == lb.LimitLevel ? "升级餐厅提升等级上限" : $"升级:{lb.GetCostInfo()}";
-                lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";*/
             }
             else
             {
@@ -114,6 +108,7 @@ public class ObjectInfoPanel : BasePanel
         descriptionText.text = data.description;
         
         var building = data.instance.GetComponent<Building>();
+        WriteBuffInfo(building);        // 更新buff信息
         productInfoText.text = building.inProduction ? "进行中：\n" + building.CurrentBlueprint.Info(building): "休息中";
 
         if (building is ILevelUp lb)
@@ -124,15 +119,10 @@ public class ObjectInfoPanel : BasePanel
             // 根据等级状况显示信息
             if (lb.Level == lb.LimitLevel)
             {
-                /*lvlUpButtonText.text = "升级餐厅提升等级上限";
-                if (lb.Level == lb.MaxLevel)
-                    lvlUpButtonText.text = "已满级";*/
                 lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : "升级餐厅提升等级上限";
                 return;
             }
             lvlUpButtonText.text = $"升级:{lb.GetCostInfo()}";
-            /*lvlUpButtonText.text = lb.Level == lb.LimitLevel ? "升级餐厅提升等级上限" : $"升级:{lb.GetCostInfo()}";
-            lvlUpButtonText.text = lb.Level == lb.MaxLevel ? "已满级" : $"升级:{lb.GetCostInfo()}";*/
         }
         else
         {

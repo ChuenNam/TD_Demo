@@ -234,7 +234,6 @@ public class Building : MonoBehaviour
     {
         buffList.Add(buff);
         buff.addBuffAction?.Invoke();
-        //Debug.Log($"添加{buff}-时间{buff.duration}");
     }
     public void AddBuff(List<Buff> buffs)
     {
@@ -248,7 +247,6 @@ public class Building : MonoBehaviour
     {
         buffList.Remove(buff);
         buff.delBuffAction?.Invoke();
-        //Debug.Log($"移除{buff}");
     }
     public void DelBuff(List<Buff> buffs)
     {

@@ -21,28 +21,4 @@ public class TEST : MonoBehaviour
         itemName = item.name;
         count = item.count;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Next");
-            idx = (idx + 1)%itemManager.possesItem.Count;
-            
-            item = itemManager.possesItem[idx];
-            itemName = item.name;
-            count = item.count;
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            count++;
-            item.count = count;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            count--;
-            item.count = count;
-        }
-    }
 }

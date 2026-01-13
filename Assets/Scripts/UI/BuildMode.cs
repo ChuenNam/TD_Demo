@@ -78,12 +78,10 @@ public class BuildMode : MonoBehaviour
     
     public void OnBuildMode()
     {
-        Debug.Log("建造模式");
         gridMaterial.SetColor("_LineColor", Color.white);
     }
     public void OnExitBuildMode()
     {
-        Debug.Log("预览模式");
         moveMode = false;
         gridMaterial.SetColor("_LineColor", Color.clear);
     }

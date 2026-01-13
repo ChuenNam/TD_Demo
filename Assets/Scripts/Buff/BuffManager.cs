@@ -25,9 +25,11 @@ public class BuffManager : MonoBehaviour
     
     public List<Building> buildings = new();
     public List<RandomEvent> seasonEvents = new();
-    public List<RandomEvent> randomEvents = new();
     //存储选择的事件与对应的buff列表
     public List<RandomEvent> allEventBuffs = new();
+    [Header("所有随机事件")]
+    public List<RandomEvent> positiveRandomEvents = new();
+    public List<RandomEvent> negativeRandomEvents = new();
 
     public void AddEventBuff(RandomEvent e)
     {
@@ -59,16 +61,23 @@ public class BuffManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            ChoseRandomEvent(3);
+            ChoseRandomEvent(true,3);
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            ChoseRandomEvent(false,3);
         }
     }
     
     private void OnDestroy()
     {
-        foreach (var e in randomEvents)
+        foreach (var e in positiveRandomEvents)
+            e.buffs.Clear();
+        foreach (var e in negativeRandomEvents)
             e.buffs.Clear();
         foreach (var e in seasonEvents)
             e.buffs.Clear();
+        
         allEventBuffs.Clear();
     }
 
@@ -76,13 +85,14 @@ public class BuffManager : MonoBehaviour
     {
         UIManager.instance.eventChosePanel.ShowEventChose(seasonEvents);
     }
-    public void ChoseRandomEvent(int count)
+    public void ChoseRandomEvent(bool isPositive ,int count)
     {
+        var source = isPositive ? positiveRandomEvents : negativeRandomEvents;
         List<RandomEvent> eventsList = new();
         for (int i = 0; i < count; i++)
         {
-            var idx = Random.Range(0, randomEvents.Count);
-            eventsList.Add(randomEvents[idx]);
+            var idx = Random.Range(0, source.Count);
+            eventsList.Add(source[idx]);
         }
         UIManager.instance.eventChosePanel.ShowEventChose(eventsList);
     }

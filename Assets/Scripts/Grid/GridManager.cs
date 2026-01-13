@@ -216,7 +216,6 @@ public class GridManager : MonoBehaviour
         
         // 保存物体
         placedObjects.Add(currentObject.objectID, currentObject);
-        Debug.Log($"物体放置成功: {selectedObjectConfig.objectName} 在 {currentObject.gridPosition}");
         
         // 设置相关脚本
         PlaceableObject placeable = objInstance.AddComponent<PlaceableObject>();

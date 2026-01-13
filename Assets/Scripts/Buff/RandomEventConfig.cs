@@ -35,3 +35,24 @@ public class RandomEvent : ScriptableObject
         return buffs;
     }
 }
+
+
+[Serializable]
+public class RandomEventDate
+{
+    public int date;
+    public bool nightTrigger;
+    public bool isPositive = true;
+
+    public static void ShowTodayRandomEvent(int day, bool isNight, List<RandomEventDate> dateList)
+    {
+        foreach (var data in dateList)
+        {
+            if (data.date != day || data.nightTrigger != isNight)
+                continue;
+            
+            BuffManager.instance.ChoseRandomEvent(data.isPositive, 3);
+                return;
+        }
+    }
+}

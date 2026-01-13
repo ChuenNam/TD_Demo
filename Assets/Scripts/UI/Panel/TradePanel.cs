@@ -96,7 +96,7 @@ public sealed class TradePanel : BasePanel
 
     private void OnDropdownValueChanged(int index)
     {
-        Debug.Log($"选中项变更，当前索引：{index}");
+        choseItemDropdown.value = index;
         var selectedText = choseItemDropdown.options[index].text;
         chosenItem = ItemManager.instance.GetItemByName(selectedText);
         if (tradingPost.SetGetCurrentBpByItem(chosenItem) == null)

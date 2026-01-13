@@ -40,7 +40,6 @@ public class HelpPanel : BasePanel
         {
             _title.text = "提示";
             _content.text = "";
-            TimeLogic.instance.timeSpeed = 1;
         });
     }
 }
