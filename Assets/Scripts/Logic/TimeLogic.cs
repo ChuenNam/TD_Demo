@@ -41,6 +41,7 @@ public class TimeLogic : MonoBehaviour
 
     private void Start()
     {
+        timeSpeed = 0;
         // 获取场上建筑列表引用
         placedObjects = gridManager.GetPlacedObjects();
     }

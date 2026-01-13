@@ -49,5 +49,24 @@ public class ClockUI : MonoBehaviour
         hand.rotation = Quaternion.Euler(new Vector3(0, 0, _timeLogic.dayProgress * -360) + new Vector3(0, 0, 90));
         var dayOrNight = _timeLogic.isDay ? "白天" : "夜晚";
         dayInfo.text = $"第{_timeLogic.day}天  {dayOrNight}";
+
+        switch (_timeLogic.timeSpeed)
+        {
+            case 0:
+                stopButton.image.color = selectedColor;
+                startButton.image.color = unselectedColor;
+                fastButton.image.color = unselectedColor;
+                break;
+            case 1:
+                startButton.image.color = selectedColor;
+                stopButton.image.color = unselectedColor;
+                fastButton.image.color = unselectedColor;
+                break;
+            case 2:
+                fastButton.image.color = selectedColor;
+                stopButton.image.color = unselectedColor;
+                startButton.image.color = unselectedColor;
+                break;
+        }
     }
 }

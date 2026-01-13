@@ -40,7 +40,7 @@ public class EventChosePanel : BasePanel
                 eventList.Clear();
                 
                 ClosePanel();       //关闭面板
-                TimeLogic.instance.timeSpeed = 1;
+                TimeLogic.instance.timeSpeed = 0;
             });
         }
     }

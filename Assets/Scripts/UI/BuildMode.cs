@@ -38,7 +38,11 @@ public class BuildMode : MonoBehaviour
         gridMaterial = gridManager.GetComponent<MeshRenderer>().material;
         
         buildButton.onClick.AddListener(() => OpenChildPanel(childPanel));
-        buildButton.onClick.AddListener(() => IsBuildMode = !IsBuildMode);
+        buildButton.onClick.AddListener(() =>
+        {
+            IsBuildMode = !IsBuildMode;
+            TimeLogic.instance.timeSpeed = IsBuildMode ? 0 : 1;
+        });
         
         rotateBtn.onClick.AddListener(DoRotate);
         moveBtn.onClick.AddListener(() => moveMode = !moveMode);

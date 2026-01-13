@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5, b: 0, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4864,12 +4864,12 @@ GameObject:
   - component: {fileID: 736566380}
   - component: {fileID: 736566382}
   m_Layer: 5
-  m_Name: "\u680F\u76EE"
+  m_Name: "\u5EFA\u9020\u680F\u76EE"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &736566379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4940,7 +4940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfe3bd4c2e21114cb79ad04442e132a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   closeButton: {fileID: 0}
 --- !u!1 &746089726
 GameObject:
@@ -6926,7 +6926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 1, g: 0.5, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9863,7 +9863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b3e0c60fe848e9a6c597dedce7ce59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuildMode: 1
+  isBuildMode: 0
   buildButton: {fileID: 1699158529}
   childPanel: {fileID: 736566382}
   moveMode: 0
