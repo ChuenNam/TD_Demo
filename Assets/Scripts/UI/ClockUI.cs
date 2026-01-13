@@ -9,11 +9,38 @@ public class ClockUI : MonoBehaviour
     public RectTransform hand;
     public Text dayInfo;
     
+    public Button stopButton;
+    public Button startButton;
+    public Button fastButton;
+    public Color selectedColor;
+    public Color unselectedColor;
+    
     private TimeLogic _timeLogic;
     
     void Start()
     {
         _timeLogic = TimeLogic.instance;
+        stopButton.onClick.AddListener(() =>
+        {
+            _timeLogic.timeSpeed = 0;
+            stopButton.image.color = selectedColor;
+            startButton.image.color = unselectedColor;
+            fastButton.image.color = unselectedColor;
+        });
+        startButton.onClick.AddListener(() =>
+        {
+            _timeLogic.timeSpeed = 1;
+            startButton.image.color = selectedColor;
+            stopButton.image.color = unselectedColor;
+            fastButton.image.color = unselectedColor;
+        });
+        fastButton.onClick.AddListener(() =>
+        {
+            _timeLogic.timeSpeed = 2;
+            fastButton.image.color = selectedColor;
+            stopButton.image.color = unselectedColor;
+            startButton.image.color = unselectedColor;
+        });
     }
     
     void Update()
