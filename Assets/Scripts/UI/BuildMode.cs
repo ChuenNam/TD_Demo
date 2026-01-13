@@ -42,10 +42,17 @@ public class BuildMode : MonoBehaviour
         {
             IsBuildMode = !IsBuildMode;
             TimeLogic.instance.timeSpeed = IsBuildMode ? 0 : 1;
+            
+            rotateBtn.gameObject.SetActive(IsBuildMode);
+            moveBtn.gameObject.SetActive(IsBuildMode);
         });
         
         rotateBtn.onClick.AddListener(DoRotate);
-        moveBtn.onClick.AddListener(() => moveMode = !moveMode);
+        moveBtn.onClick.AddListener(() =>
+        {
+            moveMode = !moveMode;
+            moveBtn.image.color = moveMode ? Color.yellow : Color.black;
+        });
     }
 
     private void OpenChildPanel(BasePanel panel)
