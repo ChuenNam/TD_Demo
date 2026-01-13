@@ -29,6 +29,7 @@ public class BuildMode : MonoBehaviour
     public bool moveMode;
     public Button moveBtn;
     public Button rotateBtn;
+    public Button removeBtn;
     
     public GridManager gridManager;
     private Material gridMaterial;
@@ -44,10 +45,12 @@ public class BuildMode : MonoBehaviour
             TimeLogic.instance.timeSpeed = IsBuildMode ? 0 : 1;
             
             rotateBtn.gameObject.SetActive(IsBuildMode);
+            removeBtn.gameObject.SetActive(IsBuildMode);
             moveBtn.gameObject.SetActive(IsBuildMode);
         });
         
         rotateBtn.onClick.AddListener(DoRotate);
+        removeBtn.onClick.AddListener(DoRemove);
         moveBtn.onClick.AddListener(() =>
         {
             moveMode = !moveMode;
@@ -74,6 +77,25 @@ public class BuildMode : MonoBehaviour
             return;
         }
         gridManager.RotateObject(obj.objectID);
+    }
+    private void DoRemove()
+    {
+        if (!isBuildMode) return;
+
+        var obj = gridManager.GetSelectObject();
+        if (obj == null)
+        {
+            Debug.Log("未选中物体");
+            return;
+        }
+
+        UIManager.instance.helpPanel.Show($"是否要删除{obj.name}?\n(点击X取消删除)", true);
+        UIManager.instance.helpPanel.AddConfirmAction(() =>
+        {
+            gridManager.RemoveObject(obj.objectID);
+            UIManager.instance.objectInfoPanel.ClosePanel();
+            UIManager.instance.helpPanel.Show("已删除");
+        });
     }
     
     public void OnBuildMode()

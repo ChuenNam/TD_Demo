@@ -52,9 +52,10 @@ public class TimeLogic : MonoBehaviour
     private void Update()
     {
         // 检查是否有变更
-        if (placedObjects.Count > buildings.Count)
+        if (placedObjects.Count != buildings.Count)
         {
             // 更新建筑列表
+            buildings.Clear();
             foreach (var objPair in placedObjects)
             {
                 var objData = objPair.Value;

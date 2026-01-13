@@ -59,6 +59,7 @@ public class ObjectSelectionUI : MonoBehaviour
     void OnObjectSelected(GridObjectConfig config)
     {
         gridManager.StartPlacingObject(config);
+        UIManager.instance.objectInfoPanel.ClosePanel();
         
         // 显示物体信息
         if (objectInfoText != null)
