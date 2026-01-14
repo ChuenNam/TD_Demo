@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9d0b80249ae48e58de36fca61bfd56f, type: 3}
-  m_Name: T3
+  m_Name: T7
   m_EditorClassIdentifier: 
   taskDataList:
-  - taskInfo: ">> \u5347\u7EA7\u9910\u5385\u81F3Lv.2"
+  - taskInfo: "\u5347\u7EA7\u9910\u5385\u81F3Lv.3"
     isDone: 0
     targetItem: {fileID: 0}
     itemCount: 0
     targetBuilding: {fileID: 0}
     buildingCount: 0
     levelBuilding: {fileID: 1012406974826088352, guid: bccdd6b2dcae70f4cb96c19818fc7a2e, type: 3}
-    targetLevel: 2
+    targetLevel: 3

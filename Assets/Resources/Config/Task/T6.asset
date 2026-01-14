@@ -10,29 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9d0b80249ae48e58de36fca61bfd56f, type: 3}
-  m_Name: T4
+  m_Name: T6
   m_EditorClassIdentifier: 
   taskDataList:
-  - taskInfo: ">> \u5EFA\u90202\u4E2A\u9C7C\u5858"
+  - taskInfo: ">> \u8D5A\u53D6100\u4E2A\u91D1\u5E01"
     isDone: 0
-    targetItem: {fileID: 0}
-    itemCount: 0
-    targetBuilding: {fileID: -3826360437693227925, guid: a84aac2316cc7094799d39bdee8266e8, type: 3}
-    buildingCount: 2
-    levelBuilding: {fileID: 0}
-    targetLevel: 0
-  - taskInfo: ">> \u5347\u7EA7\u519C\u7530\u81F3Lv.2"
-    isDone: 0
-    targetItem: {fileID: 0}
-    itemCount: 0
+    targetItem: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
+    itemCount: 100
     targetBuilding: {fileID: 0}
     buildingCount: 0
-    levelBuilding: {fileID: -6239355802317505733, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
-    targetLevel: 2
-  - taskInfo: ">> \u5347\u7EA7\u7267\u68DA\u81F3Lv.2"
+    levelBuilding: {fileID: 0}
+    targetLevel: 0
+  - taskInfo: ">> \u5347\u7EA7\u7267\u68DA\u81F3Lv.2\u751F\u4EA710\u4E2A\u725B\u5976"
     isDone: 0
-    targetItem: {fileID: 0}
-    itemCount: 0
+    targetItem: {fileID: 11400000, guid: 6046491d3de83824b975bfe28b724630, type: 2}
+    itemCount: 10
     targetBuilding: {fileID: 0}
     buildingCount: 0
     levelBuilding: {fileID: 62880959140287542, guid: 5346367c62ab89e4199f167f8b336536, type: 3}

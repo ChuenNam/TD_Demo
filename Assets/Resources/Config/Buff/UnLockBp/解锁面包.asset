@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38024ace4248ae957d58d424e63b12, type: 3}
   m_Name: "\u89E3\u9501\u9762\u5305"
   m_EditorClassIdentifier: 
-  buffName: "\u89E3\u9501\u9762\u5305"
+  buffName: 
   buffDescription: "\u9910\u5385\u53EF\u4EE5\u552E\u5356\u9762\u5305"
   buffType: 2
   value: 2

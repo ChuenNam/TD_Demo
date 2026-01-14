@@ -8510,7 +8510,13 @@ MonoBehaviour:
   finalTask: {fileID: 11400000, guid: 6588703aaf7e8cc4b9a93893f3fbd26b, type: 2}
   taskList:
   - {fileID: 11400000, guid: 03a10de6bea0f2e4181db5fbffae5e36, type: 2}
+  - {fileID: 11400000, guid: f40bda0decb093946b8fc6d2b8a1714a, type: 2}
   - {fileID: 11400000, guid: 0e130f8eb6ec4494ca12ef54892ac8da, type: 2}
+  - {fileID: 11400000, guid: a488e38ba73c24a4a9841b6f18a3dd1c, type: 2}
+  - {fileID: 11400000, guid: 623b88a295cb24040bf8239feea0eb67, type: 2}
+  - {fileID: 11400000, guid: 8ee8fefe6e3b74c4da101f752394674a, type: 2}
+  - {fileID: 11400000, guid: 05a032fcf48d11c4e9eca44382c668cb, type: 2}
+  - {fileID: 11400000, guid: 3ad7272549a63d54d8287fa8ad1f37c8, type: 2}
   currentNodeIndex: 0
 --- !u!4 &1325005135
 Transform:

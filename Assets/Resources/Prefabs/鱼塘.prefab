@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6592171211909500969}
   - component: {fileID: -3826360437693227925}
   m_Layer: 0
-  m_Name: "\u6E14\u5C4B"
+  m_Name: "\u9C7C\u5858"
   m_TagString: GridObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
