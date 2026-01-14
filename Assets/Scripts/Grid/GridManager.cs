@@ -36,12 +36,12 @@ public class GridManager : MonoBehaviour
     [SerializeField]private GameObject previewInstance;
     public bool isPlacing = false;
     
-    private Camera mainCamera;
+    public Camera mainCamera;
     private UIManager ui;
     
     void Start()
     {
-        mainCamera  = Camera.main;
+        //mainCamera  = Camera.main;
         ui = UIManager.instance;
         InitializeGrid();
     }

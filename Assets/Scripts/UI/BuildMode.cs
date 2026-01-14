@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,11 +33,13 @@ public class BuildMode : MonoBehaviour
     public Button removeBtn;
     
     public GridManager gridManager;
-    private Material gridMaterial;
+    public Material gridMaterial;
+    public CinemachineVirtualCamera sceneCam;
 
     private void Start()
     {
-        gridMaterial = gridManager.GetComponent<MeshRenderer>().material;
+        //gridMaterial = gridManager.GetComponent<MeshRenderer>().material;
+        //sceneCam.enabled = true;      //初始为场景相机
         
         buildButton.onClick.AddListener(() =>
         {
@@ -50,6 +53,9 @@ public class BuildMode : MonoBehaviour
             rotateBtn.gameObject.SetActive(IsBuildMode);
             removeBtn.gameObject.SetActive(IsBuildMode);
             moveBtn.gameObject.SetActive(IsBuildMode);
+            
+            sceneCam.enabled = !isBuildMode;
+            if (IsBuildMode) UIManager.instance.objectInfoPanel.ClosePanel();
         });
         
         rotateBtn.onClick.AddListener(()=>
@@ -115,7 +121,7 @@ public class BuildMode : MonoBehaviour
     
     public void OnBuildMode()
     {
-        gridMaterial.SetColor("_LineColor", Color.white);
+        gridMaterial.SetColor("_LineColor", Color.black);
     }
     public void OnExitBuildMode()
     {

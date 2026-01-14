@@ -48,7 +48,7 @@ public class PlaceableObject : MonoBehaviour
     
     void OnMouseDown()
     {
-        if (gridManager.isPlacing)
+        if (gridManager.isPlacing || buildMode.IsBuildMode)
             return;
         
         gridManager.SelectObject(objectID);
@@ -62,7 +62,7 @@ public class PlaceableObject : MonoBehaviour
             return;
         
         // 实现拖拽移动
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = gridManager.mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, gridManager.gridLayerMask))
