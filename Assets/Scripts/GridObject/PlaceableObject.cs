@@ -48,7 +48,7 @@ public class PlaceableObject : MonoBehaviour
     
     void OnMouseDown()
     {
-        if (gridManager.isPlacing || buildMode.IsBuildMode)
+        if (gridManager.isPlacing)
             return;
         
         gridManager.SelectObject(objectID);

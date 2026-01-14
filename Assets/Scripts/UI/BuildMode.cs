@@ -110,6 +110,12 @@ public class BuildMode : MonoBehaviour
             return;
         }
 
+        if (obj.instance.TryGetComponent<Building>(out var building) && building is Restaurant)
+        {
+            UIManager.instance.helpPanel.Show("餐厅不可以删除");
+            return;
+        }
+
         UIManager.instance.helpPanel.Show($"是否要删除{obj.name}?\n(点击X取消删除)", true);
         UIManager.instance.helpPanel.AddConfirmAction(() =>
         {
