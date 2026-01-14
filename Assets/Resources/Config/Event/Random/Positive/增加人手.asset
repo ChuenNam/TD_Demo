@@ -15,5 +15,5 @@ MonoBehaviour:
   eventName: "\u9910\u5385\u5E2E\u624B"
   eventDescription: "\u9910\u5385\u5236\u4F5C\u83DC\u54C1\u901F\u5EA6\u63D0\u9AD8\u4E00\u5929"
   productionBuffConfigs:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d143b9c17e398974ab8e025a5fd408e8, type: 2}
   buffs: []
