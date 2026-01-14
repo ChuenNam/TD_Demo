@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ObjectSelectionUI : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class ObjectSelectionUI : MonoBehaviour
     public Text actionInfoText;
     
     private Dictionary<Button, GridObjectConfig> buttonConfigMap = new();
+    private Restaurant restaurant;
     
     void Start()
     {
-        CreateObjectButtons();
+        // 创建可建造建筑的按钮
+        CreateObjectButtons(0);
+        
         // 显示操作提示
         if (gridManager != null)
         {
@@ -29,15 +33,14 @@ public class ObjectSelectionUI : MonoBehaviour
         }
     }
     
-    void CreateObjectButtons()
+    public void CreateObjectButtons(int level)
     {
         if (gridManager == null || gridManager.availableObjects.Count == 0) return;
 
-        for (var i = 0; i < gridManager.availableObjects.Count; i++)
+        for (var i = 0; i < gridManager.availableObjects[level].configs.Count; i++)
         {
-            var config = gridManager.availableObjects[i];
-            var pos = buttonContainer.position + Vector3.down * i * 100;
-            GameObject buttonObj = Instantiate(buttonPrefab, pos, Quaternion.identity, buttonContainer);
+            var config = gridManager.availableObjects[level].configs[i];
+            GameObject buttonObj = Instantiate(buttonPrefab, buttonContainer);
             Button button = buttonObj.GetComponent<Button>();
 
             // 设置按钮文本
@@ -76,6 +79,21 @@ public class ObjectSelectionUI : MonoBehaviour
         if (!gridManager.isPlacing)
         {
             objectInfoText.text = "";
+        }
+        
+        if (restaurant is null)
+        {
+            foreach (var b in TimeLogic.instance.buildings)
+            {
+                if (b is not Restaurant r) continue;
+                restaurant = r;
+                restaurant.onLevelUpCompleted += () => CreateObjectButtons(restaurant.Level-1);     //升级时解锁建筑
+                // 放置后删除餐厅按钮
+                var restaurantBtn = buttonContainer.GetChild(0).gameObject;
+                buttonConfigMap.Remove(restaurantBtn.GetComponent<Button>());
+                Destroy(restaurantBtn);
+                break;
+            }
         }
     }
 }

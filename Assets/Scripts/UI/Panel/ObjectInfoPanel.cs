@@ -138,7 +138,7 @@ public class ObjectInfoPanel : BasePanel
         var info = "";
         foreach (var buff in building.buffList)
         {
-            if (buff.buffName == "")
+            if (buff.buffName is "" or "L")
                 continue;
             var time = Mathf.Approximately(buff.remainDuration, -1) ? "永久" : $"{buff.remainDuration:F1}";
             info += $"{buff.buffName}:  {time}\n";

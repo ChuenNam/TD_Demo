@@ -143,6 +143,7 @@ MonoBehaviour:
   inProduction: 0
   timeCounter: 0
   level: 0
+  limitLevel: 3
   maxLevel: 3
   setLevelBuffMode: 0
   eachLevelBuff:
@@ -150,6 +151,9 @@ MonoBehaviour:
     levelUpCost: []
   - buffConfigs:
     - {fileID: 11400000, guid: 46419a9ba5f553f40818ab355ac43b33, type: 2}
+    - {fileID: 11400000, guid: 3d19598726d0a384496309d5f013f094, type: 2}
+    - {fileID: 11400000, guid: 0fabe181270e3a34d9396193b8b37d5e, type: 2}
+    - {fileID: 11400000, guid: e7980350db0f9e6438bbf41737b89ee3, type: 2}
     levelUpCost:
     - item: {fileID: 11400000, guid: 2ffe9e91313a1db499d549d8db7046ef, type: 2}
       count: 50
@@ -157,6 +161,8 @@ MonoBehaviour:
       count: 100
   - buffConfigs:
     - {fileID: 11400000, guid: 46419a9ba5f553f40818ab355ac43b33, type: 2}
+    - {fileID: 11400000, guid: e72ef275a9741f44e89e2cb2081cc981, type: 2}
+    - {fileID: 11400000, guid: d0cc5f424ce9d7242a4b1eec5114cda7, type: 2}
     levelUpCost:
     - item: {fileID: 11400000, guid: 2ffe9e91313a1db499d549d8db7046ef, type: 2}
       count: 100

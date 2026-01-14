@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +23,7 @@ public class GridManager : MonoBehaviour
     public BuildMode buildMode;
     
     [Header("物体设置")]
-    public List<GridObjectConfig> availableObjects = new();
+    public List<GridObjectConfigList> availableObjects;
     public LayerMask gridLayerMask;
     
     [Header("预览设置")]
@@ -512,14 +513,8 @@ public class GridManager : MonoBehaviour
         if (!placedObjects.ContainsKey(objectID)) return null;
         
         string prefabName = placedObjects[objectID].prefab.name.Replace("(Clone)", "");
-        foreach (GridObjectConfig config in availableObjects)
-        {
-            if (config.prefab.name == prefabName)
-            {
-                return config;
-            }
-        }
-        return null;
+        var allConfigs = GridObjectConfigList.AllConfigs(availableObjects);
+        return allConfigs.FirstOrDefault(config => config.prefab.name == prefabName);
     }
     
     #endregion

@@ -15,6 +15,7 @@ public class Restaurant : Building, ITrading, ILevelUp
     [Header("专属信息")]
     public List<Blueprint> todayMenu = new();
     public Queue<Blueprint> todayDishQueue = new();
+    public Action onLevelUpCompleted;
 
     public override void Initialize(string id, GridManager manager)
     {
@@ -57,6 +58,7 @@ public class Restaurant : Building, ITrading, ILevelUp
             if (levelBuilding.LimitLevel != levelBuilding.MaxLevel) 
                 levelBuilding.LimitLevel = Level;
         }
+        onLevelUpCompleted?.Invoke();
     }
 
     public string RewriteBlueprintText(Blueprint blueprint)

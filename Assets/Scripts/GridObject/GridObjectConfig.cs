@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 // GridObjectConfig.cs
 [CreateAssetMenu(fileName = "NewGridObject", menuName = "Grid System/Grid Object")]
@@ -117,5 +119,15 @@ public class GridObjectConfig : ScriptableObject
             canRotate = canRotate,
             blueprintConfig = blueprintConfig
         };
+    }
+}
+
+[Serializable]
+public class GridObjectConfigList
+{
+    public List<GridObjectConfig> configs = new();
+    public static List<GridObjectConfig> AllConfigs(List<GridObjectConfigList> targetList)
+    {
+        return targetList.SelectMany(configList => configList.configs).ToList();
     }
 }
