@@ -10,14 +10,9 @@ public class BuffManager : MonoBehaviour
         private void Awake()
         {
             if (instance == null)
-            {
                 instance = this;
-            }
             else
-            {
                 Destroy(gameObject);
-            }
-
             DontDestroyOnLoad(gameObject);
         }
     #endregion
@@ -33,7 +28,15 @@ public class BuffManager : MonoBehaviour
 
     public void AddEventBuff(RandomEvent e)
     {
-        allEventBuffs.Add(e);
+        foreach (var building in TimeLogic.instance.buildings)
+        {
+            for (var i = 0; i < e.productionBuffConfigs.Count; i++)
+            {
+                e.Init(building);
+                if (i >= 0 && i < e.buffs.Count) 
+                    building.AddBuff(e.buffs[i]);
+            }
+        }
     }
 
     public void AddBuffToBuilding(Building building)
@@ -56,18 +59,6 @@ public class BuffManager : MonoBehaviour
         
         ChoseSeasonEvent();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            ChoseRandomEvent(true,3);
-        }
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            ChoseRandomEvent(false,3);
-        }
-    }
     
     private void OnDestroy()
     {
@@ -83,7 +74,7 @@ public class BuffManager : MonoBehaviour
 
     public void ChoseSeasonEvent()
     {
-        UIManager.instance.eventChosePanel.ShowEventChose(seasonEvents);
+        UIManager.instance.eventChosePanel.ShowEventChose(true,seasonEvents);
     }
     public void ChoseRandomEvent(bool isPositive ,int count)
     {

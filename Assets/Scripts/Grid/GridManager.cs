@@ -42,7 +42,6 @@ public class GridManager : MonoBehaviour
     
     void Start()
     {
-        //mainCamera  = Camera.main;
         ui = UIManager.instance;
         InitializeGrid();
     }
@@ -68,14 +67,6 @@ public class GridManager : MonoBehaviour
                 RotateCurrentObject();
             }
         }
-        
-        /*// 快捷键：删除物体
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            RemoveObject(currentObject.objectID);
-            DeleteSelectedObject();
-        }*/
-        
     }
 
     void InitializeGrid()

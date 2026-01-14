@@ -159,17 +159,6 @@ public class Building : MonoBehaviour
         ClearBuff();
     }
 
-    //public float multiplier = 2;
-    private void Update()
-    {
-        // 测试
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            var buff = BuffManager.CreatProductivityBuff(this, 2, 10);
-            AddBuff(buff);
-        }    
-    }
-
     #region 生产
     // 回调事件
     public Action onStart;
@@ -223,7 +212,8 @@ public class Building : MonoBehaviour
 
     public void UpdateBuff()
     {
-        UIManager.instance.objectInfoPanel.WriteBuffInfo(this);
+        if (UIManager.instance.objectInfoPanel.data == objectData)
+            UIManager.instance.objectInfoPanel.WriteBuffInfo(this);
         foreach (var buff in buffList.ToList())
         {
             if (Mathf.Approximately(buff.duration, -1))
