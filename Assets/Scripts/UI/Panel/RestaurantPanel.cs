@@ -39,10 +39,15 @@ public class RestaurantPanel : BasePanel
             if (restaurant.todayMenu.Count > 0)
             {
                 TimeLogic.instance.timeSpeed = 1;
-                //restaurant.inProduction = true;
-                //restaurant.CurrentBlueprint = restaurant.todayMenu[0];
+                if (restaurant.inProduction)
+                {
+                    UIManager.instance.helpPanel.Show("正在制作中...");
+                    return;
+                }
                 restaurant.SetDishToQueue();
                 restaurant.ChangeProduction();
+                
+                restaurant.objectData.UpdateDataUI();
             }
             ClosePanel();
         });

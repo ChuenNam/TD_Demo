@@ -50,6 +50,9 @@ public class PlaceableObject : MonoBehaviour
     {
         if (gridManager.isPlacing)
             return;
+        var ui = UIManager.instance;
+        if (ui.restaurantPanel.isActive || ui.tradePanel.isActive || ui.eventChosePanel.isActive)
+            return;
         
         gridManager.SelectObject(objectID);
     }

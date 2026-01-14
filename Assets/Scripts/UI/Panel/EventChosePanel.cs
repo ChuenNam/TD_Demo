@@ -20,6 +20,7 @@ public class EventChosePanel : BasePanel
     public void ShowEventChose(List<RandomEvent> eventList)
     {
         ShowPanel();
+        var preTimeSpeed = TimeLogic.instance.timeSpeed;
         TimeLogic.instance.timeSpeed = 0;
         // 创建面板
         foreach (var e in eventList)
@@ -40,7 +41,7 @@ public class EventChosePanel : BasePanel
                 eventList.Clear();
                 
                 ClosePanel();       //关闭面板
-                TimeLogic.instance.timeSpeed = 0;
+                TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;
             });
         }
     }

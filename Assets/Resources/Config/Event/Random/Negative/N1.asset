@@ -16,5 +16,4 @@ MonoBehaviour:
   eventDescription: 
   productionBuffConfigs:
   - {fileID: 11400000, guid: f40c409b4ff5fe24ca74775241cf8316, type: 2}
-  - {fileID: 11400000, guid: ddd84a0ead409884fa51a8724203842b, type: 2}
   buffs: []

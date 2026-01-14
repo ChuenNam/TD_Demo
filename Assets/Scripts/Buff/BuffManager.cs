@@ -89,9 +89,13 @@ public class BuffManager : MonoBehaviour
     {
         var source = isPositive ? positiveRandomEvents : negativeRandomEvents;
         List<RandomEvent> eventsList = new();
-        for (int i = 0; i < count; i++)
+        List<int> usedIndices = new();
+        for (var i = 0; i < count; i++)
         {
-            var idx = Random.Range(0, source.Count);
+            int idx;
+            do { idx = Random.Range(0, source.Count); } 
+            while (usedIndices.Contains(idx));
+            usedIndices.Add(idx);
             eventsList.Add(source[idx]);
         }
         UIManager.instance.eventChosePanel.ShowEventChose(eventsList);

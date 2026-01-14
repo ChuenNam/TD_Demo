@@ -181,6 +181,7 @@ public class Building : MonoBehaviour
         if (inProduction || CurrentBlueprint == null)
         {
             inProduction = false;
+            UIManager.instance.objectInfoPanel.WriteInfo(objectData);
             CurrentBlueprint = null;
             return;
         }
