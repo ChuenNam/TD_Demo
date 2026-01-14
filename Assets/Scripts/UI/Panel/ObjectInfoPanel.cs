@@ -62,7 +62,7 @@ public class ObjectInfoPanel : BasePanel
                     }
                     else
                     {
-                        TimeLogic.instance.timeSpeed = 1;
+                        //TimeLogic.instance.timeSpeed = 1;
                         restaurantPanel.ClosePanel();
                     }
                     break;
@@ -77,7 +77,7 @@ public class ObjectInfoPanel : BasePanel
                     }
                     else
                     {
-                        TimeLogic.instance.timeSpeed = 1;
+                        //TimeLogic.instance.timeSpeed = 1;
                         tradePanel.ClosePanel();
                     }
                     break;
@@ -91,7 +91,7 @@ public class ObjectInfoPanel : BasePanel
                     }
                     else
                     {
-                        TimeLogic.instance.timeSpeed = 1;
+                        //TimeLogic.instance.timeSpeed = 1;
                         blueprintListPanel.ClosePanel();
                         blueprintListPanel.building = null;
                     }

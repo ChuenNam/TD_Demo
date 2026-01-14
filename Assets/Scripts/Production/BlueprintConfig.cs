@@ -87,6 +87,7 @@ public class Blueprint
         isLocked = other.isLocked;
         baseTime = other.baseTime;
         timeMultiplier = other.timeMultiplier;
+        icon =  other.icon;
         // 复制集合（深度值复制，创建新集合+新元素）
         useGroup?.Clear();     // 先清空 a 的原有集合（避免残留旧数据）
         foreach (var itemGroup in other.useGroup)
