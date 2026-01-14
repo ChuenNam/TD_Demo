@@ -10,9 +10,10 @@ public class Restaurant : Building, ITrading, ILevelUp
     public int limitLevel = 3;
     public int maxLevel = 3;
     public SetLevelBuffMode setLevelBuffMode;
-    public List<Level> eachLevelBuff = new(); 
-    
-    [Header("专属信息")]
+    public List<Level> eachLevelBuff = new();
+
+    [Header("专属信息")] 
+    public GameObject stateImage;
     public List<Blueprint> todayMenu = new();
     public Queue<Blueprint> todayDishQueue = new();
     public Action onLevelUpCompleted;
@@ -30,6 +31,7 @@ public class Restaurant : Building, ITrading, ILevelUp
             {
                 Debug.Log("生产完毕");
                 CurrentBlueprint = null;
+                stateImage.SetActive(true);
                 return;
             }
             CurrentBlueprint = todayDishQueue.Dequeue();
@@ -38,6 +40,7 @@ public class Restaurant : Building, ITrading, ILevelUp
     
     public void SetDishToQueue()
     {
+        stateImage.SetActive(false);
         foreach (var dish in todayMenu)
         {
             todayDishQueue.Enqueue(dish);

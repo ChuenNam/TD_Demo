@@ -48,6 +48,10 @@ public class RestaurantPanel : BasePanel
                 restaurant.ChangeProduction();
                 
                 restaurant.objectData.UpdateDataUI();
+                for (var i = 0; i < todayMenuRect.childCount; i++)
+                {
+                    Destroy(todayMenuRect.GetChild(i).gameObject);
+                }
             }
             ClosePanel();
         });

@@ -3611,6 +3611,7 @@ MonoBehaviour:
   objectInfoPanel: {fileID: 1639233819}
   itemPanel: {fileID: 315000175}
   eventChosePanel: {fileID: 2065434591}
+  bpListPanel: {fileID: 771372649}
   restaurantPanel: {fileID: 1056052333}
   tradePanel: {fileID: 746089728}
   taskPanel: {fileID: 1507679476}

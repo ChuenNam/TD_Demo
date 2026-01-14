@@ -29,6 +29,9 @@ public class ObjectInfoPanel : BasePanel
             var building = data.instance.GetComponent<Building>();
             if (building is ILevelUp lb)
             {
+                UIManager.instance.restaurantPanel.ClosePanel();
+                UIManager.instance.bpListPanel.ClosePanel();
+                UIManager.instance.tradePanel.ClosePanel();
                 lb.LevelUp(building);
                 lvlUpButtonImage.color = lb.Level == lb.LimitLevel ? Color.gray : Color.green;
                 nameInfo.text = $"{data.name} Lv.{lb.Level}";

@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public ObjectInfoPanel objectInfoPanel;
     public ItemPanel itemPanel;
     public EventChosePanel eventChosePanel;
+    public BpListPanel bpListPanel;
     public RestaurantPanel restaurantPanel;
     public TradePanel tradePanel;
     public TaskPanel taskPanel;
