@@ -76,6 +76,7 @@ public class BpListPanel : BasePanel
         List<string> optionTexts = new();
         foreach (var bp in blueprintList)
         {
+            if (bp.isLocked)    continue;       // 未解锁则跳过
             optionTexts.Add(bp.ProductInfo(b));
         }
         var optionList = new List<Dropdown.OptionData>();

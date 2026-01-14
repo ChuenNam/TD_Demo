@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffName: "\u7267\u68DA\u52A0\u901F+"
   buffDescription: "\u7267\u68DA\u751F\u4EA7\u6548\u7387\u63D0\u9AD8"
-  multiple: 1.2
+  buffType: 0
+  value: 1.2
   duration: 3
   building: {fileID: 62880959140287542, guid: 5346367c62ab89e4199f167f8b336536, type: 3}
+  targetItems: {fileID: 0}

@@ -28,8 +28,8 @@ public class Blueprint
     public float timeMultiplier = 1;
     public float Time => baseTime/timeMultiplier;
     
-    public List<ItemGroup> useGroup;
-    public List<ItemGroup> productGroup;
+    public List<ItemGroup> useGroup = new();
+    public List<ItemGroup> productGroup = new();
 
     public string Info()
     {
@@ -88,14 +88,14 @@ public class Blueprint
         baseTime = other.baseTime;
         timeMultiplier = other.timeMultiplier;
         // 复制集合（深度值复制，创建新集合+新元素）
-        useGroup.Clear();     // 先清空 a 的原有集合（避免残留旧数据）
+        useGroup?.Clear();     // 先清空 a 的原有集合（避免残留旧数据）
         foreach (var itemGroup in other.useGroup)
         {
             // 利用 ItemGroup 的拷贝构造函数，创建新实例
             var newItemGroup = new ItemGroup(itemGroup);
             useGroup.Add(newItemGroup);
         }
-        productGroup.Clear();
+        productGroup?.Clear();
         foreach (var itemGroup in other.productGroup)
         {
             var newItemGroup = new ItemGroup(itemGroup);
@@ -109,4 +109,16 @@ public class Blueprint
 public class BlueprintConfig : ScriptableObject
 {
     public List<Blueprint> blueprints;
+    
+    public static List<Blueprint> GetCopyBlueprints(List<Blueprint> blueprints)
+    {
+        var copy = new List<Blueprint>();
+        foreach (var bp in blueprints)
+        {
+            var newBp = new Blueprint();
+            newBp.CopyBlueprintValuesFrom(bp);
+            copy.Add(newBp);
+        }
+        return copy;
+    }
 }

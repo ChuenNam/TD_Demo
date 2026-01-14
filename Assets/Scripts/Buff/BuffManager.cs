@@ -161,12 +161,12 @@ public class BuffManager : MonoBehaviour
         var buff = config.targetItems is null
             ? new Buff(
                 config.CalculateDuration(),
-                AddOrDelBuff_timeMultiplier(true, config.multiple-1, building),
-                AddOrDelBuff_timeMultiplier(false, config.multiple-1, building))
+                AddOrDelBuff_timeMultiplier(true, config.value-1, building),
+                AddOrDelBuff_timeMultiplier(false, config.value-1, building))
             : new Buff(
                 config.CalculateDuration(),
-                AddOrDelBuff_timeMultiplier(true, config.multiple-1, building, config.targetItems),
-                AddOrDelBuff_timeMultiplier(false, config.multiple-1, building, config.targetItems));
+                AddOrDelBuff_timeMultiplier(true, config.value-1, building, config.targetItems),
+                AddOrDelBuff_timeMultiplier(false, config.value-1, building, config.targetItems));
         
         buff.buffName = config.buffName;
         buff.buffDescription = config.buffDescription;
@@ -191,18 +191,30 @@ public class BuffManager : MonoBehaviour
         var buff = config.targetItems is null
             ? new Buff(
                 config.CalculateDuration(),
-                AddOrDelBuff_Count(true, (int)config.multiple, building),
-                AddOrDelBuff_Count(false, (int)config.multiple, building))
+                AddOrDelBuff_Count(true, (int)config.value, building),
+                AddOrDelBuff_Count(false, (int)config.value, building))
             : new Buff(
                 config.CalculateDuration(),
-                AddOrDelBuff_Count(true, (int)config.multiple, building, config.targetItems),
-                AddOrDelBuff_Count(false, (int)config.multiple, building, config.targetItems));
+                AddOrDelBuff_Count(true, (int)config.value, building, config.targetItems),
+                AddOrDelBuff_Count(false, (int)config.value, building, config.targetItems));
         
         buff.buffName = config.buffName;
         buff.buffDescription = config.buffDescription;
         return buff;
     }
-    
+
+    // 创建解锁配方 Buff
+    public static Buff CreateUnLockBpBuff(Building building, ProductionBuffConfig config)
+    {
+        var buff = new Buff(
+            config.CalculateDuration(),
+            AddOrDelBuff_BpLock(true, (int)config.value, building),
+            AddOrDelBuff_BpLock(false, (int)config.value, building));
+        
+        buff.buffName = config.buffName;
+        buff.buffDescription = config.buffDescription;
+        return buff;
+    }
     
     private static Action AddOrDelBuff_Count(bool isAdd, int num, Building building, BaseItem targetItems = null)
     {
@@ -239,6 +251,18 @@ public class BuffManager : MonoBehaviour
                     building.objectData.UpdateDataUI();
                 }
             }
+        };
+        return action;
+    }
+    private static Action AddOrDelBuff_BpLock(bool isAdd, int index, Building building)
+    {
+        Action action = () =>
+        {
+            var rst = !isAdd;       // 添加buff为解锁, 删除buff为禁用
+            var bp =  building.blueprints[index];
+
+            bp.isLocked = rst;    // TODO:实现赋值对象传递？
+            building.objectData.UpdateDataUI();
         };
         return action;
     }

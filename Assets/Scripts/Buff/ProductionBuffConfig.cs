@@ -10,7 +10,7 @@ public class ProductionBuffConfig : ScriptableObject
     [TextArea]public string buffDescription;
     [Header("Buff 数据")]
     public BuffType  buffType;
-    public float multiple = 1;
+    public float value = 1;
     public DurationType duration;
     public Building building;
     public BaseItem targetItems;
@@ -37,6 +37,7 @@ public enum BuffType
 {
     Productivity,
     ExtraOutput,
+    UnlockBlueprint,
 }
 
 public enum DurationType

@@ -87,6 +87,11 @@ public interface ILevelUp
                     buff.buffName += 'L';
                     buffsToAdd.Add(buff);
                     break;
+                case BuffType.UnlockBlueprint:
+                    buff = BuffManager.CreateUnLockBpBuff(building, config);
+                    buff.buffName += 'L';
+                    buffsToAdd.Add(buff);
+                    break;
             }
         }
         // 根据添加方式添加
@@ -136,7 +141,7 @@ public class Building : MonoBehaviour
     public virtual void Initialize(string id, GridManager manager)
     {
         objectData = manager.GetObjectData(id);
-        blueprints = objectData.blueprintConfig.blueprints;
+        blueprints = BlueprintConfig.GetCopyBlueprints(objectData.blueprintConfig.blueprints);
         CurrentBlueprint = blueprints[0];
         foreach (var bp in blueprints)
             bp.timeMultiplier = 1;

@@ -27,6 +27,9 @@ public class RandomEvent : ScriptableObject
                     case BuffType.ExtraOutput:
                         buffs.Add(BuffManager.CreatExtraOutputBuff(building ,productionBuffConfig));
                         break;
+                    case BuffType.UnlockBlueprint:
+                        buffs.Add(BuffManager.CreateUnLockBpBuff(building ,productionBuffConfig));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

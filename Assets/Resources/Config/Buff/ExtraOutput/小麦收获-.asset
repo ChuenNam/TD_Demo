@@ -15,7 +15,7 @@ MonoBehaviour:
   buffName: "\u5C0F\u9EA6\u6536\u83B7-"
   buffDescription: "\u5C0F\u9EA6\u4EA7\u91CF\u51CF\u5C11"
   buffType: 1
-  multiple: -1
+  value: -1
   duration: 3
   building: {fileID: -6239355802317505733, guid: 9c4415292bc55dc44943b427892c6297, type: 3}
   targetItems: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
