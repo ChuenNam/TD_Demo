@@ -15,6 +15,7 @@ public class EventChosePanel : BasePanel
     protected override void Init()
     {
         base.Init();
+        //BuffManager.instance.ChoseSeasonEvent();
     }
 
     public void ShowEventChose(List<RandomEvent> eventList)
@@ -60,12 +61,6 @@ public class EventChosePanel : BasePanel
             panel.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
             {
                 BuffManager.instance.allEventBuffs.Add(e);  // 添加选择的buff
-                
-                //清除数据
-                foreach (var p in eventPanelList)
-                    Destroy(p);
-                eventPanelList.Clear();
-                eventList.Clear();
                 
                 ClosePanel();       //关闭面板
                 TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;

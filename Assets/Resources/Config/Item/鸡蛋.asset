@@ -16,4 +16,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 31d898613bd0e26468bb8900be7eceba, type: 3}
   description: "\u4E00\u4E2A\u666E\u901A\u7684\u767D\u8272\u9E21\u86CB\u3002"
   price: 5
-  count: 100
+  count: 0

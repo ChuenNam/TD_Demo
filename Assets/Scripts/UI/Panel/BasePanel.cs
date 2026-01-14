@@ -30,7 +30,7 @@ public class BasePanel : MonoBehaviour
     }
     public void ShowPanel()
     {
-        if (!isActive)
+        if (this != null && !isActive)
         {
             isActive = true;
             gameObject.SetActive(true);

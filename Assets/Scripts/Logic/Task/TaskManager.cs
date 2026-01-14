@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TaskManager : MonoBehaviour
 {
@@ -30,14 +31,19 @@ public class TaskManager : MonoBehaviour
         }
         if (finalTask.taskDataList[0].isDone)
         {
-            UIManager.instance.helpPanel.Show("恭喜","你完成了最终目标！",true);
+            UIManager.instance.helpPanel.Show("恭喜","你完成了最终目标！\n点击重新开始",true);
             UIManager.instance.helpPanel.AddCloseAction(() =>
             {
                 //TODO: 完成游戏
+                SceneManager.LoadScene("Scenes/TD_Demo");
+                //SimpleSceneLoader.ReloadCurrentScene();
+
             });
             UIManager.instance.helpPanel.AddConfirmAction(() =>
             {
                 //TODO: 完成游戏
+                SceneManager.LoadScene("Scenes/TD_Demo");
+                //SimpleSceneLoader.ReloadCurrentScene();
             });
         }
         
@@ -123,5 +129,10 @@ public class TaskData
             var panel = UIManager.instance.taskPanel;
             panel.DeleteDisplayedTask(taskInfo);
         }
+    }
+
+    public void ReLoadScene()
+    {
+        SceneManager.LoadScene("Scenes/TD_Demo");
     }
 }

@@ -52,7 +52,7 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         timeLogic = TimeLogic.instance;
         buildings = timeLogic.buildings;
@@ -60,14 +60,14 @@ public class BuffManager : MonoBehaviour
         ChoseSeasonEvent();
     }
     
-    private void OnDestroy()
+    private void OnDisable()
     {
         foreach (var e in positiveRandomEvents)
             e.buffs.Clear();
         foreach (var e in negativeRandomEvents)
             e.buffs.Clear();
-        foreach (var e in seasonEvents)
-            e.buffs.Clear();
+        /*foreach (var e in seasonEvents)
+            e.buffs.Clear();*/
         
         allEventBuffs.Clear();
     }

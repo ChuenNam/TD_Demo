@@ -33,6 +33,7 @@ public class TaskPanel : BasePanel
     }
     public void DeleteDisplayedTask(string taskInfo)
     {
+        if (taskListRect == null) return;
         for (var i = 0; i < taskListRect.childCount; i++)
         {
             var txt = taskListRect.GetChild(i).gameObject.GetComponent<Text>();
