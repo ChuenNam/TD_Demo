@@ -71,6 +71,11 @@ public class BpListPanel : BasePanel
         building = b;
         blueprintList = building.blueprints;
         
+        //蓝图面板按钮切换
+        productButton.GetComponent<Image>().color = building.inProduction ? 
+            new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);
+        productButton.GetComponentInChildren<Text>().text = building.inProduction ? "停止制造" : "开始制造";   
+        
         // 菜单更新逻辑
         bpDropdown.ClearOptions();
         List<string> optionTexts = new();

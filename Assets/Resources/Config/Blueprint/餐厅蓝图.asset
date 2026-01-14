@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: "\u9910\u5385\u84DD\u56FE"
   m_EditorClassIdentifier: 
   blueprints:
-  - blueprintName: "\u852C\u83DC\u6C99\u62C9"
-    icon: {fileID: 21300000, guid: 899b39a5e5f449f42a62d9a90128ac37, type: 3}
+  - blueprintName: "\u9762\u5305"
+    icon: {fileID: 21300000, guid: ebaaa723145f26d41a9bfd34a83f3cfc, type: 3}
     isLocked: 0
     baseTime: 5
     timeMultiplier: 1
     useGroup:
-    - item: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
+    - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
       count: 3
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
@@ -27,21 +27,21 @@ MonoBehaviour:
   - blueprintName: "\u592A\u9633\u86CB"
     icon: {fileID: 21300000, guid: ea66a41208671344c99b33e26013cd8f, type: 3}
     isLocked: 0
-    baseTime: 5
+    baseTime: 3
     timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: e23b41ad945d3d841bd4541a6e1aa329, type: 2}
       count: 1
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 10
-  - blueprintName: "\u9762\u5305"
-    icon: {fileID: 21300000, guid: ebaaa723145f26d41a9bfd34a83f3cfc, type: 3}
+      count: 15
+  - blueprintName: "\u852C\u83DC\u6C99\u62C9"
+    icon: {fileID: 21300000, guid: 899b39a5e5f449f42a62d9a90128ac37, type: 3}
     isLocked: 1
     baseTime: 5
     timeMultiplier: 1
     useGroup:
-    - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
+    - item: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
       count: 2
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
@@ -60,7 +60,7 @@ MonoBehaviour:
   - blueprintName: "\u677E\u997C"
     icon: {fileID: 21300000, guid: c77e1823d104e3c4b91deb31b1f631a8, type: 3}
     isLocked: 1
-    baseTime: 0
+    baseTime: 5
     timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}

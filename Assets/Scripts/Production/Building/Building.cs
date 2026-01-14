@@ -193,7 +193,7 @@ public class Building : MonoBehaviour
     }
     public virtual void Product()
     {
-        if (!(timeCounter >= CurrentBlueprint.Time)) 
+        if (CurrentBlueprint.Time <= 0 || !(timeCounter >= CurrentBlueprint.Time)) 
             return;
         
         timeCounter = 0; // 重置计时器
