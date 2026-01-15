@@ -37,8 +37,8 @@ public class EventChosePanel : BasePanel
                 //清除数据
                 foreach (var p in eventPanelList)
                     Destroy(p);
-                eventPanelList = null;
-                eventList = null;
+                eventPanelList.Clear();
+                eventList.Clear();
                 
                 ClosePanel();       //关闭面板
                 TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;
@@ -63,8 +63,8 @@ public class EventChosePanel : BasePanel
                 
                 foreach (var p in eventPanelList)
                     Destroy(p);
-                eventPanelList = null;
-                eventList = null;
+                eventPanelList.Clear();
+                eventList.Clear();
                 
                 ClosePanel();       //关闭面板
                 TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;
