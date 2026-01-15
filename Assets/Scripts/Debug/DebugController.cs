@@ -30,6 +30,7 @@ public class DebugController : MonoBehaviour
     public static DebugCommand NEXT_DAY;
     public static DebugCommand<int> SET_DAY;
     public static DebugCommand<string> BUILD;
+    public static DebugCommand<string> ADD_EVENT;
 
     // 核心显示相关变量
     private Vector2 displayScrollPos;
@@ -153,6 +154,19 @@ public class DebugController : MonoBehaviour
                     return;
                 }
             });
+            ADD_EVENT = new DebugCommand<string>("ADD_EVENT", "添加指定事件", "ADD_EVENT <NAME>",
+            (str) =>
+            {
+                if (UIManager.instance?.eventChosePanel == null) return;
+                var eventConfigSource = new List<RandomEvent>();
+                eventConfigSource.AddRange(BuffManager.instance.positiveRandomEvents);
+                eventConfigSource.AddRange(BuffManager.instance.negativeRandomEvents);
+                foreach (var config in eventConfigSource.Where(config => config.eventName == str))
+                {
+                    UIManager.instance.eventChosePanel.ShowEventChose(new List<RandomEvent> { config });
+                    return;
+                }
+            });
 
             
             commandList = new List<object>()
@@ -170,6 +184,7 @@ public class DebugController : MonoBehaviour
                 NEXT_DAY,
                 SET_DAY,
                 BUILD,
+                ADD_EVENT,
             };
         #endregion
     }
