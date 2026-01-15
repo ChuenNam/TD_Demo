@@ -56,8 +56,10 @@ public class BuffManager : MonoBehaviour
     {
         timeLogic = TimeLogic.instance;
         buildings = timeLogic.buildings;
-        
+
+#if UNITY_EDITOR
         ChoseSeasonEvent();
+#endif
     }
     
     private void OnDisable()
@@ -66,8 +68,6 @@ public class BuffManager : MonoBehaviour
             e.buffs.Clear();
         foreach (var e in negativeRandomEvents)
             e.buffs.Clear();
-        /*foreach (var e in seasonEvents)
-            e.buffs.Clear();*/
         
         allEventBuffs.Clear();
     }
