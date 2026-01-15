@@ -4058,8 +4058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5d848ef75aefe4299b818e22485dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeAnimator: {fileID: 0}
-  fadeDuration: 0.5
 --- !u!4 &1385377180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1298f200c3928e343b57711821788813, type: 3}
@@ -9917,23 +9915,7 @@ MonoBehaviour:
   closeButton: {fileID: 0}
   eventList: []
   eventPanelPrefab: {fileID: 492335050774921340, guid: a53115e8e322b264ba0b966a5ac4672c, type: 3}
-  eventPanelList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  eventPanelList: []
 --- !u!114 &3370386872138110618
 MonoBehaviour:
   m_ObjectHideFlags: 0

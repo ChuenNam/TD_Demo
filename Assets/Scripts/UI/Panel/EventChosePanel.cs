@@ -33,13 +33,12 @@ public class EventChosePanel : BasePanel
             panel.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
             {
                 BuffManager.instance.AddEventBuff(e);  // 添加选择的buff
-                //BuffManager.instance.allEventBuffs.Add(e,e.Init());  // 添加选择的buff
                 
                 //清除数据
                 foreach (var p in eventPanelList)
                     Destroy(p);
-                eventPanelList.Clear();
-                eventList.Clear();
+                eventPanelList = null;
+                eventList = null;
                 
                 ClosePanel();       //关闭面板
                 TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;
@@ -61,6 +60,11 @@ public class EventChosePanel : BasePanel
             panel.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
             {
                 BuffManager.instance.allEventBuffs.Add(e);  // 添加选择的buff
+                
+                foreach (var p in eventPanelList)
+                    Destroy(p);
+                eventPanelList = null;
+                eventList = null;
                 
                 ClosePanel();       //关闭面板
                 TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;

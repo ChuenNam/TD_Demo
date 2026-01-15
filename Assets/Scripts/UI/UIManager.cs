@@ -18,13 +18,9 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
         DontDestroyOnLoad(gameObject);
     }
     
@@ -71,13 +67,6 @@ public class UIManager : MonoBehaviour
     private void FindAndCacheNewUI()
     {
         // 通过对象名称查找（确保新场景UI名称一致）
-        //helpPanel = GameObject.Find("帮助面板").GetComponent<HelpPanel>();
-        //objectInfoPanel = GameObject.Find("物件面板").GetComponent<ObjectInfoPanel>();
-        //eventChosePanel = GameObject.Find("时间选择面板").GetComponent<EventChosePanel>();
-        //bpListPanel = GameObject.Find("蓝图面板").GetComponent<BpListPanel>();
-        //restaurantPanel = GameObject.Find("餐厅面板").GetComponent<RestaurantPanel>();
-        //tradePanel = GameObject.Find("贸易面板").GetComponent<TradePanel>();
-        //taskPanel =  GameObject.Find("任务面板").GetComponent<TaskPanel>();
         helpPanel = Resources.FindObjectsOfTypeAll<HelpPanel>()[0];
         objectInfoPanel = Resources.FindObjectsOfTypeAll<ObjectInfoPanel>()[0];
         eventChosePanel = Resources.FindObjectsOfTypeAll<EventChosePanel>()[0];
