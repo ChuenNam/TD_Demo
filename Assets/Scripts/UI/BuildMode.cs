@@ -38,9 +38,6 @@ public class BuildMode : MonoBehaviour
 
     private void Start()
     {
-        //gridMaterial = gridManager.GetComponent<MeshRenderer>().material;
-        //sceneCam.enabled = true;      //初始为场景相机
-        
         buildButton.onClick.AddListener(() =>
         {
             if(gridManager.isPlacing)   

@@ -34,16 +34,13 @@ public class TaskManager : MonoBehaviour
             UIManager.instance.helpPanel.Show("恭喜","你完成了最终目标！\n点击重新开始",true);
             UIManager.instance.helpPanel.AddCloseAction(() =>
             {
-                //TODO: 完成游戏
+                //完成游戏
                 SceneManager.LoadScene("Scenes/TD_Demo");
-                //SimpleSceneLoader.ReloadCurrentScene();
-
             });
             UIManager.instance.helpPanel.AddConfirmAction(() =>
             {
-                //TODO: 完成游戏
+                //完成游戏
                 SceneManager.LoadScene("Scenes/TD_Demo");
-                //SimpleSceneLoader.ReloadCurrentScene();
             });
         }
         

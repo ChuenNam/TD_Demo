@@ -18,9 +18,8 @@ public class LoadSceneManager : MonoBehaviour
     {
         if (scene.name != SceneManager.GetActiveScene().name) 
             return;
-        Debug.Log("场景" + scene.name + "完全加载完成，开始重置复杂数据");
-
-
+        Debug.Log("场景" + scene.name + "完全加载完成，开始初始化数据");
+        
         // 初始化时间
         var timeMng = TimeLogic.instance;
         timeMng.globalTime = 0; 

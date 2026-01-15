@@ -64,7 +64,6 @@ public class EventChosePanel : BasePanel
                 foreach (var p in eventPanelList)
                     Destroy(p);
                 eventPanelList.Clear();
-                eventList.Clear();
                 
                 ClosePanel();       //关闭面板
                 TimeLogic.instance.timeSpeed = preTimeSpeed >= 1 ? preTimeSpeed : 0;
