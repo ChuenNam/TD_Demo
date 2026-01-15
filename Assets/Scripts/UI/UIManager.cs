@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public HelpPanel helpPanel;
+    public ObjectSelectionUI  objectSelectionUI;
     public ObjectInfoPanel objectInfoPanel;
     public EventChosePanel eventChosePanel;
     public BpListPanel bpListPanel;
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
     {
         // 主动清空所有UI引用，避免残留旧场景的无效对象
         helpPanel = null;
+        objectSelectionUI = null;
         objectInfoPanel = null;
         eventChosePanel = null;
         bpListPanel = null;
@@ -68,13 +70,13 @@ public class UIManager : MonoBehaviour
     {
         // 通过对象名称查找（确保新场景UI名称一致）
         helpPanel = Resources.FindObjectsOfTypeAll<HelpPanel>()[0];
+        objectSelectionUI = Resources.FindObjectsOfTypeAll<ObjectSelectionUI>()[0];
         objectInfoPanel = Resources.FindObjectsOfTypeAll<ObjectInfoPanel>()[0];
         eventChosePanel = Resources.FindObjectsOfTypeAll<EventChosePanel>()[0];
         bpListPanel = Resources.FindObjectsOfTypeAll<BpListPanel>()[0];
         restaurantPanel = Resources.FindObjectsOfTypeAll<RestaurantPanel>()[0];
         tradePanel = Resources.FindObjectsOfTypeAll<TradePanel>()[0];
         taskPanel = Resources.FindObjectsOfTypeAll<TaskPanel>()[0];
-        
     }
 
 }

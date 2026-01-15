@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DebugController : MonoBehaviour
@@ -24,8 +25,11 @@ public class DebugController : MonoBehaviour
     public static DebugCommand<int> SET_ALL_ITEM_COUNT;
     public static DebugCommand CLEAR_ALL_ITEM_COUNT;
     public static DebugCommand<int> SET_TIME_SPEED;
-    public static DebugCommand SET_DAY;
+    public static DebugCommand SET_DAYTIME;
     public static DebugCommand SET_NIGHT;
+    public static DebugCommand NEXT_DAY;
+    public static DebugCommand<int> SET_DAY;
+    public static DebugCommand<string> BUILD;
 
     // 核心显示相关变量
     private Vector2 displayScrollPos;
@@ -97,7 +101,7 @@ public class DebugController : MonoBehaviour
                 TimeLogic.instance.timeSpeed = x;
                 AddContentToDisplayList($"执行结果：时间流速已设置为{x}");
             });
-            SET_DAY = new DebugCommand("SET_DAY", "设置时间为白天", "SET_DAY", 
+            SET_DAYTIME = new DebugCommand("SET_DAYTIME", "设置时间为白天", "SET_DAYTIME", 
             () =>
             {
                 if (TimeLogic.instance?.timeSpeed == null) return;
@@ -115,6 +119,41 @@ public class DebugController : MonoBehaviour
                 ins.globalTime = (ins.day-1) * ins.timeConfig.secondsPerDay + ins.dayTime;  // 需要同步重置总时间
                 AddContentToDisplayList("执行结果：时间已设置为夜晚开始");
             });
+            NEXT_DAY = new DebugCommand("NEXT_DAY", "设置时间为下一天", "NEXT_DAY", 
+            () =>
+            {
+                if (TimeLogic.instance?.timeSpeed == null) return;
+                var ins = TimeLogic.instance;
+                ins.dayTime = 0;
+                ins.globalTime = ins.day * ins.timeConfig.secondsPerDay;  // 需要同步重置总时间
+                AddContentToDisplayList("执行结果：时间已设置为下一天开始");
+            });
+            SET_DAY = new DebugCommand<int>("SET_DAY", "设置到指定天数", "SET_DAY <TARGET_DAY>", 
+            (x) =>
+            {
+                if (TimeLogic.instance?.timeSpeed == null) return;
+                var ins = TimeLogic.instance;
+                ins.day = x-1;
+                ins.dayTime = 0;
+                ins.globalTime = (x-1) * ins.timeConfig.secondsPerDay-.02f;  // 需要同步重置总时间
+                AddContentToDisplayList($"执行结果：时间已设置为第{x}天");
+            });
+            BUILD = new DebugCommand<string>("BUILD", "生成指定建筑", "BUILD <NAME>", 
+            (str) =>
+            {
+                if (UIManager.instance?.objectSelectionUI == null) return;
+                var ins = UIManager.instance?.objectSelectionUI;
+                foreach (var config in from list in TimeLogic.instance.gridManager.availableObjects
+                         from config in list.configs
+                         where config.objectName == str
+                         select config)
+                {
+                    ins.OnObjectSelected(config);
+                    AddContentToDisplayList($"执行结果：已生成{str}");
+                    return;
+                }
+            });
+
             
             commandList = new List<object>()
             {
@@ -126,8 +165,11 @@ public class DebugController : MonoBehaviour
                 CLEAR_ALL_ITEM_COUNT,
                 SET_ALL_ITEM_COUNT,
                 SET_TIME_SPEED,
-                SET_DAY,
+                SET_DAYTIME,
                 SET_NIGHT,
+                NEXT_DAY,
+                SET_DAY,
+                BUILD,
             };
         #endregion
     }
@@ -237,7 +279,10 @@ public class DebugController : MonoBehaviour
                             when properties.Length >= 2 && int.TryParse(properties[1], out int param):
                                 cmdInt.Invoke(param);
                             break;
-                        
+                        case DebugCommand<string> cmdString 
+                            when properties.Length >= 2:
+                                cmdString.Invoke(properties[1]);
+                            break;
                         case DebugCommand<string, int> cmdStringInt 
                             when properties.Length >= 2 && int.TryParse(properties[2], out int param):
                                 cmdStringInt.Invoke(properties[1],param);

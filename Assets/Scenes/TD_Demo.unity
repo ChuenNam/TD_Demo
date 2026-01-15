@@ -1270,6 +1270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helpPanel: {fileID: 6613145615860465}
+  objectSelectionUI: {fileID: 2096665479}
   objectInfoPanel: {fileID: 1555511373690151895}
   eventChosePanel: {fileID: 3335499888788533328}
   bpListPanel: {fileID: 5076596390269393342}

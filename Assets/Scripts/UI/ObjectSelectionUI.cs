@@ -58,7 +58,7 @@ public class ObjectSelectionUI : MonoBehaviour
         }
     }
     
-    void OnObjectSelected(GridObjectConfig config)
+    public void OnObjectSelected(GridObjectConfig config)
     {
         gridManager.StartPlacingObject(config);
         UIManager.instance.objectInfoPanel.ClosePanel();
