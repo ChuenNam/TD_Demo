@@ -21,7 +21,7 @@ MonoBehaviour:
     buildingCount: 0
     levelBuilding: {fileID: 0}
     targetLevel: 0
-  - taskInfo: ">> \u5347\u7EA7\u7267\u68DA\u81F3Lv.2\u751F\u4EA710\u4E2A\u725B\u5976"
+  - taskInfo: ">> \u5347\u7EA7\u7267\u68DA\u5E76\u4EA710\u4E2A\u725B\u5976"
     isDone: 0
     targetItem: {fileID: 11400000, guid: 6046491d3de83824b975bfe28b724630, type: 2}
     itemCount: 10

@@ -24,28 +24,30 @@ public class TaskManager : MonoBehaviour
     
     private void Update()
     {
-        // 检查最终目标
-        foreach (var finalTaskData in finalTask.taskDataList)
+        // 已完成所有阶段任务
+        if (currentNodeIndex > taskList.Count - 1)
         {
-            finalTaskData.CheckTaskDone();
-        }
-        if (finalTask.taskDataList[0].isDone)
-        {
-            UIManager.instance.helpPanel.Show("恭喜","你完成了最终目标！\n点击重新开始",true);
-            UIManager.instance.helpPanel.AddCloseAction(() =>
+            // 检查最终目标
+            foreach (var finalTaskData in finalTask.taskDataList)
             {
-                //完成游戏
-                SceneManager.LoadScene("Scenes/TD_Demo");
-            });
-            UIManager.instance.helpPanel.AddConfirmAction(() =>
+                finalTaskData.CheckTaskDone();
+            }
+            if (finalTask.taskDataList[0].isDone)
             {
-                //完成游戏
-                SceneManager.LoadScene("Scenes/TD_Demo");
-            });
-        }
-        
-        if (currentNodeIndex > taskList.Count-1)    // 已完成所有阶段任务
+                UIManager.instance.helpPanel.Show("恭喜","你完成了最终目标！\n点击重新开始",true);
+                UIManager.instance.helpPanel.AddCloseAction(() =>
+                {
+                    //完成游戏
+                    SceneManager.LoadScene("Scenes/TD_Demo");
+                });
+                UIManager.instance.helpPanel.AddConfirmAction(() =>
+                {
+                    //完成游戏
+                    SceneManager.LoadScene("Scenes/TD_Demo");
+                });
+            }
             return;
+        } 
         
         if (taskList[currentNodeIndex].CheckNodeDone())
         {
@@ -114,6 +116,7 @@ public class TaskData
                 if (building is ILevelUp levelUp && building.GetType() == levelBuilding.GetType())
                 {
                     levelCheck = levelUp.Level == targetLevel;
+                    if (levelCheck) break;
                 }
             }
         }

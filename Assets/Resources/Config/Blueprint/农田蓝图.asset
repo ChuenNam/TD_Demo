@@ -16,7 +16,7 @@ MonoBehaviour:
   - blueprintName: 
     icon: {fileID: 0}
     isLocked: 0
-    baseTime: 5
+    baseTime: 10
     timeMultiplier: 1
     useGroup: []
     productGroup:

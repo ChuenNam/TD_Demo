@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FinalTask
   m_EditorClassIdentifier: 
   taskDataList:
-  - taskInfo: "\u6700\u7EC8\u4EFB\u52A1\uFF1A\u9910\u5385\u4E3ALv.3+\u62E5\u6709500\u91D1\u5E01"
+  - taskInfo: "\u6700\u7EC8\u4EFB\u52A1\uFF1A\u9910\u5385\u4E3ALv.3+\u62E5\u67091000\u91D1\u5E01"
     isDone: 0
     targetItem: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-    itemCount: 500
+    itemCount: 2000
     targetBuilding: {fileID: 1012406974826088352, guid: bccdd6b2dcae70f4cb96c19818fc7a2e, type: 3}
     buildingCount: 1
     levelBuilding: {fileID: 1012406974826088352, guid: bccdd6b2dcae70f4cb96c19818fc7a2e, type: 3}

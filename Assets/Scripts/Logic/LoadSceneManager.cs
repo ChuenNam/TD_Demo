@@ -45,5 +45,8 @@ public class LoadSceneManager : MonoBehaviour
         buffMng.allEventBuffs.Clear();
         
         buffMng.ChoseSeasonEvent();
+        
+        // 初始化任务
+        TaskManager.instance.currentNodeIndex = 0;
     }
 }

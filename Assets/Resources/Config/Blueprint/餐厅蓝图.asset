@@ -42,7 +42,7 @@ MonoBehaviour:
     timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
-      count: 2
+      count: 3
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
       count: 20
@@ -53,7 +53,7 @@ MonoBehaviour:
     timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: 03b89bdb2e0ee5e4291fd87d71169136, type: 2}
-      count: 1
+      count: 2
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
       count: 20
@@ -64,7 +64,7 @@ MonoBehaviour:
     timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
-      count: 1
+      count: 5
     - item: {fileID: 11400000, guid: e23b41ad945d3d841bd4541a6e1aa329, type: 2}
       count: 2
     productGroup:
@@ -79,10 +79,10 @@ MonoBehaviour:
     - item: {fileID: 11400000, guid: 03b89bdb2e0ee5e4291fd87d71169136, type: 2}
       count: 2
     - item: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
-      count: 2
+      count: 4
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
-      count: 50
+      count: 40
   - blueprintName: "\u86CB\u7CD5"
     icon: {fileID: 21300000, guid: 9412f676ddeafac4288597d10bf0a4d4, type: 3}
     isLocked: 1
@@ -90,11 +90,11 @@ MonoBehaviour:
     timeMultiplier: 1
     useGroup:
     - item: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
-      count: 2
+      count: 5
     - item: {fileID: 11400000, guid: e23b41ad945d3d841bd4541a6e1aa329, type: 2}
-      count: 2
+      count: 5
     - item: {fileID: 11400000, guid: 6046491d3de83824b975bfe28b724630, type: 2}
-      count: 2
+      count: 3
     productGroup:
     - item: {fileID: 11400000, guid: 11773c80492f84641b151454498955fc, type: 2}
       count: 100
