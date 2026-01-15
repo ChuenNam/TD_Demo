@@ -30,6 +30,14 @@ public class ItemManager : MonoBehaviour
         }
         GetItemByName("金币").count = 10;
     }
+    private void OnDisable()
+    {
+        foreach (var item in possesItem)
+        {
+            item.count = 0;
+        }
+        GetItemByName("金币").count = 10;
+    }
 
     public BaseItem GetItemByName(string itemName)
     {

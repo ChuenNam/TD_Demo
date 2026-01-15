@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229fa4ee231c459292354261851143ef, type: 3}
   m_Name: Time Config
   m_EditorClassIdentifier: 
-  secondsPerDay: 10
+  secondsPerDay: 60
   nightChangePoint: 0.65

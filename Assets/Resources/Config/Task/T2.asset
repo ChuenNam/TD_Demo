@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: T2
   m_EditorClassIdentifier: 
   taskDataList:
-  - taskInfo: ">> \u751F\u4EA710\u4E2A\u5377\u5FC3\u83DC"
+  - taskInfo: ">> \u751F\u4EA710\u4E2A\u5C0F\u9EA6"
     isDone: 0
-    targetItem: {fileID: 11400000, guid: 762ba56082ff1a340bd58c75cb86300f, type: 2}
+    targetItem: {fileID: 11400000, guid: f5157031d7573964881f1a44ee83d2e1, type: 2}
     itemCount: 10
     targetBuilding: {fileID: 0}
     buildingCount: 0
