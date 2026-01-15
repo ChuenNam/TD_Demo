@@ -32,6 +32,12 @@ public class BpListPanel : BasePanel
         {
             building.ChangeProduction();
             UIManager.instance.objectInfoPanel.WriteInfo(data); //物件面板的信息
+            if (building.inProduction)
+            {
+                // 开始生产则关闭面板
+                ClosePanel();
+                TimeLogic.instance.timeSpeed = 1;
+            }
             //蓝图面板按钮切换
             productButton.GetComponent<Image>().color = building.inProduction ? 
                 new Color(1f,.7f,.7f) : new Color(.7f,1f,.7f);

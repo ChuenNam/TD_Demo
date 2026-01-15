@@ -31,6 +31,7 @@ public class Restaurant : Building, ITrading, ILevelUp
             {
                 Debug.Log("生产完毕");
                 CurrentBlueprint = null;
+                todayMenu.Clear();
                 stateImage.SetActive(true);
                 return;
             }

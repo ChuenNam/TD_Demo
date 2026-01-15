@@ -26,6 +26,7 @@ public class BasePanel : MonoBehaviour
         {
             isActive = false;
             gameObject.SetActive(false);
+            TimeLogic.instance.timeSpeed = 1;
         }
     }
     public void ShowPanel()

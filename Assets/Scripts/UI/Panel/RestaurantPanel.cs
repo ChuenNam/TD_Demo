@@ -46,14 +46,17 @@ public class RestaurantPanel : BasePanel
                 }
                 restaurant.SetDishToQueue();
                 restaurant.ChangeProduction();
-                
+                // 更新UI信息 (删除订单信息) 
                 restaurant.objectData.UpdateDataUI();
                 for (var i = 0; i < todayMenuRect.childCount; i++)
                 {
                     Destroy(todayMenuRect.GetChild(i).gameObject);
                 }
+                for (var i = 0; i < totalInfoRect.childCount; i++)
+                    Destroy(totalInfoRect.GetChild(i).gameObject);
             }
             ClosePanel();
+            TimeLogic.instance.timeSpeed = 1;
         });
     }
     

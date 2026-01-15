@@ -90,6 +90,7 @@ public sealed class TradePanel : BasePanel
 
             ResetData();
             ClosePanel();
+            TimeLogic.instance.timeSpeed = 1;
         });
     }
     

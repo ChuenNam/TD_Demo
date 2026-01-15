@@ -171,7 +171,7 @@ public class Building : MonoBehaviour
         {
             inProduction = false;
             UIManager.instance.objectInfoPanel.WriteInfo(objectData);
-            CurrentBlueprint = null;
+            //CurrentBlueprint = null;
             return;
         }
         // 消耗资源检测
@@ -182,7 +182,8 @@ public class Building : MonoBehaviour
             
             Debug.Log("原料不足，结束生产");
             inProduction = false;
-            CurrentBlueprint = null;
+            UIManager.instance.helpPanel.Show("原料不足!");
+            //CurrentBlueprint = null;
             return;
         }
         // 检测通过 - 开始生产

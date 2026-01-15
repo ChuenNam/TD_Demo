@@ -22,6 +22,15 @@ public class ItemManager : MonoBehaviour
     
     public List<BaseItem> possesItem = new();
 
+    private void OnEnable()
+    {
+        foreach (var item in possesItem)
+        {
+            item.count = 0;
+        }
+        GetItemByName("金币").count = 10;
+    }
+
     public BaseItem GetItemByName(string itemName)
     {
         return possesItem.FirstOrDefault(item => item.itemName == itemName);
